@@ -9,6 +9,9 @@ namespace BE
     public class CivicAddress
     {
         public string City { get; set; }
-        public string StreetAddress { get; set; }
+        public string StreetName { get; set; }
+        public uint HouseNumber { get; set; }
+        public bool isPrivateHouse { get; set; }
+        public uint? ApartmentNumber { get; set; }
     }
 }

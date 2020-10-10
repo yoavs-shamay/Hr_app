@@ -34,7 +34,6 @@ namespace BL
         public IEnumerable<Contract> getAllContractsWithCondition(Predicate<Contract> condition);
         public IEnumerable<Contract> getAllContractsWithCondition(Predicate<Contract> condition, out int count);
 
-        //TODO documentation what is ContractGroupContainer and why
         public IEnumerable<ContractGroupContainer> getAllCountractsGroupedBySpecialization(bool sorted);
         public IEnumerable<ContractGroupContainer> getAllCountractsGroupedByAddress(bool sorted);
         public IEnumerable<ContractGroupContainer> getAllCountractsGroupedByTime(bool sorted);

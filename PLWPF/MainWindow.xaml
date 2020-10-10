@@ -1,0 +1,34 @@
+﻿<Window x:Class="PLWPF.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:PLWPF"
+        mc:Ignorable="d"
+        Title="Hr app" Style="{StaticResource WindowStyle}">
+    <Grid>
+        <StackPanel VerticalAlignment="Center" HorizontalAlignment="Center">
+            <Image Source="C:\Users\User\Desktop\Yoav c# project\Hr_app\PLWPF\Images\hr_image.jpg" Width="200" Height="150"/>
+            <DockPanel Width="250" Margin="0,0,0,0">
+                <Button Style="{StaticResource ButtonStyle}" x:Name="ViewWindowButton" Background="LightBlue" HorizontalAlignment="Left">
+                    <Button.Content>
+                        <StackPanel>
+                            <TextBlock Text="View" FontSize="30"/>
+                        </StackPanel>
+                    </Button.Content>
+                </Button>
+                <Button Style="{StaticResource ButtonStyle}" x:Name="EditWindowButton" Background="LightBlue" HorizontalAlignment="Right">
+                    <Button.Content>
+                        <StackPanel>
+                            <TextBlock Text="Edit" FontSize="30" />
+                        </StackPanel>
+                    </Button.Content>
+                </Button>
+            </DockPanel>
+        </StackPanel>
+        <DockPanel VerticalAlignment="Bottom" HorizontalAlignment="Center">
+            <Image Source="C:\Users\User\Desktop\Yoav c# project\Hr_app\PLWPF\Images\copyright.png" Width="15" Height="15" />
+            <TextBlock Text=" Made by Yoav Shamay."/>
+        </DockPanel>
+    </Grid>
+</Window>

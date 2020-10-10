@@ -51,10 +51,10 @@ namespace DS
         private static void generateBanks()
         {
             List<Bank> tempBanks = new List<Bank> {
-                new Bank("Leumi", 1155, 19, new CivicAddress() {StreetAddress="20 Havaad Haleumi St", City="Jerusalem" }),
-                new Bank("Hapoalim", 9866, 24, new CivicAddress() {StreetAddress="14 Malki St", City="Jerusalem" }),
-                new Bank("Discount", 8543, 11, new CivicAddress() { StreetAddress="Hagai St", City="Jerusalem" }),
-                new Bank("Bank of Jerusalem", 6654, 8, new CivicAddress() { StreetAddress="Keren Hayesod St", City="Jerusalem" })
+                new Bank("Leumi", 1155, 19, new CivicAddress() {City="Jerusalem", StreetName="Havaad Haleumi", isPrivateHouse=true, HouseNumber=20, ApartmentNumber=null }),
+                new Bank("Hapoalim", 9866, 24, new CivicAddress() {City="Jerusalem", StreetName="Malki", HouseNumber=14, isPrivateHouse=true, ApartmentNumber=null }),
+                new Bank("Discount", 8543, 11, new CivicAddress() {City="Jerusalem", StreetName="Hagai", isPrivateHouse=true, ApartmentNumber=null}),
+                new Bank("Bank of Jerusalem", 6654, 8, new CivicAddress() {City="Jerusalem", StreetName="Keren Hayesod St", isPrivateHouse=true, ApartmentNumber=null })
             };
 
             foreach (Bank bank in tempBanks)

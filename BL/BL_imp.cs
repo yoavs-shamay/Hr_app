@@ -17,7 +17,6 @@ namespace BL
         Idal DalObject = FactoryDAL.Dal_instance;
         const int TotalDaysInYear = 365;
 
-        //TODO convert address to a format in employee and employer
         /// <summary>
         /// Adds a contract to the database
         /// </summary>
@@ -88,7 +87,7 @@ namespace BL
         /// </summary>
         /// <param name="id">The ID to check</param>
         /// <returns>true if the ID is valid, false if not</returns>
-        public bool checkID(string id)
+        private bool checkID(string id)
         {
             int weight = 1;
             int sum = 0;
@@ -141,7 +140,7 @@ namespace BL
         /// <param name="list">the list of itemsin database</param>
         /// <param name="variableName">the property name</param>
         /// <param name="newItem">the new item</param>
-        public void CheckPropertyExists<T>(List<T> list, string variableName, T newItem)
+        private void CheckPropertyExists<T>(List<T> list, string variableName, T newItem)
         {
             Type type = typeof(T);
             PropertyInfo property = type.GetProperty(variableName);
@@ -362,6 +361,8 @@ namespace BL
 
         /// <summary>
         /// Returns contracts groups by the specialization of them
+        /// Returns IEnumerable of ContractGroupContainers so there will be no use of template and
+        /// select with let's will be able to use in querys, ContractGroupContainer contains Key - object and Value - Contract
         /// </summary>
         /// <param name="sorted">If sort the output</param>
         /// <returns>An IEnumerable of ContractGroupContainer of Specialization and Contract</returns>
@@ -376,6 +377,8 @@ namespace BL
 
         /// <summary>
         /// Returns contracts grouped by the employee address
+        /// Returns IEnumerable of ContractGroupContainers so there will be no use of template and
+        /// select with let's will be able to use in querys, ContractGroupContainer contains Key - object and Value - Contract
         /// </summary>
         /// <param name="sorted">If sort the output</param>
         /// <returns>An IEnumerable of ContractGroupContainer of CivicAddress and Contract</returns>
@@ -384,13 +387,16 @@ namespace BL
             var value = from c in DalObject.getAllContracts()
                         let contractAddress = DalObject.getAllEmployees().Find(e => e.Id == c.EmployeeId).Address
                         orderby (sorted) ? contractAddress.City : null,
-                        (sorted)? contractAddress.StreetAddress : null
+                        (sorted)? contractAddress.StreetName : null,
+                        (sorted)? contractAddress.HouseNumber : 0
                         select new ContractGroupContainer { Key = contractAddress, Value = c };
             return value;
         }
 
         /// <summary>
         /// Returns all contracts grouped by the contract established date
+        /// Returns IEnumerable of ContractGroupContainers so there will be no use of template and
+        /// select with let's will be able to use in querys, ContractGroupContainer contains Key - object and Value - Contract
         /// </summary>
         /// <param name="sorted">If sort the output</param>
         /// <returns>An IEnumerable of ContractGroupContainer of DateTime and Contract</returns>

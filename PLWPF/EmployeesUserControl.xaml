@@ -56,7 +56,7 @@
                         <ColumnDefinition Width="*" />
                         <ColumnDefinition Width="4*" />
                     </Grid.ColumnDefinitions>
-                    <ComboBox Name="phoneNumberPrefixComboBox" IsEnabled="False" Grid.Row="0" Grid.Column="0" > <!--TODO binding to this-->
+                    <ComboBox Name="phoneNumberPrefixComboBox" IsEnabled="False" Grid.Row="0" Grid.Column="0" >
                         <ComboBoxItem Content="01" Name="prefix01" />
                         <ComboBoxItem Content="02" Name="prefix02" />
                         <ComboBoxItem Content="03" Name="prefix03" />
@@ -68,7 +68,8 @@
                         <ComboBoxItem Content="09" Name="prefix09" />
                         <ComboBoxItem Content="00" Name="prefix00" />
                     </ComboBox>
-                    <TextBox Grid.Row="0" Grid.Column="1" IsEnabled="False" Name="phoneNumberTextBox" Text="{Binding Path=PhoneNumber}" /> <!--Correct binding to phone number-->
+                    <TextBox Grid.Row="0" Grid.Column="1" IsEnabled="False" Name="phoneNumberTextBox" Text="{Binding Path=PhoneNumber}" />
+                    <!--TODO Correct binding to phone number-->
                 </Grid>
                 <Label Content="Address" Grid.Row="5" Grid.Column="0" HorizontalAlignment="Center" VerticalAlignment="Center"/>
                 <Grid Grid.Row="5" Grid.Column="1">
@@ -149,7 +150,7 @@
                 <CheckBox Grid.Row="10" Grid.Column="1" HorizontalAlignment="Center" VerticalAlignment="Center" IsEnabled="False" Name="isMaleCheckBox" IsChecked="{Binding Path=IsMale}"/>
 
                 <Label Content="Email" Grid.Row="11" Grid.Column="0" HorizontalAlignment="Center" />
-                <TextBox Grid.Row="11" Grid.Column="1" IsEnabled="False" Name="emailTextBox" Text="{Binding Path=Email}"/> <!--TODO Finish binding to all classes user controls-->
+                <TextBox Grid.Row="11" Grid.Column="1" IsEnabled="False" Name="emailTextBox" Text="{Binding Path=Email}"/>
 
                 <Label Content="Years Of Experience" Grid.Row="12" Grid.Column="0" HorizontalAlignment="Center" />
                 <TextBox Grid.Row="12" Grid.Column="1" IsEnabled="False" Name="yearsOfExperienceTextBox" Text="{Binding Path=YearsOfExperience}" />

@@ -31,39 +31,39 @@
                     <ColumnDefinition Width="*"></ColumnDefinition>
                     <ColumnDefinition Width="1.5*"></ColumnDefinition>
                 </Grid.ColumnDefinitions>
-
+                
                 <Label Content="Id" Grid.Row="0" Grid.Column="0" HorizontalAlignment="Center"/>
-                <ComboBox Name="IdComboBox" Grid.Row="0" Grid.Column="1" IsEditable="False" IsEnabled="False"/>
+                <ComboBox Name="IdComboBox" Grid.Row="0" Grid.Column="1" IsEditable="False" IsEnabled="False" Text="{Binding Path=Id}"/>
 
                 <Label Content="Employee Id" Grid.Row="1" Grid.Column="0" HorizontalAlignment="Center"/>
-                <ComboBox Name="employeeIdComboBox" Grid.Row="1" Grid.Column="1" IsEnabled="False" />
+                <ComboBox Name="employeeIdComboBox" Grid.Row="1" Grid.Column="1" IsEnabled="False" SelectedItem="{Binding Path=EmployeeId}"/>
 
                 <Label Content="Employer Id" Grid.Row="2" Grid.Column="0" HorizontalAlignment="Center"/>
-                <ComboBox Name="employerIdComboBox" Grid.Row="2" Grid.Column="1"  IsEnabled="False"/>
+                <ComboBox Name="employerIdComboBox" Grid.Row="2" Grid.Column="1"  IsEnabled="False" SelectedItem="{Binding Path=EmployerId}"/>
 
                 <Label Content="Interviewed" Grid.Row="3" Grid.Column="0" HorizontalAlignment="Center" />
-                <CheckBox Grid.Row="3" Grid.Column="1" IsEnabled="False" Name="isInterviewedCheckBox" HorizontalAlignment="Center" VerticalAlignment="Center" />
+                <CheckBox Grid.Row="3" Grid.Column="1" IsEnabled="False" Name="isInterviewedCheckBox" HorizontalAlignment="Center" VerticalAlignment="Center" IsChecked="{Binding Path=IsInterviewed}"/>
 
                 <Label Content="Finalized" Grid.Row="4" Grid.Column="0" HorizontalAlignment="Center" />
-                <CheckBox Grid.Row="4" Grid.Column="1" IsEnabled="False" Name="isFinalizedCheckBox" VerticalAlignment="Center" HorizontalAlignment="Center" />
+                <CheckBox Grid.Row="4" Grid.Column="1" IsEnabled="False" Name="isFinalizedCheckBox" VerticalAlignment="Center" HorizontalAlignment="Center" IsChecked="{Binding Path=IsFinalized}"/>
 
                 <Label Content="Gross Wage For Hour" Grid.Row="5" Grid.Column="0" HorizontalAlignment="Center"/>
-                <TextBox Grid.Row="5" Grid.Column="1" Name="grossWageForHourTextBox" IsEnabled="False" />
+                <TextBox Grid.Row="5" Grid.Column="1" Name="grossWageForHourTextBox" IsEnabled="False" Text="{Binding Path=GrossWageForHour}"/>
 
                 <Label Content="Net Wage For Hour" Grid.Row="6" Grid.Column="0" HorizontalAlignment="Center" />
-                <TextBox Grid.Row="6" Grid.Column="1" Name="netWageForHourTextBox" IsEnabled="False"/>
+                <TextBox Grid.Row="6" Grid.Column="1" Name="netWageForHourTextBox" IsEnabled="False" Text="{Binding Path=NetWageForHour}"/>
 
                 <Label Content="Contract Established Date" Grid.Row="7" Grid.Column="0" HorizontalAlignment="Center" />
-                <DatePicker Grid.Row="7" Grid.Column="1" Name="contractEstablishedDateDatePicker" IsEnabled="False"/>
+                <DatePicker Grid.Row="7" Grid.Column="1" Name="contractEstablishedDateDatePicker" IsEnabled="False" SelectedDate="{Binding Path=ContractEstablishedDate}"/>
 
                 <Label Content="Terminate Date" Grid.Row="8" Grid.Column="0" HorizontalAlignment="Center"/>
-                <DatePicker Grid.Row="8" Grid.Column="1" Name="terminateDateDatePicker" IsEnabled="False" />
+                <DatePicker Grid.Row="8" Grid.Column="1" Name="terminateDateDatePicker" IsEnabled="False" SelectedDate="{Binding Path=TerminateDate}"/>
 
                 <Label Content="Max Work Hours For Month" Grid.Row="9" Grid.Column="0" HorizontalAlignment="Center" />
-                <TextBox Grid.Row="9" Grid.Column="1" IsEnabled="False" Name="maxWorkHoursForMonthTextBox" />
+                <TextBox Grid.Row="9" Grid.Column="1" IsEnabled="False" Name="maxWorkHoursForMonthTextBox" Text="{Binding Path=MaxWorkHoursForMonth}"/>
 
                 <Label Content="Min Work Hours For Month" Grid.Row="10" Grid.Column="0" HorizontalAlignment="Center" />
-                <TextBox Grid.Row="10" Grid.Column="1" IsEnabled="False" Name="minWorkHoursForMonthTextBox" />
+                <TextBox Grid.Row="10" Grid.Column="1" IsEnabled="False" Name="minWorkHoursForMonthTextBox" Text="{Binding Path=MinWorkHoursForMonth}"/>
             </Grid>
         </ScrollViewer>
     </DockPanel>

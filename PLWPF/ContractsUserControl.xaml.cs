@@ -1,4 +1,5 @@
-﻿using System;
+﻿using BE;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -19,9 +20,11 @@ namespace PLWPF
     /// </summary>
     public partial class ContractsUserControl : Window
     {
+        private Contract ContractData { get; set; }
         public ContractsUserControl()
         {
             InitializeComponent();
+            DataContext = ContractData;
         }
     }
 }

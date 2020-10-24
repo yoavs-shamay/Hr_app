@@ -31,22 +31,44 @@
                 </Grid.ColumnDefinitions>
 
                 <Label Content="Id" Grid.Row="0" Grid.Column="0" HorizontalAlignment="Center"/>
-                <ComboBox Name="IdComboBox" Grid.Row="0" Grid.Column="1" IsEditable="False" IsEnabled="False"/>
+                <ComboBox Name="IdComboBox" Grid.Row="0" Grid.Column="1" IsEditable="False" IsEnabled="False" Text="{Binding Path=Id}"/>
 
                 <Label Content="Private Person" Grid.Row="1" Grid.Column="0" HorizontalAlignment="Center"/>
-                <CheckBox Name="isPrivateCheckBox" Grid.Row="1" Grid.Column="1" IsEnabled="False" VerticalAlignment="Center" HorizontalAlignment="Center"/>
+                <CheckBox Name="isPrivateCheckBox" Grid.Row="1" Grid.Column="1" IsEnabled="False" VerticalAlignment="Center" HorizontalAlignment="Center" IsChecked="{Binding Path=IsPrivate}"/>
 
                 <Label Content="Phone Number" Grid.Row="2" Grid.Column="0" HorizontalAlignment="Center"/>
-                <TextBox Name="phoneNumberTextBox" Grid.Row="2" Grid.Column="1"  IsEnabled="False"/>
+                <Grid Name="phoneNumber" Grid.Row="4" Grid.Column="1">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="*" />
+                    </Grid.RowDefinitions>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*" />
+                        <ColumnDefinition Width="4*" />
+                    </Grid.ColumnDefinitions>
+                    <ComboBox Name="phoneNumberPrefixComboBox" IsEnabled="False" Grid.Row="0" Grid.Column="0" >
+                        <ComboBoxItem Content="01" Name="prefix01" />
+                        <ComboBoxItem Content="02" Name="prefix02" />
+                        <ComboBoxItem Content="03" Name="prefix03" />
+                        <ComboBoxItem Content="04" Name="prefix04" />
+                        <ComboBoxItem Content="05" Name="prefix05" />
+                        <ComboBoxItem Content="06" Name="prefix06" />
+                        <ComboBoxItem Content="07" Name="prefix07" />
+                        <ComboBoxItem Content="08" Name="prefix08" />
+                        <ComboBoxItem Content="09" Name="prefix09" />
+                        <ComboBoxItem Content="00" Name="prefix00" />
+                    </ComboBox>
+                    <TextBox Grid.Row="0" Grid.Column="1" IsEnabled="False" Name="phoneNumberTextBox" Text="{Binding Path=PhoneNumber}" />
+                    <!--TODO Correct binding to phone number-->
+                </Grid>
 
                 <Label Content="Last Name" Grid.Row="3" Grid.Column="0" HorizontalAlignment="Center" />
-                <TextBox Grid.Row="3" Grid.Column="1" IsEnabled="False" Name="lastNameTextBox" />
+                <TextBox Grid.Row="3" Grid.Column="1" IsEnabled="False" Name="lastNameTextBox" Text="{Binding Path=LastName}"/>
 
                 <Label Content="First Name" Grid.Row="4" Grid.Column="0" HorizontalAlignment="Center" />
-                <TextBox Grid.Row="4" Grid.Column="1" IsEnabled="False" Name="firstNameTextBox" />
+                <TextBox Grid.Row="4" Grid.Column="1" IsEnabled="False" Name="firstNameTextBox" Text="{Binding Path=FirstName}"/>
 
                 <Label Content="Company Name" Grid.Row="5" Grid.Column="0" HorizontalAlignment="Center" />
-                <TextBox Grid.Row="5" Grid.Column="1" Name="companyNameTextBox" IsEnabled="False" />
+                <TextBox Grid.Row="5" Grid.Column="1" Name="companyNameTextBox" IsEnabled="False" Text="{Binding Path=CompanyName}"/>
 
 
                 <Label Content="Address" Grid.Row="6" Grid.Column="0" HorizontalAlignment="Center" VerticalAlignment="Center"/>
@@ -64,23 +86,23 @@
                     </Grid.ColumnDefinitions>
 
                     <Label Content="City" Grid.Row="0" Grid.Column="0" HorizontalAlignment="Center" />
-                    <TextBox Grid.Row="0" Grid.Column="1" IsEnabled="False" Name="addressCityTextBox" />
+                    <TextBox Grid.Row="0" Grid.Column="1" IsEnabled="False" Name="addressCityTextBox" Text="{Binding Path=Address.City}"/>
 
                     <Label Content="Street Name" Grid.Row="1" Grid.Column="0" HorizontalAlignment="Center" />
-                    <TextBox Grid.Row="1" Grid.Column="1" IsEnabled="False" Name="addressStreetNameTextBox" />
+                    <TextBox Grid.Row="1" Grid.Column="1" IsEnabled="False" Name="addressStreetNameTextBox" Text="{Binding Path=Address.StreetName}" />
 
                     <Label Content="House Number" Grid.Row="2" Grid.Column="0" HorizontalAlignment="Center" />
-                    <TextBox Grid.Row="2" Grid.Column="1" IsEnabled="False" Name="addressHouseNumberTextBox" />
+                    <TextBox Grid.Row="2" Grid.Column="1" IsEnabled="False" Name="addressHouseNumberTextBox" Text="{Binding Path=Address.HouseNumber}"/>
 
                     <Label Content="Private House" Grid.Row="3" Grid.Column="0" HorizontalAlignment="Center"/>
-                    <CheckBox Grid.Row="3" Grid.Column="1" IsEnabled="False" Name="addressPrivateHouseCheckBox" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                    <CheckBox Grid.Row="3" Grid.Column="1" IsEnabled="False" Name="addressPrivateHouseCheckBox" HorizontalAlignment="Center" VerticalAlignment="Center" IsChecked="{Binding Path=Address.IsPrivateHouse}"/>
 
                     <Label Content="Apartment Number" Grid.Row="4" Grid.Column="0" HorizontalAlignment="Center" />
-                    <TextBox Grid.Row="4" Grid.Column="1" IsEnabled="False" Name="addressApartmentNumberTextBox" />
+                    <TextBox Grid.Row="4" Grid.Column="1" IsEnabled="False" Name="addressApartmentNumberTextBox" Text="{Binding Path=Address.ApartmentNumber}"/>
                 </Grid>
 
                 <Label Content="Employer Proffesion" Grid.Row="7" Grid.Column="0" HorizontalAlignment="Center" />
-                <ComboBox Grid.Row="7" Grid.Column="1" IsEnabled="False" Name="personalEducationComboBox">
+                <ComboBox Grid.Row="7" Grid.Column="1" IsEnabled="False" Name="personalEducationComboBox" SelectedItem="{Binding Path=PersonalEducation}">
                     <ComboBoxItem Content="Cyber" />
                     <ComboBoxItem Content="AI" />
                     <ComboBoxItem Content="Networking" />
@@ -89,7 +111,7 @@
                 </ComboBox> <!--TODO Change to code behind-->
                 
                 <Label Content="Setup Date" Grid.Row="8" Grid.Column="0" HorizontalAlignment="Center" />
-                <DatePicker Grid.Row="8" Grid.Column="1" Name="setupDateDatePicker" IsEnabled="False"/>
+                <DatePicker Grid.Row="8" Grid.Column="1" Name="setupDateDatePicker" IsEnabled="False" SelectedDate="{Binding Path=SetupDate}"/>
             </Grid>
         </ScrollViewer>
     </DockPanel>

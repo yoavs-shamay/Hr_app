@@ -24,5 +24,11 @@ namespace PLWPF
         {
             InitializeComponent();
         }
+
+        private void EditWindowButton_Click(object sender, RoutedEventArgs e)
+        {
+            EmployeesUserControl employeesUserControl = new EmployeesUserControl();
+            employeesUserControl.Show();
+        }
     }
 }

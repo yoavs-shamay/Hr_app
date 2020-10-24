@@ -13,17 +13,17 @@
         <Style x:Key="GenericThreeButtons" TargetType="StackPanel">
             <Setter Property="HorizontalAlignment" Value="Left" />
             <Setter Property="VerticalAlignment" Value="Center" />
-            <Setter Property="Height" Value="200" />
+            <Setter Property="Height" Value="300" />
         </Style>
         <Style x:Key="WindowStyle" TargetType="Window">
             <Setter Property="Background" Value="LightGray" />
-            <Setter Property="Width" Value="400" />
-            <Setter Property="Height" Value="350" />
+            <Setter Property="Width" Value="600" />
+            <Setter Property="Height" Value="475" />
         </Style>
         <Style x:Key="PageStyle" TargetType="Page">
             <Setter Property="Background" Value="LightGray" />
-            <Setter Property="Width" Value="400" />
-            <Setter Property="Height" Value="350" />
+            <Setter Property="Width" Value="600" />
+            <Setter Property="Height" Value="475" />
         </Style>
     </Application.Resources>
 </Application>

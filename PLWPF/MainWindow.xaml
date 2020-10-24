@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:PLWPF"
         mc:Ignorable="d"
-        Title="Hr app" Style="{StaticResource WindowStyle}">
+        Title="Hr app" Style="{StaticResource WindowStyle}" Name="ProgramWindow">
     <Grid>
         <StackPanel VerticalAlignment="Center" HorizontalAlignment="Center">
             <Image Source="C:\Users\User\Desktop\Yoav c# project\Hr_app\PLWPF\Images\hr_image.jpg" Width="200" Height="150"/>
@@ -17,10 +17,10 @@
                         </StackPanel>
                     </Button.Content>
                 </Button>
-                <Button Style="{StaticResource ButtonStyle}" x:Name="EditWindowButton" Background="LightBlue" HorizontalAlignment="Right">
+                <Button Style="{StaticResource ButtonStyle}" x:Name="EditWindowButton" Background="LightBlue" HorizontalAlignment="Right" Click="EditWindowButton_Click">
                     <Button.Content>
                         <StackPanel>
-                            <TextBlock Text="Edit" FontSize="30" />
+                            <TextBlock Text="Edit" FontSize="30"></TextBlock>
                         </StackPanel>
                     </Button.Content>
                 </Button>

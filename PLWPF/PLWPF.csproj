@@ -55,10 +55,17 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="EditTabs.xaml.cs">
+      <DependentUpon>EditTabs.xaml</DependentUpon>
+    </Compile>
     <Compile Include="SpecializationsUserControl.xaml.cs">
       <DependentUpon>SpecializationsUserControl.xaml</DependentUpon>
     </Compile>
     <Page Include="ContractsUserControl.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="EditTabs.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:PLWPF"
         mc:Ignorable="d"
-        Title="Hr app" Style="{StaticResource WindowStyle}" Name="ProgramWindow">
+        Title="Hr app" Style="{StaticResource WindowStyle}" Name="ProgramWindow" Width="600">
     <Grid>
         <StackPanel VerticalAlignment="Center" HorizontalAlignment="Center">
             <Image Source="C:\Users\User\Desktop\Yoav c# project\Hr_app\PLWPF\Images\hr_image.jpg" Width="200" Height="150"/>

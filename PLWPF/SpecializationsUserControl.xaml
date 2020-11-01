@@ -1,11 +1,11 @@
-﻿<Window x:Class="PLWPF.SpecializationsUserControl"
+﻿<UserControl x:Class="PLWPF.SpecializationsUserControl"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:PLWPF"
         mc:Ignorable="d"
-        Title="Specializations" Style="{StaticResource WindowStyle}">
+        Style="{StaticResource UserControlStyle}" Height="300">
     <DockPanel LastChildFill="True">
         <StackPanel Style="{StaticResource GenericThreeButtons}" DockPanel.Dock="Left">
             <Button Style="{StaticResource ButtonStyle}" Content="Add" />
@@ -13,7 +13,7 @@
             <Button Style="{StaticResource ButtonStyle}" Content="Remove" Margin="0,50,0,0"/>
         </StackPanel>
         <ScrollViewer VerticalScrollBarVisibility="Visible">
-            <Grid>
+            <Grid VerticalAlignment="Center">
                 <Grid.RowDefinitions>
                     <RowDefinition Height="Auto"></RowDefinition>
                     <RowDefinition Height="Auto"></RowDefinition>
@@ -23,12 +23,12 @@
                     <RowDefinition Height="Auto"></RowDefinition>
                 </Grid.RowDefinitions>
                 <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="*"></ColumnDefinition>
-                    <ColumnDefinition Width="1.5*"></ColumnDefinition>
+                    <ColumnDefinition Width="Auto"></ColumnDefinition>
+                    <ColumnDefinition Width="200"></ColumnDefinition>
                 </Grid.ColumnDefinitions>
 
                 <Label Content="Id" Grid.Row="0" Grid.Column="0" HorizontalAlignment="Center"/>
-                <ComboBox Name="IdComboBox" Grid.Row="0" Grid.Column="1" IsEditable="False" IsEnabled="False" Text="{Binding Path=Id}"/>
+                <ComboBox Name="IdComboBox" Grid.Row="0" Grid.Column="1" IsEditable="False" IsEnabled="False" Text="{Binding Path=Id}" LostFocus="IdComboBox_LostFocus"/>
 
                 <Label Content="Area" Grid.Row="1" Grid.Column="0" HorizontalAlignment="Center"/>
                 <ComboBox Name="areaComboBox" Grid.Row="1" Grid.Column="1" IsEnabled="False" SelectedItem="{Binding Path=Area}">
@@ -40,10 +40,10 @@
                 </ComboBox> <!--Change to code behind-->
 
                 <Label Content="Min Wage For Hour" Grid.Row="2" Grid.Column="0" HorizontalAlignment="Center"/>
-                <TextBox Name="minWageForHourTextBox" Grid.Row="2" Grid.Column="1" IsEnabled="False" Text="{Binding Path=MinWageForHour}"/>
+                <TextBox Name="minWageForHourTextBox" Grid.Row="2" Grid.Column="1" IsEnabled="False" Text="{Binding Path=MinWageForHour}" LostFocus="minWageForHourTextBox_LostFocus"/>
 
                 <Label Content="Max Wage For Hour" Grid.Row="3" Grid.Column="0" HorizontalAlignment="Center" />
-                <TextBox Grid.Row="3" Grid.Column="1" IsEnabled="False" Name="maxWageForHourTextBox" Text="{Binding Path=MaxWageForHour}"/>
+                <TextBox Grid.Row="3" Grid.Column="1" IsEnabled="False" Name="maxWageForHourTextBox" Text="{Binding Path=MaxWageForHour}" LostFocus="maxWageForHourTextBox_LostFocus"/>
 
                 <Label Content="Degree" Grid.Row="4" Grid.Column="0" HorizontalAlignment="Center" />
                 <ComboBox Grid.Row="4" Grid.Column="1" IsEnabled="False" Name="degreeComboBox" SelectedItem="{Binding Path=Degree}">
@@ -56,8 +56,8 @@
                 </ComboBox>
 
                 <Label Content="Name" Grid.Row="5" Grid.Column="0" HorizontalAlignment="Center"/>
-                <TextBox Grid.Row="5" Grid.Column="1" Name="nameTextBox" IsEnabled="False" Text="{Binding Path=Name}"/>
+                <TextBox Grid.Row="5" Grid.Column="1" Name="nameTextBox" IsEnabled="False" Text="{Binding Path=Name}" LostFocus="nameTextBox_LostFocus"/>
             </Grid>
         </ScrollViewer>
     </DockPanel>
-</Window>
+</UserControl>

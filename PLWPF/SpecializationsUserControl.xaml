@@ -13,40 +13,34 @@
             <Button Style="{StaticResource ButtonStyle}" Content="Remove" Margin="0,50,0,0"/>
         </StackPanel>
         <ScrollViewer VerticalScrollBarVisibility="Visible">
-            <Grid VerticalAlignment="Center">
+            <Grid Style="{StaticResource GridStyle}">
                 <Grid.RowDefinitions>
-                    <RowDefinition Height="Auto"></RowDefinition>
-                    <RowDefinition Height="Auto"></RowDefinition>
-                    <RowDefinition Height="Auto"></RowDefinition>
-                    <RowDefinition Height="Auto"></RowDefinition>
-                    <RowDefinition Height="Auto"></RowDefinition>
-                    <RowDefinition Height="Auto"></RowDefinition>
+                    <RowDefinition Height="*"></RowDefinition>
+                    <RowDefinition Height="*"></RowDefinition>
+                    <RowDefinition Height="*"></RowDefinition>
+                    <RowDefinition Height="*"></RowDefinition>
+                    <RowDefinition Height="*"></RowDefinition>
+                    <RowDefinition Height="*"></RowDefinition>
                 </Grid.RowDefinitions>
                 <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="Auto"></ColumnDefinition>
-                    <ColumnDefinition Width="200"></ColumnDefinition>
+                    <ColumnDefinition Width="*"></ColumnDefinition>
+                    <ColumnDefinition Width="175"></ColumnDefinition>
                 </Grid.ColumnDefinitions>
 
-                <Label Content="Id" Grid.Row="0" Grid.Column="0" HorizontalAlignment="Center"/>
-                <ComboBox Name="IdComboBox" Grid.Row="0" Grid.Column="1" IsEditable="False" IsEnabled="False" Text="{Binding Path=Id}" LostFocus="IdComboBox_LostFocus"/>
+                <Label Content="_Id" Grid.Row="0" Grid.Column="0" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                <ComboBox Name="IdComboBox" Grid.Row="0" Grid.Column="1" IsEditable="False" IsEnabled="False" Text="{Binding Path=Id}" LostFocus="IdComboBox_LostFocus" VerticalAlignment="Center"/>
 
-                <Label Content="Area" Grid.Row="1" Grid.Column="0" HorizontalAlignment="Center"/>
-                <ComboBox Name="areaComboBox" Grid.Row="1" Grid.Column="1" IsEnabled="False" SelectedItem="{Binding Path=Area}">
-                    <ComboBoxItem Content="Cyber" />
-                    <ComboBoxItem Content="AI" />
-                    <ComboBoxItem Content="Networking" />
-                    <ComboBoxItem Content="Database" />
-                    <ComboBoxItem Content="Hardware" />
-                </ComboBox> <!--Change to code behind-->
+                <Label Content="_Area" Grid.Row="1" Grid.Column="0" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                <ComboBox Name="areaComboBox" Grid.Row="1" Grid.Column="1" IsEnabled="False" SelectedItem="{Binding Path=Area}" VerticalAlignment="Center" />
 
-                <Label Content="Min Wage For Hour" Grid.Row="2" Grid.Column="0" HorizontalAlignment="Center"/>
-                <TextBox Name="minWageForHourTextBox" Grid.Row="2" Grid.Column="1" IsEnabled="False" Text="{Binding Path=MinWageForHour}" LostFocus="minWageForHourTextBox_LostFocus"/>
+                <Label Content="_Min Wage For Hour" Grid.Row="2" Grid.Column="0" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                <TextBox Name="minWageForHourTextBox" Grid.Row="2" Grid.Column="1" IsEnabled="False" Text="{Binding Path=MinWageForHour}" LostFocus="minWageForHourTextBox_LostFocus" VerticalAlignment="Center"/>
 
-                <Label Content="Max Wage For Hour" Grid.Row="3" Grid.Column="0" HorizontalAlignment="Center" />
-                <TextBox Grid.Row="3" Grid.Column="1" IsEnabled="False" Name="maxWageForHourTextBox" Text="{Binding Path=MaxWageForHour}" LostFocus="maxWageForHourTextBox_LostFocus"/>
+                <Label Content="Max _Wage For Hour" Grid.Row="3" Grid.Column="0" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                <TextBox Grid.Row="3" Grid.Column="1" IsEnabled="False" Name="maxWageForHourTextBox" Text="{Binding Path=MaxWageForHour}" LostFocus="maxWageForHourTextBox_LostFocus" VerticalAlignment="Center"/>
 
-                <Label Content="Degree" Grid.Row="4" Grid.Column="0" HorizontalAlignment="Center" />
-                <ComboBox Grid.Row="4" Grid.Column="1" IsEnabled="False" Name="degreeComboBox" SelectedItem="{Binding Path=Degree}">
+                <Label Content="_Degree" Grid.Row="4" Grid.Column="0" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                <ComboBox Grid.Row="4" Grid.Column="1" IsEnabled="False" Name="degreeComboBox" SelectedItem="{Binding Path=Degree}" VerticalAlignment="Center">
                     <ComboBoxItem Content="Cartificate Only" Name="cartificateOnly" />
                     <ComboBoxItem Content="BA" Name="BA" />
                     <ComboBoxItem Content="MA" Name="MA" />
@@ -55,8 +49,8 @@
                     <ComboBoxItem Content="None" Name="none" />
                 </ComboBox>
 
-                <Label Content="Name" Grid.Row="5" Grid.Column="0" HorizontalAlignment="Center"/>
-                <TextBox Grid.Row="5" Grid.Column="1" Name="nameTextBox" IsEnabled="False" Text="{Binding Path=Name}" LostFocus="nameTextBox_LostFocus"/>
+                <Label Content="_Name" Grid.Row="5" Grid.Column="0" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                <TextBox Grid.Row="5" Grid.Column="1" Name="nameTextBox" IsEnabled="False" Text="{Binding Path=Name}" LostFocus="nameTextBox_LostFocus" VerticalAlignment="Center"/>
             </Grid>
         </ScrollViewer>
     </DockPanel>

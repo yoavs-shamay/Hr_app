@@ -27,6 +27,10 @@ namespace PLWPF
             InitializeComponent();
             EmployerData = new Employer();
             DataContext = EmployerData;
+            foreach (Proffesion x in Enum.GetValues(typeof(BE.Proffesion)))
+            {
+                personalEducationComboBox.Items.Add(x);
+            }
         }
 
         private void phoneNumberPrefixComboBox_LostFocus(object sender, RoutedEventArgs e)

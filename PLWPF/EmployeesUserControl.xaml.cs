@@ -63,11 +63,12 @@ namespace PLWPF
 
         private void phoneNumberTextBox_LostFocus(object sender, RoutedEventArgs e)
         {
-            if (!App.isValidPhoneNumber(phoneNumberTextBox.Text))
+            if (!App.isValidPhoneNumber(phoneNumberPrefixComboBox.Text + phoneNumberTextBox.Text))
             {
                 MessageBox.Show("Invalid phone number", "Don't mess with me!!!", MessageBoxButton.OK, MessageBoxImage.Error);
                 phoneNumberTextBox.Text = "";
             }
+            EmployeeData.PhoneNumber = phoneNumberPrefixComboBox.Text + phoneNumberTextBox.Text;
         }
 
         private void addressCityTextBox_LostFocus(object sender, RoutedEventArgs e)
@@ -120,7 +121,7 @@ namespace PLWPF
             if (!App.isValidNumber(bankBranchNumberTextBox.Text, 0))
             {
                 MessageBox.Show("Invalid bank branch number", "Don't mess with me!!!", MessageBoxButton.OK, MessageBoxImage.Error);
-                bankBranchNumberTextBox.Text = "":
+                bankBranchNumberTextBox.Text = "";
             }
         }
 

@@ -26,6 +26,10 @@ namespace PLWPF
             InitializeComponent();
             SpecializationData = new Specialization();
             DataContext = SpecializationData;
+            foreach (Proffesion x in Enum.GetValues(typeof(BE.Proffesion)))
+            {
+                areaComboBox.Items.Add(x);
+            }
         }
 
         private void IdComboBox_LostFocus(object sender, RoutedEventArgs e)

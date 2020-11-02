@@ -26,9 +26,10 @@
             <Setter Property="Height" Value="475" />
         </Style>
         <Style x:Key="TabStyle" TargetType="TabItem">
-            <!--TODO do style-->
+            <Setter Property="Background" Value="LightGray" />
         </Style>
         <Style x:Key="GridStyle" TargetType="Grid">
+            <Setter Property="Margin" Value="10,0,10,0" />
         </Style>
     </Application.Resources>
 </Application>

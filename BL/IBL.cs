@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace BL
 {
-    interface IBL
+    public interface IBL
     {
         public void addSpecialization(Specialization specialization);
         public void addEmployee(Employee employee);

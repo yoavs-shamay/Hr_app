@@ -12,6 +12,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using BL;
 
 namespace PLWPF
 {
@@ -23,6 +24,12 @@ namespace PLWPF
         public MainWindow()
         {
             InitializeComponent();
+            this.Closing += MainWindow_Close;
+        }
+
+        public void MainWindow_Close(object sender, EventArgs e)
+        {
+            Environment.Exit(Environment.ExitCode);
         }
 
         private void EditWindowButton_Click(object sender, RoutedEventArgs e)

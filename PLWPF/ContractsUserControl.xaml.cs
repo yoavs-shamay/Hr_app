@@ -1,4 +1,5 @@
 ﻿using BE;
+using BL;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -62,6 +63,41 @@ namespace PLWPF
                 MessageBox.Show("Invalid min work hours for month", "Don't mess with me!!!", MessageBoxButton.OK, MessageBoxImage.Error);
                 minWorkHoursForMonthTextBox.Text = "";
             }
+        }
+
+        private void AddButton_Click(object sender, RoutedEventArgs e)
+        {
+            App.swapGridsVisibility(AddEditRemoveGrid, SaveCancelGrid);
+            App.enableFields(ContractsPropertiesGrids); //TODO do this also in other user controls
+            IdComboBox.IsEditable = true;
+        }
+
+        private void EditButton_Click(object sender, RoutedEventArgs e)
+        {
+            App.swapGridsVisibility(AddEditRemoveGrid, SaveCancelGrid); //TODO do this also in other user controls
+            App.enableFields(ContractsPropertiesGrids);
+        }
+
+        private void RemoveButton_Click(object sender, RoutedEventArgs e)
+        {
+            App.swapGridsVisibility(AddEditRemoveGrid, SaveCancelGrid); //TODO do this also in other user controls
+            App.enableFields(ContractsPropertiesGrids, true, IdComboBox);
+        }
+
+        private void SaveButton_Click(object sender, RoutedEventArgs e)
+        {
+            FactoryBL.BL_instance.addContract(ContractData); //TODO verifications that all properties are filled, also do this to other user controls
+            //TODO also do edit and remove cases
+            //TODO try catch
+            App.swapGridsVisibility(AddEditRemoveGrid, SaveCancelGrid);
+            App.enableFields(ContractsPropertiesGrids, false, null, false);
+        }
+
+        private void CancelButton_Click(object sender, RoutedEventArgs e)
+        {
+            App.swapGridsVisibility(AddEditRemoveGrid, SaveCancelGrid); //TODO do this also in other user controls
+            App.enableFields(ContractsPropertiesGrids, false, null, false);
+            App.emptyAllFields(ContractsPropertiesGrids);
         }
     }
 }

@@ -31,5 +31,18 @@
         <Style x:Key="GridStyle" TargetType="Grid">
             <Setter Property="Margin" Value="10,0,10,0" />
         </Style>
+        <Style x:Key="TextBoxInUserControlStyle" TargetType="TextBox">
+            <Style.Triggers>
+                <MultiTrigger>
+                    <MultiTrigger.Conditions>
+                        <Condition Property="Text" Value="" />
+                        <!--<Condition Binding="" />--> <!--TODO fix red background after cancel-->
+                    </MultiTrigger.Conditions>
+                    <MultiTrigger.Setters>
+                        <Setter Property="BorderBrush" Value="Red" />
+                    </MultiTrigger.Setters>
+                </MultiTrigger>
+            </Style.Triggers>
+        </Style>
     </Application.Resources>
 </Application>

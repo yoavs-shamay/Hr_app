@@ -12,7 +12,7 @@
             <Button Style="{StaticResource ButtonStyle}" Content="Edit" Margin="0,60,0,0"/>
             <Button Style="{StaticResource ButtonStyle}" Content="Remove" Margin="0,50,0,0"/>
         </StackPanel>
-        <ScrollViewer VerticalScrollBarVisibility="Visible">
+        <ScrollViewer VerticalScrollBarVisibility="Visible" Name="EmployersPropertiesGrid">
             <Grid Style="{StaticResource GridStyle}">
                 <Grid.RowDefinitions>
                     <RowDefinition Height="*"></RowDefinition>
@@ -103,7 +103,7 @@
                 </Grid>
 
                 <Label Content="Emplo_yer Proffesion" Grid.Row="7" Grid.Column="0" HorizontalAlignment="Center" VerticalAlignment="Center"/>
-                <ComboBox Grid.Row="7" Grid.Column="1" IsEnabled="False" Name="personalEducationComboBox" SelectedItem="{Binding Path=PersonalEducation}" VerticalAlignment="Center" />
+                <ComboBox Grid.Row="7" Grid.Column="1" IsEnabled="False" Name="personalEducationComboBox" SelectedItem="{Binding Path=EmployerProffesion}" VerticalAlignment="Center" />
 
                 <Label Content="Set_up Date" Grid.Row="8" Grid.Column="0" HorizontalAlignment="Center" VerticalAlignment="Center"/>
                 <DatePicker Grid.Row="8" Grid.Column="1" Name="setupDateDatePicker" IsEnabled="False" SelectedDate="{Binding Path=SetupDate}" VerticalAlignment="Center"/>

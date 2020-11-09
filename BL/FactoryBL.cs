@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace BL
 {
-    class FactoryBL
+    public class FactoryBL
     {
         private static IBL bl_instance;
 
@@ -20,6 +20,6 @@ namespace BL
         }
 
         //property to get the private bl_instance
-        public static IBL BL_instance { get { return BL_instance; } }
+        public static IBL BL_instance { get { return bl_instance; } }
     }
 }

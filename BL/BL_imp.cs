@@ -12,7 +12,7 @@ using System.Reflection;
 
 namespace BL
 {
-    class BL_imp : IBL
+    public class BL_imp : IBL
     {
         Idal DalObject = FactoryDAL.Dal_instance;
         const int TotalDaysInYear = 365;

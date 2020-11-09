@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace BL
 {
-    class ContractGroupContainer
+    public class ContractGroupContainer
     {
         public object Key { get; set; }
         public Contract Value { get; set; }

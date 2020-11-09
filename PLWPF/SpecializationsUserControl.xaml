@@ -13,7 +13,7 @@
             <Button Style="{StaticResource ButtonStyle}" Content="Remove" Margin="0,50,0,0"/>
         </StackPanel>
         <ScrollViewer VerticalScrollBarVisibility="Visible">
-            <Grid Style="{StaticResource GridStyle}">
+            <Grid Style="{StaticResource GridStyle}" Name="SpecializationsPropertiesGrid">
                 <Grid.RowDefinitions>
                     <RowDefinition Height="*"></RowDefinition>
                     <RowDefinition Height="*"></RowDefinition>

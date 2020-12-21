@@ -239,7 +239,9 @@ namespace PLWPF
                 try
                 {
                     Employee oldEmployee = FactoryBL.BL_instance.getAllEmployees().Find(x => x.Id == EmployeeData.Id);
-                    FactoryBL.BL_instance.updateEmployee(EmployeeData, oldEmployee);
+                    Employee editEmployee = new Employee();
+                    Globals.copyObject<Employee>(EmployeeData, editEmployee);
+                    FactoryBL.BL_instance.updateEmployee(editEmployee, oldEmployee);
                 }
                 catch (Exception err)
                 {

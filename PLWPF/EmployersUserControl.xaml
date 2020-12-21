@@ -7,11 +7,12 @@
         mc:Ignorable="d"
         Style="{StaticResource UserControlStyle}">
     <DockPanel LastChildFill="True">
-        <StackPanel Style="{StaticResource GenericThreeButtons}" DockPanel.Dock="Left">
+        <Grid Style="{StaticResource GenericThreeButtons}" DockPanel.Dock="Left">
+            <!--TODO Row and column and other things like in contract-->
             <Button Style="{StaticResource ButtonStyle}" Content="Add" />
             <Button Style="{StaticResource ButtonStyle}" Content="Edit" Margin="0,60,0,0"/>
             <Button Style="{StaticResource ButtonStyle}" Content="Remove" Margin="0,50,0,0"/>
-        </StackPanel>
+        </Grid>
         <ScrollViewer VerticalScrollBarVisibility="Visible" Name="EmployersPropertiesGrid">
             <Grid Style="{StaticResource GridStyle}">
                 <Grid.RowDefinitions>

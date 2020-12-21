@@ -144,7 +144,7 @@ namespace BL
         {
             Type type = typeof(T);
             PropertyInfo property = type.GetProperty(variableName);
-            if (list.Count(x => (property.GetValue(newItem) == property.GetValue(x))) > 0)
+            if (list.Count(x => (property.GetValue(newItem).Equals(property.GetValue(x)))) > 0)
             {
                 throw new Exception($"{type.Name} with this {variableName} already exists");
             }

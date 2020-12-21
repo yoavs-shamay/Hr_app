@@ -4,16 +4,18 @@
              xmlns:local="clr-namespace:PLWPF"
              StartupUri="MainWindow.xaml">
     <Application.Resources>
+        <local:NullToNotConvertor x:Key="NullToNotConverter" />
+        <local:CivicAddressToStringConverter x:Key="CivicAddressToStringConverter" />
+        <local:NullableBooleanToBoolConverter x:Key="NullableBooleanToBoolConverter" />
         <Style x:Key="ButtonStyle" TargetType="Button">
             <Setter Property="FontSize" Value="20" />
             <Setter Property="Padding" Value="5" />
             <Setter Property="BorderThickness" Value="2" />
             <Setter Property="Background" Value="LightBlue" />
         </Style>
-        <Style x:Key="GenericThreeButtons" TargetType="StackPanel">
+        <Style x:Key="GenericThreeButtons" TargetType="Grid">
             <Setter Property="HorizontalAlignment" Value="Left" />
             <Setter Property="VerticalAlignment" Value="Center" />
-            <Setter Property="Height" Value="300" />
         </Style>
         <Style x:Key="WindowStyle" TargetType="Window">
             <Setter Property="Background" Value="LightGray" />
@@ -40,6 +42,20 @@
                     </MultiTrigger.Conditions>
                     <MultiTrigger.Setters>
                         <Setter Property="BorderBrush" Value="Red" />
+                    </MultiTrigger.Setters>
+                </MultiTrigger>
+            </Style.Triggers>
+        </Style>
+        <Style x:Key="ComboBoxInUserControlStyle" TargetType="ComboBox">
+            <Style.Triggers>
+                <MultiTrigger>
+                    <MultiTrigger.Conditions>
+                        <Condition Binding="{Binding Path=SelectedItem, Converter={StaticResource NullToNotConverter}}" Value="{x:Null}"/>
+                        <!--<Condition Binding="" />-->
+                        <!--TODO fix red background after cancel-->
+                    </MultiTrigger.Conditions>
+                    <MultiTrigger.Setters>
+                        <Setter Property="BorderBrush" Value="Gray" />
                     </MultiTrigger.Setters>
                 </MultiTrigger>
             </Style.Triggers>

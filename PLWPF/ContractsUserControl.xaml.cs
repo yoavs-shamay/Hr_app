@@ -22,6 +22,7 @@ namespace PLWPF
     public partial class ContractsUserControl : UserControl
     {
         private Contract ContractData { get; set; }
+        private App.SelectedButton selectedButton;
         public ContractsUserControl()
         {
             InitializeComponent();
@@ -67,37 +68,87 @@ namespace PLWPF
 
         private void AddButton_Click(object sender, RoutedEventArgs e)
         {
-            App.swapGridsVisibility(AddEditRemoveGrid, SaveCancelGrid);
-            App.enableFields(ContractsPropertiesGrids); //TODO do this also in other user controls
+            Globals.swapGridsVisibility(AddEditRemoveGrid, SaveCancelGrid);
+            Globals.enableFields(ContractsPropertiesGrids, false, null, true); //TODO do this also in other user controls
             IdComboBox.IsEditable = true;
+            selectedButton = App.SelectedButton.Add;
         }
 
         private void EditButton_Click(object sender, RoutedEventArgs e)
         {
-            App.swapGridsVisibility(AddEditRemoveGrid, SaveCancelGrid); //TODO do this also in other user controls
-            App.enableFields(ContractsPropertiesGrids);
+            Globals.swapGridsVisibility(AddEditRemoveGrid, SaveCancelGrid); //TODO do this also in other user controls
+            Globals.enableFields(ContractsPropertiesGrids);
+            selectedButton = App.SelectedButton.Edit;
         }
 
         private void RemoveButton_Click(object sender, RoutedEventArgs e)
         {
-            App.swapGridsVisibility(AddEditRemoveGrid, SaveCancelGrid); //TODO do this also in other user controls
-            App.enableFields(ContractsPropertiesGrids, true, IdComboBox);
+            Globals.swapGridsVisibility(AddEditRemoveGrid, SaveCancelGrid); //TODO do this also in other user controls
+            Globals.enableFields(ContractsPropertiesGrids, true, IdComboBox);
+            selectedButton = App.SelectedButton.Remove;
         }
 
         private void SaveButton_Click(object sender, RoutedEventArgs e)
         {
-            FactoryBL.BL_instance.addContract(ContractData); //TODO verifications that all properties are filled, also do this to other user controls
-            //TODO also do edit and remove cases
-            //TODO try catch
-            App.swapGridsVisibility(AddEditRemoveGrid, SaveCancelGrid);
-            App.enableFields(ContractsPropertiesGrids, false, null, false);
+            if (selectedButton == App.SelectedButton.Add)
+            {
+                if (!Globals.isEverythingNotNull<Contract>(ContractData))
+                {
+                    MessageBox.Show("Fill all fields", "Don't mess with me!!!", MessageBoxButton.OK, MessageBoxImage.Error);
+                    return;
+                }
+                try
+                {
+                    FactoryBL.BL_instance.addContract(ContractData);
+                }
+                catch (Exception err)
+                {
+                    MessageBox.Show(err.Message, "Don't mess with me!!!", MessageBoxButton.OK, MessageBoxImage.Error);
+                }
+            }
+            if (selectedButton == App.SelectedButton.Edit)
+            {
+                if (!Globals.isEverythingNotNull<Contract>(ContractData))
+                {
+                    MessageBox.Show("Fill all fields", "Don't mess with me!!!", MessageBoxButton.OK, MessageBoxImage.Error);
+                    return;
+                }
+                try
+                {
+                    Contract oldContract = FactoryBL.BL_instance.getAllContracts().Find(x => x.Id == ContractData.Id);
+                    FactoryBL.BL_instance.updateContract(ContractData, oldContract);
+                }
+                catch (Exception err)
+                {
+                    MessageBox.Show(err.Message, "Don't mess with me!!!", MessageBoxButton.OK, MessageBoxImage.Error);
+                }
+            }
+            if (selectedButton == App.SelectedButton.Remove)
+            {
+                if (ContractData.Id == null)
+                {
+                    MessageBox.Show("Fill ID", "Don't mess with me!!!", MessageBoxButton.OK, MessageBoxImage.Error);
+                    return;
+                }
+                try
+                {
+                    FactoryBL.BL_instance.removeContract(ContractData);
+                }
+                catch (Exception err)
+                {
+                    MessageBox.Show(err.Message, "Don't mess with me!!!", MessageBoxButton.OK, MessageBoxImage.Error);
+                }
+            }
+            //TODO also do everything to other user controls
+            Globals.swapGridsVisibility(AddEditRemoveGrid, SaveCancelGrid);
+            Globals.enableFields(ContractsPropertiesGrids, false, null, false);
         }
 
         private void CancelButton_Click(object sender, RoutedEventArgs e)
         {
-            App.swapGridsVisibility(AddEditRemoveGrid, SaveCancelGrid); //TODO do this also in other user controls
-            App.enableFields(ContractsPropertiesGrids, false, null, false);
-            App.emptyAllFields(ContractsPropertiesGrids);
+            Globals.swapGridsVisibility(AddEditRemoveGrid, SaveCancelGrid); //TODO do this also in other user controls
+            Globals.enableFields(ContractsPropertiesGrids, false, null, false);
+            Globals.emptyAllFields(ContractsPropertiesGrids);
         }
     }
 }

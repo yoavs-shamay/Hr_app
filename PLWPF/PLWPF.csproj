@@ -58,6 +58,7 @@
     <Compile Include="EditTabs.xaml.cs">
       <DependentUpon>EditTabs.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Globals.cs" />
     <Compile Include="SpecializationsUserControl.xaml.cs">
       <DependentUpon>SpecializationsUserControl.xaml</DependentUpon>
     </Compile>

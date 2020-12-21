@@ -7,7 +7,11 @@
         mc:Ignorable="d"
         Title="Hr app" Style="{StaticResource WindowStyle}" Name="ProgramWindow" Width="600">
     <Grid>
-        <StackPanel VerticalAlignment="Center" HorizontalAlignment="Center">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="51*"/>
+            <ColumnDefinition Width="245*"/>
+        </Grid.ColumnDefinitions>
+        <StackPanel VerticalAlignment="Center" HorizontalAlignment="Center" Grid.Column="1" Margin="68.861,120,171,120">
             <Image Source="C:\Users\User\Desktop\Yoav c# project\Hr_app\PLWPF\Images\hr_image.jpg" Width="200" Height="150"/>
             <DockPanel Width="250" Margin="0,0,0,0">
                 <Button Style="{StaticResource ButtonStyle}" x:Name="ViewWindowButton" Background="LightBlue" HorizontalAlignment="Left">
@@ -26,7 +30,7 @@
                 </Button>
             </DockPanel>
         </StackPanel>
-        <DockPanel VerticalAlignment="Bottom" HorizontalAlignment="Center">
+        <DockPanel VerticalAlignment="Bottom" HorizontalAlignment="Center" Grid.Column="1" Margin="123.861,0,226,0">
             <Image Source="C:\Users\User\Desktop\Yoav c# project\Hr_app\PLWPF\Images\copyright.png" Width="15" Height="15" />
             <TextBlock Text=" Made by Yoav Shamay."/>
         </DockPanel>

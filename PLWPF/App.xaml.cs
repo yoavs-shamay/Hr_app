@@ -1,4 +1,5 @@
-﻿using System;
+﻿using BE;
+using System;
 using System.Collections.Generic;
 using System.Configuration;
 using System.Data;
@@ -8,6 +9,7 @@ using System.Threading;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
+using System.Windows.Data;
 
 namespace PLWPF
 {
@@ -16,6 +18,14 @@ namespace PLWPF
     /// </summary>
     public partial class App : Application
     {
+        public enum SelectedButton
+        {
+            Add,
+            Edit,
+            Remove,
+            None
+        }
+        
         public static bool isNumber(string str)
         {
             try
@@ -30,7 +40,7 @@ namespace PLWPF
         }
         public static bool isValidPhoneNumber(string phoneNumber)
         {
-            if (!isNumber(phoneNumber) || phoneNumber.Length != 8 || int.Parse(phoneNumber) < 0)
+            if (!isNumber(phoneNumber) || phoneNumber.Length != 10 || int.Parse(phoneNumber) < 0)
             {
                 return false;
             }
@@ -39,7 +49,7 @@ namespace PLWPF
 
         public static bool isValidID(string id)
         {
-            if (!isValidNumber(id,0) || id.Length != 9)
+            if ((!isValidNumber(id,0) || id.Length != 9) && id != "" && id != null)
             {
                 return false;
             }
@@ -59,7 +69,7 @@ namespace PLWPF
         {
             foreach(char c in str)
             {
-                if (!char.IsLetter(c) && (!allowSpaces || c == ' '))
+                if (!((allowSpaces && c == ' ') || (char.IsLetter(c))))
                 {
                     return false;
                 }
@@ -69,83 +79,87 @@ namespace PLWPF
 
         public static bool isValidEmail(string email)
         {
-            if (email.Split('@').Length != 2 || email.Split('@')[1].Split('.').Length < 2)
+            if (email.Split('@').Length != 2 || email.Split('@')[1].Split('.').Length < 2 || email.Count(x => x == ' ') > 0)
             {
                 return false;
             }
             return true;
         }
+    }
 
-        public static void swapGridsVisibility(Grid gridToHide, Grid gridToShow)
+    /// <summary>
+    /// Converts null objects to paramter and not null values to null.
+    /// </summary>
+    public class NullToNotConvertor : IValueConverter
+    {
+        public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
         {
-            gridToHide.Visibility = Visibility.Collapsed;
-            gridToShow.Visibility = Visibility.Visible;
-        }
-
-        public static void enableFields(Grid grid, bool enableOnlyId = false, ComboBox idComboBox = null, bool enable = true)
-        {
-            if (!enableOnlyId)
+            if (value == null)
             {
-                foreach (var child in grid.Children)
-                {
-                    if (child is Control)
-                    {
-                        (child as Control).IsEnabled = enable;
-                    }
-                    if (child is Grid)
-                    {
-                        enableFields(child as Grid, enableOnlyId, idComboBox, enable);
-                    }
-                }
+                return new object();
             }
             else
             {
-                idComboBox.IsEnabled = enable;
+                return null;
             }
         }
 
-        private static void setPropertyToNullIfExists(string propertyName, object obj)
+        public object ConvertBack(object value, Type targetType, object parameter, CultureInfo culture)
         {
-            var property = obj.GetType().GetProperty(propertyName);
-            if (property != null)
+            return Convert(value, targetType, parameter, culture);
+        }
+    }
+    public class CivicAddressToStringConverter : IValueConverter
+    {
+        public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
+        {
+            if (value != null && value is CivicAddress)
             {
-                property.SetValue(obj, null);
+                return (value as CivicAddress).ToString(); 
             }
+            return null;
         }
 
-        public static void emptyAllFields(Grid grid)
+        public object ConvertBack(object value, Type targetType, object parameter, CultureInfo culture)
         {
-            foreach (var child in grid.Children)
+           if (value != null && value is string)
             {
-                if (child is Control)
+                string valueString = value as string;
+                if (valueString != "")
                 {
-                    /*setPropertyToNullIfExists("Content", child);
-                    setPropertyToNullIfExists("SelectedItem", child);
-                    setPropertyToNullIfExists("Text", child);
-                    setPropertyToNullIfExists("IsChecked", child);
-                    setPropertyToNullIfExists("SelectedDate", child);*/
-                    if (child is TextBox)
+                    string[] splitedString = valueString.Split(',');
+                    string city = splitedString[0];
+                    string street = splitedString[1].Split(' ')[2];
+                    uint houseNumber = uint.Parse(splitedString[2].Split(' ')[2]);
+                    uint? apartmentNumber = null;
+                    bool isPrivateHouse = true;
+                    if (splitedString.Length == 4)
                     {
-                        (child as TextBox).Text = "";
+                        isPrivateHouse = false;
+                        apartmentNumber = uint.Parse(splitedString[3].Split(' ')[2]);
                     }
-                    if (child is ComboBox)
-                    {
-                        (child as ComboBox).Text = "";
-                    }
-                    if (child is DatePicker)
-                    {
-                        (child as DatePicker).SelectedDate = null;
-                    }
-                    if (child is CheckBox)
-                    {
-                        (child as CheckBox).IsChecked = false;
-                    }
-                }
-                if (child is Grid)
-                {
-                    emptyAllFields(child as Grid);
+                    return new CivicAddress { ApartmentNumber = apartmentNumber, City = city, HouseNumber = houseNumber, IsPrivateHouse = isPrivateHouse, StreetName = street };
                 }
             }
+            return null;
+        }
+    }
+    public class NullableBooleanToBoolConverter : IValueConverter
+    {
+        public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
+        {
+            bool? valueBool = (bool?)value;
+            if (valueBool == null)
+            {
+                return false;
+            }
+            return (bool)value;
+
+        }
+
+        public object ConvertBack(object value, Type targetType, object parameter, CultureInfo culture)
+        {
+            throw new NotImplementedException();
         }
     }
 }

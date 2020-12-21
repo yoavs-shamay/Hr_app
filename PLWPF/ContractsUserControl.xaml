@@ -7,13 +7,20 @@
         mc:Ignorable="d"
         Style="{StaticResource UserControlStyle}">
     <DockPanel LastChildFill="True">
-        <Grid DockPanel.Dock="Left" Name="AddEditRemoveGrid">
-            <!--Style="{StaticResource GenericThreeButtons}"--> <!--TODO change to grid with vertical alignment to buttons and row and column definations and style-->
+        <Grid DockPanel.Dock="Left" Name="AddEditRemoveGrid" Style="{StaticResource GenericThreeButtons}">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="100" />
+                <RowDefinition Height="100" />
+                <RowDefinition Height="100" />
+            </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*" />
+            </Grid.ColumnDefinitions>
             <!--TODO triggers - red background to empty fields and special background to focused text box-->
             
-            <Button Style="{StaticResource ButtonStyle}" Content="Add" VerticalAlignment="Top" Name="AddButton" Click="AddButton_Click"/>
-            <Button Style="{StaticResource ButtonStyle}" Content="Edit" Margin="0,60,0,0" VerticalAlignment="Center" Name="EditButton" Click="EditButton_Click"/>
-            <Button Style="{StaticResource ButtonStyle}" Content="Remove" Margin="0,50,0,0" VerticalAlignment="Bottom" Name="RemoveButton" Click="RemoveButton_Click"/>
+            <Button Style="{StaticResource ButtonStyle}" Content="Add" VerticalAlignment="Center" Name="AddButton" Click="AddButton_Click" Grid.Row="0" Grid.Column="0"/>
+            <Button Style="{StaticResource ButtonStyle}" Content="Edit" VerticalAlignment="Center" Name="EditButton" Click="EditButton_Click" Grid.Row="1" Grid.Column="0"/>
+            <Button Style="{StaticResource ButtonStyle}" Content="Remove" VerticalAlignment="Center" Name="RemoveButton" Click="RemoveButton_Click" Grid.Row="2" Grid.Column="0"/>
         </Grid>
         <Grid x:Name="SaveCancelGrid" Visibility="Collapsed">
             <Grid.RowDefinitions>
@@ -65,7 +72,7 @@
                 <TextBox Grid.Row="5" Grid.Column="1" Name="grossWageForHourTextBox" IsEnabled="False" Text="{Binding Path=GrossWageForHour}" VerticalAlignment="Center" LostFocus="grossWageForHourTextBox_LostFocus" Style="{StaticResource TextBoxInUserControlStyle}"/> <!--TODO to all text boxes in all user controls-->
 
                 <Label Content="_Net Wage For Hour" Grid.Row="6" Grid.Column="0" HorizontalAlignment="Center" VerticalAlignment="Center"/>
-                <TextBox Grid.Row="6" Grid.Column="1" Name="netW_ageForHourTextBox" IsEnabled="False" Text="{Binding Path=NetWageForHour}" VerticalAlignment="Center" />
+                <TextBox Grid.Row="6" Grid.Column="1" Name="netW_ageForHourTextBox" IsEnabled="False" Text="{Binding Path=NetWageForHour}" VerticalAlignment="Center" Style="{StaticResource TextBoxInUserControlStyle}"/>
 
                 <Label Content="_Contract Established Date" Grid.Row="7" Grid.Column="0" HorizontalAlignment="Center" VerticalAlignment="Center" />
                 <DatePicker Grid.Row="7" Grid.Column="1" Name="contractEstablishedDateDatePicker" IsEnabled="False" SelectedDate="{Binding Path=ContractEstablishedDate}" VerticalAlignment="Center"/>
@@ -74,10 +81,10 @@
                 <DatePicker Grid.Row="8" Grid.Column="1" Name="terminateDateDatePicker" IsEnabled="False" SelectedDate="{Binding Path=TerminateDate}" VerticalAlignment="Center"/>
 
                 <Label Content="_Max Work Hours For Month" Grid.Row="9" Grid.Column="0" HorizontalAlignment="Center" VerticalAlignment="Center"/>
-                <TextBox Grid.Row="9" Grid.Column="1" Name="maxWorkHoursForMonthTextBox" IsEnabled="False" Text="{Binding Path=MaxWorkHoursForMonth}" VerticalAlignment="Center" LostFocus="maxWorkHoursForMonthTextBox_LostFocus"/>
+                <TextBox Grid.Row="9" Grid.Column="1" Name="maxWorkHoursForMonthTextBox" IsEnabled="False" Text="{Binding Path=MaxWorkHoursForMonth}" Style="{StaticResource TextBoxInUserControlStyle}" VerticalAlignment="Center" LostFocus="maxWorkHoursForMonthTextBox_LostFocus"/>
 
                 <Label Content="Min _Work Hours For Month" Grid.Row="10" Grid.Column="0" HorizontalAlignment="Center" VerticalAlignment="Center"/>
-                <TextBox Grid.Row="10" Grid.Column="1" Name="minWorkHoursForMonthTextBox" IsEnabled="False" Text="{Binding Path=MinWorkHoursForMonth}" VerticalAlignment="Center" LostFocus="minWorkHoursForMonthTextBox_LostFocus"/>
+                <TextBox Grid.Row="10" Grid.Column="1" Name="minWorkHoursForMonthTextBox" IsEnabled="False" Text="{Binding Path=MinWorkHoursForMonth}" Style="{StaticResource TextBoxInUserControlStyle}" VerticalAlignment="Center" LostFocus="minWorkHoursForMonthTextBox_LostFocus"/>
             </Grid>
         </ScrollViewer>
     </DockPanel>

@@ -7,11 +7,31 @@
       mc:Ignorable="d" 
       Style="{StaticResource UserControlStyle}">
     <DockPanel LastChildFill="True">
-        <StackPanel Style="{StaticResource GenericThreeButtons}" DockPanel.Dock="Left" VerticalAlignment="Center">
-            <Button Style="{StaticResource ButtonStyle}" Content="Add" VerticalAlignment="Top"/>
-            <Button Style="{StaticResource ButtonStyle}" Content="Edit" Margin="0,60,0,0" VerticalAlignment="Center"/>
-            <Button Style="{StaticResource ButtonStyle}" Content="Remove" Margin="0,50,0,0" VerticalAlignment="Bottom"/>
-        </StackPanel>
+        <Grid DockPanel.Dock="Left" Name="AddEditRemoveGrid" Style="{StaticResource GenericThreeButtons}">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="100" />
+                <RowDefinition Height="100" />
+                <RowDefinition Height="100" />
+            </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*" />
+            </Grid.ColumnDefinitions>
+
+            <Button Style="{StaticResource ButtonStyle}" Content="Add" VerticalAlignment="Center" Name="AddButton" Click="AddButton_Click" Grid.Row="0" Grid.Column="0"/>
+            <Button Style="{StaticResource ButtonStyle}" Content="Edit" VerticalAlignment="Center" Name="EditButton" Click="EditButton_Click" Grid.Row="1" Grid.Column="0"/>
+            <Button Style="{StaticResource ButtonStyle}" Content="Remove" VerticalAlignment="Center" Name="RemoveButton" Click="RemoveButton_Click" Grid.Row="2" Grid.Column="0"/>
+        </Grid>
+        <Grid x:Name="SaveCancelGrid" Visibility="Collapsed">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="*" />
+                <RowDefinition Height="*" />
+            </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*" />
+            </Grid.ColumnDefinitions>
+            <Button Style="{StaticResource ButtonStyle}" Content="Save" Name="SaveButton" Grid.Row="0" Grid.Column="0" Click="SaveButton_Click" VerticalAlignment="Center"/>
+            <Button Style="{StaticResource ButtonStyle}" Content="Cancel" Name="CancelButton" Grid.Row="1" Grid.Column="0" Click="CancelButton_Click" VerticalAlignment="Center"/>
+        </Grid>
         <ScrollViewer VerticalScrollBarVisibility="Visible">
             <Grid Style="{StaticResource GridStyle}" Name="EmployeesPropertiesGrid">
                 <Grid.RowDefinitions>
@@ -35,18 +55,18 @@
                 </Grid.ColumnDefinitions>
 
                 <Label Content="_Id" Grid.Row="0" Grid.Column="0" HorizontalAlignment="Center" Target="{Binding ElementName=IdComboBox}"/>
-                <ComboBox Name="IdComboBox" Grid.Row="0" Grid.Column="1" IsEditable="False" IsEnabled="False" Text="{Binding Path=Id}" LostFocus="IdComboBox_LostFocus"/>
+                <ComboBox Name="IdComboBox" Grid.Row="0" Grid.Column="1" IsEditable="False" IsEnabled="False" LostFocus="IdComboBox_LostFocus" SelectionChanged="IdComboBox_SelectionChanged"/>
                 
-                <Label Content="_Last Name" Grid.Row="1" Grid.Column="0" HorizontalAlignment="Center"/>
+                <Label Content="_Last Name" Grid.Row="1" Grid.Column="0" HorizontalAlignment="Center" Target="{Binding ElementName=LastNameTextBox}"/> <!--TODO Target binding in other user controls-->
                 <TextBox Name="LastNameTextBox" Grid.Row="1" Grid.Column="1" IsEnabled="False" Text="{Binding Path=LastName}" LostFocus="LastNameTextBox_LostFocus"/>
                 
-                <Label Content="_First Name" Grid.Row="2" Grid.Column="0" HorizontalAlignment="Center"/>
+                <Label Content="_First Name" Grid.Row="2" Grid.Column="0" HorizontalAlignment="Center" Target="{Binding ElementName=FirstNameTextBox}"/>
                 <TextBox Name="FirstNameTextBox" Grid.Row="2" Grid.Column="1"  IsEnabled="False" Text="{Binding Path=FirstName}" LostFocus="FirstNameTextBox_LostFocus"/>
                 
-                <Label Content="_Birth" Grid.Row="3" Grid.Column="0" HorizontalAlignment="Center" />
+                <Label Content="_Birth" Grid.Row="3" Grid.Column="0" HorizontalAlignment="Center" Target="{Binding ElementName=birthDatePicker}"/>
                 <DatePicker Grid.Row="3" Grid.Column="1" IsEnabled="False" Name="birthDatePicker" SelectedDate="{Binding Path=Birth, UpdateSourceTrigger=LostFocus}" />
 
-                <Label Content="_Phone Number" Grid.Row="4" Grid.Column="0" HorizontalAlignment="Center" />
+                <Label Content="_Phone Number" Grid.Row="4" Grid.Column="0" HorizontalAlignment="Center" Target="{Binding ElementName=phoneNumber}"/>
                 <Grid Name="phoneNumber" Grid.Row="4" Grid.Column="1">
                     <Grid.RowDefinitions>
                         <RowDefinition Height="*" />
@@ -56,23 +76,18 @@
                         <ColumnDefinition Width="Auto" />
                         <ColumnDefinition Width="4*" />
                     </Grid.ColumnDefinitions>
-                    <ComboBox Name="phoneNumberPrefixComboBox" IsEnabled="False" Grid.Row="0" Grid.Column="0" LostFocus="phoneNumberPrefixComboBox_LostFocus">
-                        <ComboBoxItem Content="01" Name="prefix01" />
-                        <ComboBoxItem Content="02" Name="prefix02" />
-                        <ComboBoxItem Content="03" Name="prefix03" />
-                        <ComboBoxItem Content="04" Name="prefix04" />
-                        <ComboBoxItem Content="05" Name="prefix05" />
-                        <ComboBoxItem Content="06" Name="prefix06" />
-                        <ComboBoxItem Content="07" Name="prefix07" />
-                        <ComboBoxItem Content="08" Name="prefix08" />
-                        <ComboBoxItem Content="09" Name="prefix09" />
-                        <ComboBoxItem Content="00" Name="prefix00" />
+                    <ComboBox Name="phoneNumberPrefixComboBox" IsEnabled="False" Grid.Row="0" Grid.Column="0" LostFocus="phoneNumberPrefixComboBox_LostFocus"> <!--TODO Style in all user controls--> <!--add Style back-->
+                        <ComboBoxItem Content="050" Name="prefix01" /> <!--TODO change to 050, 051, 052, ... instead of 00,01,02,... in other user controls-->
+                        <ComboBoxItem Content="052" Name="prefix02" />
+                        <ComboBoxItem Content="053" Name="prefix03" />
+                        <ComboBoxItem Content="054" Name="prefix04" />
+                        <ComboBoxItem Content="057" Name="prefix07" />
                     </ComboBox>
                     <Label Grid.Row="0" Grid.Column="1" Content="-" />
-                    <TextBox Grid.Row="0" Grid.Column="2" IsEnabled="False" Name="phoneNumberTextBox" Text="{Binding Path=PhoneNumber}" LostFocus="phoneNumberTextBox_LostFocus" />
+                    <TextBox Grid.Row="0" Grid.Column="2" IsEnabled="False" Name="phoneNumberTextBox" LostFocus="phoneNumberTextBox_LostFocus" />
                 </Grid>
-                <Label Content="_Address" Grid.Row="5" Grid.Column="0" HorizontalAlignment="Center" VerticalAlignment="Center"/>
-                <Grid Grid.Row="5" Grid.Column="1">
+                <Label Content="_Address" Grid.Row="5" Grid.Column="0" HorizontalAlignment="Center" VerticalAlignment="Center" Target="{Binding ElementName=AddressGrid}"/>
+                <Grid Grid.Row="5" Grid.Column="1" Name="AddressGrid">
                     <Grid.RowDefinitions>
                         <RowDefinition Height="Auto" />
                         <RowDefinition Height="Auto" />
@@ -85,36 +100,30 @@
                         <ColumnDefinition Width="1.5*" />
                     </Grid.ColumnDefinitions>
                     
-                    <Label Content="_City" Grid.Row="0" Grid.Column="0" HorizontalAlignment="Center" />
+                    <Label Content="_City" Grid.Row="0" Grid.Column="0" HorizontalAlignment="Center" Target="{Binding ElementName=addressCityTextBox}"/>
                     <TextBox Grid.Row="0" Grid.Column="1" IsEnabled="False" Name="addressCityTextBox" Text="{Binding Path=Address.City}" LostFocus="addressCityTextBox_LostFocus"/>
 
-                    <Label Content="_Street Name" Grid.Row="1" Grid.Column="0" HorizontalAlignment="Center" />
+                    <Label Content="_Street Name" Grid.Row="1" Grid.Column="0" HorizontalAlignment="Center" Target="{Binding ElementName=addressStreetNameTextBox}"/>
                     <TextBox Grid.Row="1" Grid.Column="1" IsEnabled="False" Name="addressStreetNameTextBox" Text="{Binding Path=Address.StreetName}" LostFocus="addressStreetNameTextBox_LostFocus"/>
 
-                    <Label Content="_House Number" Grid.Row="2" Grid.Column="0" HorizontalAlignment="Center" />
+                    <Label Content="_House Number" Grid.Row="2" Grid.Column="0" HorizontalAlignment="Center" Target="{Binding ElementName=addressHouseNumberTextBox}"/>
                     <TextBox Grid.Row="2" Grid.Column="1" IsEnabled="False" Name="addressHouseNumberTextBox" Text="{Binding Path=Address.HouseNumber}" LostFocus="addressHouseNumberTextBox_LostFocus"/>
 
-                    <Label Content="P_rivate House" Grid.Row="3" Grid.Column="0" HorizontalAlignment="Center"/>
-                    <CheckBox Grid.Row="3" Grid.Column="1" IsEnabled="False" Name="addressPrivateHouseCheckBox" HorizontalAlignment="Center" VerticalAlignment="Center" IsChecked="{Binding Path=Address.IsPrivateHouse}"/>
+                    <Label Content="P_rivate House" Grid.Row="3" Grid.Column="0" HorizontalAlignment="Center" Target="{Binding ElementName=addressPrivateHouseCheckBox}"/>
+                    <CheckBox Grid.Row="3" Grid.Column="1" IsEnabled="False" Name="addressPrivateHouseCheckBox" HorizontalAlignment="Center" VerticalAlignment="Center" IsChecked="{Binding Path=Address.IsPrivateHouse}" Checked="addressPrivateHouseCheckBox_Checked" Unchecked="addressPrivateHouseCheckBox_Unchecked"/>
 
-                    <Label Content="Apar_tment Number" Grid.Row="4" Grid.Column="0" HorizontalAlignment="Center" />
+                    <Label Content="Apar_tment Number" Grid.Row="4" Grid.Column="0" HorizontalAlignment="Center" Target="{Binding ElementName=addressApartmentNumberTextBox}"/>
                     <TextBox Grid.Row="4" Grid.Column="1" IsEnabled="False" Name="addressApartmentNumberTextBox" Text="{Binding Path=Address.ApartmentNumber}" LostFocus="addressApartmentNumberTextBox_LostFocus"/>
                 </Grid>
-                
-                <Label Content="P_ersonal Education" Grid.Row="6" Grid.Column="0" HorizontalAlignment="Center" />
-                <ComboBox Grid.Row="6" Grid.Column="1" IsEnabled="False" Name="personalEducationComboBox" SelectedValue="{Binding Path=PersonalEducation}" >
-                    <ComboBoxItem Content="Cartificate Only" Name="cartificateOnly" />
-                    <ComboBoxItem Content="BA" Name="BA" />
-                    <ComboBoxItem Content="MA" Name="MA" />
-                    <ComboBoxItem Content="PHD" Name="PHD" />
-                    <ComboBoxItem Content="Student" Name="student" />
-                    <ComboBoxItem Content="None" Name="none" />
+
+                <Label Content="P_ersonal Education" Grid.Row="6" Grid.Column="0" HorizontalAlignment="Center" Target="{Binding ElementName=personalEducationComboBox}"/>
+                <ComboBox Grid.Row="6" Grid.Column="1" IsEnabled="False" Name="personalEducationComboBox" SelectedValue="{Binding Path=PersonalEducation}"> <!--Style="{StaticResource ComboBoxInUserControlStyle}"-->
                 </ComboBox>
 
-                <Label Content="Ar_my Graduate" Grid.Row="7" Grid.Column="0" HorizontalAlignment="Center" />
+                <Label Content="Ar_my Graduate" Grid.Row="7" Grid.Column="0" HorizontalAlignment="Center" Target="{Binding ElementName=armyGraduateCheckBox}"/>
                 <CheckBox Grid.Row="7" Grid.Column="1" Name="armyGraduateCheckBox" IsEnabled="False" HorizontalAlignment="Center" VerticalAlignment="Center" IsChecked="{Binding Path=ArmyGraduate}"/>
 
-                <Label Content="Ba_nk Account" Grid.Row="8" Grid.Column="0" HorizontalAlignment="Center" VerticalAlignment="Center" />
+                <Label Content="Ba_nk Account" Grid.Row="8" Grid.Column="0" HorizontalAlignment="Center" VerticalAlignment="Center" Target="{Binding ElementName=bankAccount}"/>
                 <Grid Grid.Row="8" Grid.Column="1" Name="bankAccount">
                     <Grid.RowDefinitions>
                         <RowDefinition Height="Auto" />
@@ -127,32 +136,32 @@
                         <ColumnDefinition Width="*" />
                         <ColumnDefinition Width="1.5*" />
                     </Grid.ColumnDefinitions>
-                    <Label Content="Ban_k Number" Grid.Row="0" Grid.Column="0" HorizontalAlignment="Center" />
+                    <Label Content="Ban_k Number" Grid.Row="0" Grid.Column="0" HorizontalAlignment="Center" Target="{Binding ElementName=bankNumberTextBox}"/>
                     <TextBox Grid.Row="0" Grid.Column="1" IsEnabled="False" Name="bankNumberTextBox" Text="{Binding Path=BankAccount.BankNumber}" />
 
-                    <Label Content="Bank A_ddress" Grid.Row="1" Grid.Column="0" HorizontalAlignment="Center"/>
-                    <TextBox Grid.Row="1" Grid.Column="1" IsEnabled="False" Name="bankAddressTextBox" Text="{Binding Path=BankAccount.BankAddress}"/>
+                    <Label Content="Branch A_ddress" Grid.Row="1" Grid.Column="0" HorizontalAlignment="Center" Target="{Binding ElementName=bankAddressTextBox}"/>
+                    <TextBox Grid.Row="1" Grid.Column="1" IsEnabled="False" Name="bankAddressTextBox" Text="{Binding Path=BankAccount.BranchAddress, Converter={StaticResource CivicAddressToStringConverter},UpdateSourceTrigger=PropertyChanged}"/>
 
-                    <Label Content="Ban_k Name" Grid.Row="2" Grid.Column="0" HorizontalAlignment="Center" />
-                    <ComboBox Grid.Row="2" Grid.Column="1" IsEnabled="False" Name="bankNameComboBox" Text="{Binding Path=BankAccount.BankName}"/>
+                    <Label Content="Ban_k Name" Grid.Row="2" Grid.Column="0" HorizontalAlignment="Center" Target="{Binding ElementName=bankNameComboBox}"/>
+                    <ComboBox Grid.Row="2" Grid.Column="1" IsEnabled="False" Name="bankNameComboBox" SelectedItem="{Binding Path=BankAccount.BankName}" SelectionChanged="bankNameComboBox_SelectionChanged"/> <!-- Style="{StaticResource ComboBoxInUserControlStyle}"/-->
 
-                    <Label Content="Branch N_umber" Grid.Row="3" Grid.Column="0" HorizontalAlignment="Center" />
-                    <TextBox Grid.Row="3" Grid.Column="1" IsEnabled="False" Name="bankBranchNumberTextBox" Text="{Binding Path=BankAccount.BranchNumber}" LostFocus="bankBranchNumberTextBox_LostFocus"/>
+                    <Label Content="Branch N_umber" Grid.Row="3" Grid.Column="0" HorizontalAlignment="Center" Target="{Binding ElementName=bankBranchNumberTextBox}"/>
+                    <ComboBox Grid.Row="3" Grid.Column="1" IsEnabled="False" Name="bankBranchNumberTextBox" SelectedItem="{Binding Path=BankAccount.BranchNumber}" LostFocus="bankBranchNumberTextBox_LostFocus" SelectionChanged="bankBranchNumberTextBox_SelectionChanged"/>
 
-                    <Label Content="Acc_ount Number" Grid.Row="4" Grid.Column="0" HorizontalAlignment="Center" />
-                    <TextBox Grid.Row="4" Grid.Column="1" IsEnabled="False" Name="bankAccountNumberTextBox" Text="{Binding Path=BankAccount.AccountNumber}" LostFocus="bankAccountNumber_LostFocus"/>
+                    <Label Content="Acc_ount Number" Grid.Row="4" Grid.Column="0" HorizontalAlignment="Center" Target="{Binding ElementName=bankAccountNumberTextBox}" />
+                    <TextBox Grid.Row="4" Grid.Column="1" IsEnabled="False" Name="bankAccountNumberTextBox" Text="{Binding Path=BankAccount.AccountNumber}" LostFocus="bankAccountNumber_LostFocus"/> <!--TODO set to isEnabled false-->
                 </Grid>
 
-                <Label Content="Specia_lization" Grid.Row="9" Grid.Column="0" HorizontalAlignment="Center" />
+                <Label Content="Specia_lization" Grid.Row="9" Grid.Column="0" HorizontalAlignment="Center" Target="{Binding ElementName=employeeSpecializationComboBox}"/>
                 <ComboBox Grid.Row="9" Grid.Column="1" IsEnabled="False" Name="employeeSpecializationComboBox" SelectedValue="{Binding Path=EmployeeSpecialization}"/>
 
-                <Label Content="Is _Male" Grid.Row="10" Grid.Column="0" HorizontalAlignment="Center" />
+                <Label Content="Is _Male" Grid.Row="10" Grid.Column="0" HorizontalAlignment="Center" Target="{Binding ElementName=isMaleCheckBox}"/>
                 <CheckBox Grid.Row="10" Grid.Column="1" HorizontalAlignment="Center" VerticalAlignment="Center" IsEnabled="False" Name="isMaleCheckBox" IsChecked="{Binding Path=IsMale}"/>
 
-                <Label Content="Emai_l" Grid.Row="11" Grid.Column="0" HorizontalAlignment="Center" />
+                <Label Content="Emai_l" Grid.Row="11" Grid.Column="0" HorizontalAlignment="Center" Target="{Binding ElementName=emailTextBox}"/>
                 <TextBox Grid.Row="11" Grid.Column="1" IsEnabled="False" Name="emailTextBox" Text="{Binding Path=Email}" LostFocus="emailTextBox_LostFocus"/>
 
-                <Label Content="_Years Of Experience" Grid.Row="12" Grid.Column="0" HorizontalAlignment="Center" />
+                <Label Content="_Years Of Experience" Grid.Row="12" Grid.Column="0" HorizontalAlignment="Center" Target="{Binding ElementName=yearsOfExperienceTextBox}"/>
                 <TextBox Grid.Row="12" Grid.Column="1" IsEnabled="False" Name="yearsOfExperienceTextBox" Text="{Binding Path=YearsOfExperience}" LostFocus="yearsOfExperienceTextBox_LostFocus"/>
             </Grid>
         </ScrollViewer>

@@ -14,7 +14,7 @@
         <StackPanel VerticalAlignment="Center" HorizontalAlignment="Center" Grid.Column="1" Margin="68.861,120,171,120">
             <Image Source="C:\Users\User\Desktop\Yoav c# project\Hr_app\PLWPF\Images\hr_image.jpg" Width="200" Height="150"/>
             <DockPanel Width="250" Margin="0,0,0,0">
-                <Button Style="{StaticResource ButtonStyle}" x:Name="ViewWindowButton" Background="LightBlue" HorizontalAlignment="Left">
+                <Button Style="{StaticResource ButtonStyle}" x:Name="ViewWindowButton" Background="LightBlue" HorizontalAlignment="Left" Click="ViewWindowButton_Click">
                     <Button.Content>
                         <StackPanel>
                             <TextBlock Text="View" FontSize="30"/>

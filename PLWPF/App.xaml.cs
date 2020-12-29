@@ -162,4 +162,34 @@ namespace PLWPF
             throw new NotImplementedException();
         }
     }
+
+    public class DateTimeToAgeConverter : IValueConverter
+    {
+        public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
+        {
+            DateTime valueDateTime = (DateTime)value;
+            TimeSpan substracted = DateTime.Today - valueDateTime;
+            int days = substracted.Days;
+            return (days / 365);
+        }
+
+        public object ConvertBack(object value, Type targetType, object parameter, CultureInfo culture)
+        {
+            throw new NotImplementedException();
+        }
+    }
+
+    public class PhoneNumberToPhoneNumberWithHyphenConverter : IValueConverter
+    {
+        public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
+        {
+            string valueString = (string)value;
+            return valueString.Substring(0, 3) + "-" + valueString.Substring(3);
+        }
+
+        public object ConvertBack(object value, Type targetType, object parameter, CultureInfo culture)
+        {
+            throw new NotImplementedException();
+        }
+    }
 }

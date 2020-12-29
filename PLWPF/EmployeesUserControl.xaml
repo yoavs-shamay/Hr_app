@@ -117,7 +117,7 @@
                 </Grid>
 
                 <Label Content="P_ersonal Education" Grid.Row="6" Grid.Column="0" HorizontalAlignment="Center" Target="{Binding ElementName=personalEducationComboBox}"/>
-                <ComboBox Grid.Row="6" Grid.Column="1" IsEnabled="False" Name="personalEducationComboBox" SelectedValue="{Binding Path=PersonalEducation}"> <!--Style="{StaticResource ComboBoxInUserControlStyle}"-->
+                <ComboBox Grid.Row="6" Grid.Column="1" IsEnabled="False" Name="personalEducationComboBox" SelectedValue="{Binding Path=PersonalEducation}">
                 </ComboBox>
 
                 <Label Content="Ar_my Graduate" Grid.Row="7" Grid.Column="0" HorizontalAlignment="Center" Target="{Binding ElementName=armyGraduateCheckBox}"/>

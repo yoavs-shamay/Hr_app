@@ -58,9 +58,15 @@
     <Compile Include="EditTabs.xaml.cs">
       <DependentUpon>EditTabs.xaml</DependentUpon>
     </Compile>
+    <Compile Include="EmployeeView.xaml.cs">
+      <DependentUpon>EmployeeView.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Globals.cs" />
     <Compile Include="SpecializationsUserControl.xaml.cs">
       <DependentUpon>SpecializationsUserControl.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="ViewTabs.xaml.cs">
+      <DependentUpon>ViewTabs.xaml</DependentUpon>
     </Compile>
     <Page Include="ContractsUserControl.xaml">
       <SubType>Designer</SubType>
@@ -84,6 +90,10 @@
     <Compile Include="EmployeesUserControl.xaml.cs">
       <DependentUpon>EmployeesUserControl.xaml</DependentUpon>
     </Compile>
+    <Page Include="EmployeeView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="EmployersUserControl.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -93,6 +103,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="SpecializationsUserControl.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="ViewTabs.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

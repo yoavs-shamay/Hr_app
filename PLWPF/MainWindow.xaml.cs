@@ -37,5 +37,11 @@ namespace PLWPF
             EditTabs editTabsWindow = new EditTabs();
             editTabsWindow.Show();
         }
+
+        private void ViewWindowButton_Click(object sender, RoutedEventArgs e)
+        {
+            ViewTabs viewTabsWindow = new ViewTabs();
+            viewTabsWindow.Show();
+        }
     }
 }

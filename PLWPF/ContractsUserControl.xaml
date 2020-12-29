@@ -69,10 +69,10 @@
                 <CheckBox Grid.Row="4" Grid.Column="1" Name="isFinalizedCheckBox" IsEnabled="False" VerticalAlignment="Center" IsChecked="{Binding Path=IsFinalized}"/>
 
                 <Label Content="_Gross Wage For Hour" Grid.Row="5" Grid.Column="0" HorizontalAlignment="Center" VerticalAlignment="Center"/>
-                <TextBox Grid.Row="5" Grid.Column="1" Name="grossWageForHourTextBox" IsEnabled="False" Text="{Binding Path=GrossWageForHour}" VerticalAlignment="Center" LostFocus="grossWageForHourTextBox_LostFocus" Style="{StaticResource TextBoxInUserControlStyle}"/> <!--TODO to all text boxes in all user controls-->
+                <TextBox Grid.Row="5" Grid.Column="1" Name="grossWageForHourTextBox" IsEnabled="False" Text="{Binding Path=GrossWageForHour}" VerticalAlignment="Center" LostFocus="grossWageForHourTextBox_LostFocus"/>
 
                 <Label Content="_Net Wage For Hour" Grid.Row="6" Grid.Column="0" HorizontalAlignment="Center" VerticalAlignment="Center"/>
-                <TextBox Grid.Row="6" Grid.Column="1" Name="netW_ageForHourTextBox" IsEnabled="False" Text="{Binding Path=NetWageForHour}" VerticalAlignment="Center" Style="{StaticResource TextBoxInUserControlStyle}"/>
+                <TextBox Grid.Row="6" Grid.Column="1" Name="netW_ageForHourTextBox" IsEnabled="False" Text="{Binding Path=NetWageForHour}" VerticalAlignment="Center"/>
 
                 <Label Content="_Contract Established Date" Grid.Row="7" Grid.Column="0" HorizontalAlignment="Center" VerticalAlignment="Center" />
                 <DatePicker Grid.Row="7" Grid.Column="1" Name="contractEstablishedDateDatePicker" IsEnabled="False" SelectedDate="{Binding Path=ContractEstablishedDate}" VerticalAlignment="Center"/>
@@ -81,10 +81,10 @@
                 <DatePicker Grid.Row="8" Grid.Column="1" Name="terminateDateDatePicker" IsEnabled="False" SelectedDate="{Binding Path=TerminateDate}" VerticalAlignment="Center"/>
 
                 <Label Content="_Max Work Hours For Month" Grid.Row="9" Grid.Column="0" HorizontalAlignment="Center" VerticalAlignment="Center"/>
-                <TextBox Grid.Row="9" Grid.Column="1" Name="maxWorkHoursForMonthTextBox" IsEnabled="False" Text="{Binding Path=MaxWorkHoursForMonth}" Style="{StaticResource TextBoxInUserControlStyle}" VerticalAlignment="Center" LostFocus="maxWorkHoursForMonthTextBox_LostFocus"/>
+                <TextBox Grid.Row="9" Grid.Column="1" Name="maxWorkHoursForMonthTextBox" IsEnabled="False" Text="{Binding Path=MaxWorkHoursForMonth}" VerticalAlignment="Center" LostFocus="maxWorkHoursForMonthTextBox_LostFocus"/>
 
                 <Label Content="Min _Work Hours For Month" Grid.Row="10" Grid.Column="0" HorizontalAlignment="Center" VerticalAlignment="Center"/>
-                <TextBox Grid.Row="10" Grid.Column="1" Name="minWorkHoursForMonthTextBox" IsEnabled="False" Text="{Binding Path=MinWorkHoursForMonth}" Style="{StaticResource TextBoxInUserControlStyle}" VerticalAlignment="Center" LostFocus="minWorkHoursForMonthTextBox_LostFocus"/>
+                <TextBox Grid.Row="10" Grid.Column="1" Name="minWorkHoursForMonthTextBox" IsEnabled="False" Text="{Binding Path=MinWorkHoursForMonth}" VerticalAlignment="Center" LostFocus="minWorkHoursForMonthTextBox_LostFocus"/>
             </Grid>
         </ScrollViewer>
     </DockPanel>

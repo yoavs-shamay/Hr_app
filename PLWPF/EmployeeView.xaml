@@ -7,20 +7,71 @@
              mc:Ignorable="d" 
              d:DesignHeight="450" d:DesignWidth="800" Style="{StaticResource UserControlStyle}">
     <Grid>
-        <ListView x:Name="EmployeesListView">
+        <!--TODO search box by full name or id, choose search by a field that is selected in combo box-->
+        <ListView x:Name="EmployeesListView" ItemContainerStyle="{StaticResource ListViewItemContainerStyle}" MouseDoubleClick="EmployeesListView_MouseDoubleClick">
             <ListView.View>
                 <GridView x:Name="EmployeesGridView">
-                    <GridViewColumn x:Name="IdColumn" Header="Id" DisplayMemberBinding="{Binding Path=Id}"></GridViewColumn>
-                    <GridViewColumn x:Name="FullNameColumn" Header="Name">
+                    <GridViewColumn x:Name="IdColumn" DisplayMemberBinding="{Binding Path=Id}">
+                        <GridViewColumn.Header>
+                            <GridViewColumnHeader Content="Id" Tag="Id" Click="GridViewColumnHeader_Click"></GridViewColumnHeader>
+                        </GridViewColumn.Header>
+                    </GridViewColumn>
+                    <GridViewColumn x:Name="FullNameColumn">
                         <GridViewColumn.DisplayMemberBinding>
                             <MultiBinding StringFormat="{}{0} {1}">
                                 <Binding Path="FirstName" />
                                 <Binding Path="LastName" />
                             </MultiBinding>
                         </GridViewColumn.DisplayMemberBinding>
+                        <GridViewColumn.Header>
+                            <GridViewColumnHeader Content="Full Name" Tag="FirstName,LastName" Click="GridViewColumnHeader_Click" />
+                        </GridViewColumn.Header>
                     </GridViewColumn>
-                    <GridViewColumn x:Name="AgeColumn" Header="Age" DisplayMemberBinding="{Binding Path=Birth,Converter={StaticResource DateTimeToAgeConverter}}"></GridViewColumn>
-                    <GridViewColumn x:Name="PhoneNumberColumn" Header="Phone Number" DisplayMemberBinding="{Binding Path=PhoneNumber,Converter={StaticResource PhoneNumberToPhoneNumberWithHyphenConverter}}"></GridViewColumn>
+                    <GridViewColumn x:Name="AgeColumn" DisplayMemberBinding="{Binding Path=Birth,Converter={StaticResource DateTimeToAgeConverter}}">
+                        <GridViewColumn.Header>
+                            <GridViewColumnHeader Content="Age" Tag="Birth" Click="GridViewColumnHeader_Click" />
+                        </GridViewColumn.Header>
+                    </GridViewColumn>
+                    <GridViewColumn x:Name="PhoneNumberColumn" DisplayMemberBinding="{Binding Path=PhoneNumber,Converter={StaticResource PhoneNumberToPhoneNumberWithHyphenConverter}}">
+                        <GridViewColumn.Header>
+                            <GridViewColumnHeader Content="Phone Number" Tag="PhoneNumber" Click="GridViewColumnHeader_Click" />
+                        </GridViewColumn.Header>
+                    </GridViewColumn>
+                    <GridViewColumn x:Name="CityColumn" DisplayMemberBinding="{Binding Path=Address.City}">
+                        <GridViewColumn.Header>
+                            <GridViewColumnHeader Content="City" Tag="Address.City" Click="GridViewColumnHeader_Click"></GridViewColumnHeader>
+                        </GridViewColumn.Header>
+                    </GridViewColumn>
+                    <GridViewColumn x:Name="PersonalEducationColumn" DisplayMemberBinding="{Binding Path=PersonalEducation}">
+                        <GridViewColumn.Header>
+                            <GridViewColumnHeader Content="Education" Tag="PersonalEducation" Click="GridViewColumnHeader_Click" />
+                        </GridViewColumn.Header>
+                    </GridViewColumn>
+                    <GridViewColumn x:Name="ArmyGraduateColumn">
+                        <GridViewColumn.Header>
+                            <GridViewColumnHeader Content="Army Graduate" Tag="ArmyGraduate" Click="GridViewColumnHeader_Click"></GridViewColumnHeader>
+                        </GridViewColumn.Header>
+                        <GridViewColumn.CellTemplate>
+                            <DataTemplate>
+                                <CheckBox IsChecked="{Binding Path=ArmyGraduate}" IsEnabled="False"/>
+                            </DataTemplate>
+                        </GridViewColumn.CellTemplate>
+                    </GridViewColumn>
+                    <GridViewColumn x:Name="GenderColumn" DisplayMemberBinding="{Binding Path=IsMale, Converter={StaticResource IsMaleToGenderConverter}}">
+                        <GridViewColumn.Header>
+                            <GridViewColumnHeader Content="Gender" Tag="IsMale" Click="GridViewColumnHeader_Click"></GridViewColumnHeader>
+                        </GridViewColumn.Header>
+                    </GridViewColumn>
+                    <GridViewColumn x:Name="EmailColumn" DisplayMemberBinding="{Binding Path=Email}">
+                        <GridViewColumn.Header>
+                            <GridViewColumnHeader Content="Email" Tag="Email" Click="GridViewColumnHeader_Click"></GridViewColumnHeader>
+                        </GridViewColumn.Header>
+                    </GridViewColumn>
+                    <GridViewColumn x:Name="YearsOfExperienceColumn" DisplayMemberBinding="{Binding Path=YearsOfExperience}">
+                        <GridViewColumn.Header>
+                            <GridViewColumnHeader Content="Years Of Experience" Tag="YearsOfExperience" Click="GridViewColumnHeader_Click" />
+                        </GridViewColumn.Header>
+                    </GridViewColumn>
                 </GridView>
             </ListView.View>
         </ListView>

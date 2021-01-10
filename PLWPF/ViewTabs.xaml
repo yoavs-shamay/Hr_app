@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:PLWPF"
         mc:Ignorable="d"
-        Title="View" Style="{StaticResource WindowStyle}">
+        Title="View" Style="{StaticResource WindowStyle}" Width="850">
     <Grid>
         <TabControl>
             <TabItem Name="EmployeeTab" Header="Employees">

@@ -57,7 +57,7 @@ namespace BE
         public override bool Equals(object obj) //TODO also to other classes
         {
             Employee other = obj as Employee;
-            return other.id == id;
+            return other != null && other.id == id;
         }
     }
 }

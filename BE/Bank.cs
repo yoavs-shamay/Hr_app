@@ -42,7 +42,7 @@ namespace BE
         public override bool Equals(object obj)
         {
             Bank other = (Bank)obj;
-            return (AccountNumber == other.AccountNumber) && (BranchNumber == other.BranchNumber) && (BankNumber == other.BankNumber);
+            return other != null && (AccountNumber == other.AccountNumber) && (BranchNumber == other.BranchNumber) && (BankNumber == other.BankNumber);
         }
 
         public Bank(Bank other)

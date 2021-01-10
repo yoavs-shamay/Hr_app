@@ -6,6 +6,8 @@ using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
 using BE;
+using System.ComponentModel;
+using System.Collections;
 
 namespace PLWPF
 {
@@ -123,6 +125,41 @@ namespace PLWPF
         public static void setToToday(DatePicker datePicker)
         {
             datePicker.SelectedDate = DateTime.Today; //TODO use this to all date pickers on init
+        }
+        public static void sortBy(ListView listView, string properties, ListSortDirection direction)
+        {
+            var items = listView.Items;
+            string[] propertiesToSort = properties.Split(',');
+            items.SortDescriptions.Clear();
+            foreach(string property in propertiesToSort)
+            {
+                items.SortDescriptions.Add(new SortDescription(property, direction));
+            }
+        }
+        /// <summary>
+        /// Opens an edit window on tab matching the view window at id matching the selected id on double click
+        /// </summary>
+        /// <param name="listView">the view window list view</param>
+        public static void openEditOn(ListView listView)
+        {
+            EditTabs editWindow = new EditTabs();
+            editWindow.Show();
+            string typeName = listView.ItemsSource.GetType().GetGenericArguments()[0].Name;
+            ItemCollection tabs = editWindow.editTabs.Items;
+            UserControl selectedTab = null;
+            foreach(var item in tabs)
+            {
+                TabItem tab = (TabItem)item;
+                if (tab.Header.ToString() == typeName + "s")
+                {
+                    tab.IsSelected = true;
+                    selectedTab = (UserControl)tab.Content;
+                }
+            }
+            ComboBox idComboBox = (ComboBox)selectedTab.FindName("IdComboBox");
+            Employee currentItem = (Employee)listView.SelectedItem;
+            string id = currentItem.Id;
+            idComboBox.SelectedItem = id;
         }
     }
 }

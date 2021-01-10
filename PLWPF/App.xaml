@@ -9,6 +9,7 @@
         <local:NullableBooleanToBoolConverter x:Key="NullableBooleanToBoolConverter" />
         <local:DateTimeToAgeConverter x:Key="DateTimeToAgeConverter" />
         <local:PhoneNumberToPhoneNumberWithHyphenConverter x:Key="PhoneNumberToPhoneNumberWithHyphenConverter" />
+        <local:IsMaleToGenderConverter x:Key="IsMaleToGenderConverter" />
         <Style x:Key="ButtonStyle" TargetType="Button">
             <Setter Property="FontSize" Value="20" />
             <Setter Property="Padding" Value="5" />
@@ -34,6 +35,9 @@
         </Style>
         <Style x:Key="GridStyle" TargetType="Grid">
             <Setter Property="Margin" Value="10,0,10,0" />
+        </Style>
+        <Style x:Key="ListViewItemContainerStyle" TargetType="ListViewItem">
+            <Setter Property="Height" Value="30" />
         </Style>
     </Application.Resources>
 </Application>

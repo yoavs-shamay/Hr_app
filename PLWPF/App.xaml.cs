@@ -192,4 +192,25 @@ namespace PLWPF
             throw new NotImplementedException();
         }
     }
+
+    public class IsMaleToGenderConverter : IValueConverter
+    {
+        public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
+        {
+            bool valueBool = (bool)value;
+            if (valueBool)
+            {
+                return "Male";
+            }
+            else
+            {
+                return "Female";
+            }
+        }
+
+        public object ConvertBack(object value, Type targetType, object parameter, CultureInfo culture)
+        {
+            throw new NotImplementedException();
+        }
+    }
 }

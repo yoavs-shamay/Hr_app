@@ -140,7 +140,7 @@ namespace PLWPF
         /// Opens an edit window on tab matching the view window at id matching the selected id on double click
         /// </summary>
         /// <param name="listView">the view window list view</param>
-        public static void openEditOn(ListView listView)
+        public static EditTabs openEditOn(ListView listView)
         {
             EditTabs editWindow = new EditTabs();
             editWindow.Show();
@@ -160,6 +160,7 @@ namespace PLWPF
             Employee currentItem = (Employee)listView.SelectedItem;
             string id = currentItem.Id;
             idComboBox.SelectedItem = id;
+            return editWindow;
         }
     }
 }

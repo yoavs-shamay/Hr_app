@@ -25,6 +25,7 @@ namespace PLWPF
         private IBL BL_Object = FactoryBL.BL_instance;
         private GridViewColumnHeader sortByColumn;
         private ListSortDirection sortingDirection;
+        private EditTabs currentEditWindow = null;
         public EmployeeView()
         {
             InitializeComponent();
@@ -51,7 +52,11 @@ namespace PLWPF
 
         private void EmployeesListView_MouseDoubleClick(object sender, MouseButtonEventArgs e)
         {
-            Globals.openEditOn(EmployeesListView);
+            if (currentEditWindow != null && currentEditWindow.IsVisible)
+            {
+                currentEditWindow.Close();
+            }
+            currentEditWindow = Globals.openEditOn(EmployeesListView);
         }
     }
 }

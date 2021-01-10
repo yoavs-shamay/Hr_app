@@ -7,8 +7,27 @@
              mc:Ignorable="d" 
              d:DesignHeight="450" d:DesignWidth="800" Style="{StaticResource UserControlStyle}">
     <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="*" />
+        </Grid.RowDefinitions>
         <!--TODO search box by full name or id, choose search by a field that is selected in combo box-->
-        <ListView x:Name="EmployeesListView" ItemContainerStyle="{StaticResource ListViewItemContainerStyle}" MouseDoubleClick="EmployeesListView_MouseDoubleClick">
+        <Grid x:Name="SearchGrid" Grid.Row="0">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="100" />
+                <ColumnDefinition Width="Auto" />
+                <ColumnDefinition Width="100" />
+            </Grid.ColumnDefinitions>
+            <TextBox x:Name="SearchTextBox" TextChanged="SearchTextBox_TextChanged" Grid.Column="0"/>
+            <Label Grid.Column="1" Content="Search By:" />
+            <ComboBox x:Name="SearchByComboBox" Grid.Column="2">
+                <ComboBoxItem Content="Name" Name="SearchByName" />
+                <ComboBoxItem Content="Id" Name="SearchById" />
+                <ComboBoxItem Content="Phone Number" Name="SearchByPhoneNumber" />
+                <ComboBoxItem Content="Email" Name="SearchByEmail" />
+            </ComboBox>
+        </Grid>
+        <ListView x:Name="EmployeesListView" ItemContainerStyle="{StaticResource ListViewItemContainerStyle}" MouseDoubleClick="EmployeesListView_MouseDoubleClick" Grid.Row="1">
             <ListView.View>
                 <GridView x:Name="EmployeesGridView">
                     <GridViewColumn x:Name="IdColumn" DisplayMemberBinding="{Binding Path=Id}">

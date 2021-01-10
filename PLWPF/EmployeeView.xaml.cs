@@ -14,6 +14,7 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 using System.ComponentModel;
+using BE;
 
 namespace PLWPF
 {
@@ -57,6 +58,35 @@ namespace PLWPF
                 currentEditWindow.Close();
             }
             currentEditWindow = Globals.openEditOn(EmployeesListView);
+        }
+
+        private void SearchTextBox_TextChanged(object sender, RoutedEventArgs e)
+        {
+            if (SearchByComboBox.SelectedItem != null)
+            {
+                string filterBy = SearchByComboBox.SelectedItem.ToString();
+                EmployeesListView.Items.Filter = obj =>
+                {
+                    Employee emp = obj as Employee;
+                    if (filterBy.Contains("Name"))
+                    {
+                        return (emp.FirstName + emp.LastName).Contains(SearchTextBox.Text);
+                    }
+                    if (filterBy.Contains("Id"))
+                    {
+                        return emp.Id.Contains(SearchTextBox.Text);
+                    }
+                    if (filterBy.Contains("Phone Number"))
+                    {
+                        return emp.PhoneNumber.Contains(SearchTextBox.Text);
+                    }
+                    if (filterBy.Contains("Email"))
+                    {
+                        return emp.Email.Contains(SearchTextBox.Text);
+                    }
+                    return true;
+                };
+            }
         }
     }
 }

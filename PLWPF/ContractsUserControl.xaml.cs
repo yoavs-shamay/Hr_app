@@ -45,7 +45,7 @@ namespace PLWPF
 
         private void IdComboBox_LostFocus(object sender, RoutedEventArgs e)
         {
-            if (selectedButton == App.SelectedButton.Add && IdComboBox.Items.Contains(IdComboBox.Text))
+            if (selectedButton == App.SelectedButton.Add && !App.isValidNumber(IdComboBox.Text,0) && IdComboBox.Text != "")
             {
                 MessageBox.Show("Id already exists", "Don't mess with me!!!", MessageBoxButton.OK, MessageBoxImage.Error);
                 IdComboBox.Text = "";

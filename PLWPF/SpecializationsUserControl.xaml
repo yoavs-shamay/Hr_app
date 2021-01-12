@@ -7,11 +7,30 @@
         mc:Ignorable="d"
         Style="{StaticResource UserControlStyle}" Height="300">
     <DockPanel LastChildFill="True">
-        <Grid Style="{StaticResource GenericThreeButtons}" DockPanel.Dock="Left">
-            <!--TODO Row and column and other things like in contract-->
-            <Button Style="{StaticResource ButtonStyle}" Content="Add" />
-            <Button Style="{StaticResource ButtonStyle}" Content="Edit" Margin="0,60,0,0"/>
-            <Button Style="{StaticResource ButtonStyle}" Content="Remove" Margin="0,50,0,0"/>
+        <Grid Style="{StaticResource GenericThreeButtons}" DockPanel.Dock="Left" Name="AddEditRemoveGrid">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="100" />
+                <RowDefinition Height="100" />
+                <RowDefinition Height="100" />
+            </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*" />
+            </Grid.ColumnDefinitions>
+
+            <Button Style="{StaticResource ButtonStyle}" Content="Add" VerticalAlignment="Center" Name="AddButton" Click="AddButton_Click" Grid.Row="0" Grid.Column="0"/>
+            <Button Style="{StaticResource ButtonStyle}" Content="Edit" VerticalAlignment="Center" Name="EditButton" Click="EditButton_Click" Grid.Row="1" Grid.Column="0"/>
+            <Button Style="{StaticResource ButtonStyle}" Content="Remove" VerticalAlignment="Center" Name="RemoveButton" Click="RemoveButton_Click" Grid.Row="2" Grid.Column="0"/>
+        </Grid>
+        <Grid x:Name="SaveCancelGrid" Visibility="Collapsed">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="*" />
+                <RowDefinition Height="*" />
+            </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*" />
+            </Grid.ColumnDefinitions>
+            <Button Style="{StaticResource ButtonStyle}" Content="Save" Name="SaveButton" Grid.Row="0" Grid.Column="0" Click="SaveButton_Click" VerticalAlignment="Center"/>
+            <Button Style="{StaticResource ButtonStyle}" Content="Cancel" Name="CancelButton" Grid.Row="1" Grid.Column="0" Click="CancelButton_Click" VerticalAlignment="Center"/>
         </Grid>
         <ScrollViewer VerticalScrollBarVisibility="Visible">
             <Grid Style="{StaticResource GridStyle}" Name="SpecializationsPropertiesGrid">
@@ -28,29 +47,22 @@
                     <ColumnDefinition Width="175"></ColumnDefinition>
                 </Grid.ColumnDefinitions>
 
-                <Label Content="_Id" Grid.Row="0" Grid.Column="0" HorizontalAlignment="Center" VerticalAlignment="Center"/>
-                <ComboBox Name="IdComboBox" Grid.Row="0" Grid.Column="1" IsEditable="False" IsEnabled="False" Text="{Binding Path=Id}" LostFocus="IdComboBox_LostFocus" VerticalAlignment="Center"/>
+                <Label Content="_Id" Grid.Row="0" Grid.Column="0" HorizontalAlignment="Center" VerticalAlignment="Center" Target="{Binding ElementName=IdComboBox}"/>
+                <ComboBox Name="IdComboBox" Grid.Row="0" Grid.Column="1" IsEditable="False" IsEnabled="False" Text="{Binding Path=Id}" LostFocus="IdComboBox_LostFocus" VerticalAlignment="Center" SelectionChanged="IdComboBox_SelectionChanged"/>
 
-                <Label Content="_Area" Grid.Row="1" Grid.Column="0" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                <Label Content="_Area" Grid.Row="1" Grid.Column="0" HorizontalAlignment="Center" VerticalAlignment="Center" Target="{Binding ElementName=areaComboBox}"/>
                 <ComboBox Name="areaComboBox" Grid.Row="1" Grid.Column="1" IsEnabled="False" SelectedItem="{Binding Path=Area}" VerticalAlignment="Center" />
 
-                <Label Content="_Min Wage For Hour" Grid.Row="2" Grid.Column="0" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                <Label Content="_Min Wage For Hour" Grid.Row="2" Grid.Column="0" HorizontalAlignment="Center" VerticalAlignment="Center" Target="{Binding ElementName=minWageForHourTextBox}"/>
                 <TextBox Name="minWageForHourTextBox" Grid.Row="2" Grid.Column="1" IsEnabled="False" Text="{Binding Path=MinWageForHour}" LostFocus="minWageForHourTextBox_LostFocus" VerticalAlignment="Center"/>
 
-                <Label Content="Max _Wage For Hour" Grid.Row="3" Grid.Column="0" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                <Label Content="Max _Wage For Hour" Grid.Row="3" Grid.Column="0" HorizontalAlignment="Center" VerticalAlignment="Center" Target="{Binding ElementName=maxWageForHourTextBox}"/>
                 <TextBox Grid.Row="3" Grid.Column="1" IsEnabled="False" Name="maxWageForHourTextBox" Text="{Binding Path=MaxWageForHour}" LostFocus="maxWageForHourTextBox_LostFocus" VerticalAlignment="Center"/>
 
-                <Label Content="_Degree" Grid.Row="4" Grid.Column="0" HorizontalAlignment="Center" VerticalAlignment="Center"/>
-                <ComboBox Grid.Row="4" Grid.Column="1" IsEnabled="False" Name="degreeComboBox" SelectedItem="{Binding Path=Degree}" VerticalAlignment="Center">
-                    <ComboBoxItem Content="Cartificate Only" Name="cartificateOnly" />
-                    <ComboBoxItem Content="BA" Name="BA" />
-                    <ComboBoxItem Content="MA" Name="MA" />
-                    <ComboBoxItem Content="PHD" Name="PHD" />
-                    <ComboBoxItem Content="Student" Name="student" />
-                    <ComboBoxItem Content="None" Name="none" />
-                </ComboBox>
+                <Label Content="_Degree" Grid.Row="4" Grid.Column="0" HorizontalAlignment="Center" VerticalAlignment="Center" Target="{Binding ElementName=degreeComboBox}"/>
+                <ComboBox Grid.Row="4" Grid.Column="1" IsEnabled="False" Name="degreeComboBox" SelectedItem="{Binding Path=Degree}" VerticalAlignment="Center"></ComboBox>
 
-                <Label Content="_Name" Grid.Row="5" Grid.Column="0" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                <Label Content="_Name" Grid.Row="5" Grid.Column="0" HorizontalAlignment="Center" VerticalAlignment="Center" Target="{Binding ElementName=nameTextBox}"/>
                 <TextBox Grid.Row="5" Grid.Column="1" Name="nameTextBox" IsEnabled="False" Text="{Binding Path=Name}" LostFocus="nameTextBox_LostFocus" VerticalAlignment="Center"/>
             </Grid>
         </ScrollViewer>

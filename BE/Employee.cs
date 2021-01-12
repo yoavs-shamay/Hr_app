@@ -54,7 +54,7 @@ namespace BE
         {
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propName));
         }
-        public override bool Equals(object obj) //TODO also to other classes
+        public override bool Equals(object obj)
         {
             Employee other = obj as Employee;
             return other != null && other.id == id;

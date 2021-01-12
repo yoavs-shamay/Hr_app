@@ -124,7 +124,7 @@ namespace PLWPF
 
         public static void setToToday(DatePicker datePicker)
         {
-            datePicker.SelectedDate = DateTime.Today; //TODO use this to all date pickers on init
+            datePicker.SelectedDate = DateTime.Today;
         }
         public static void sortBy(ListView listView, string properties, ListSortDirection direction)
         {

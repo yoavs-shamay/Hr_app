@@ -49,7 +49,7 @@ namespace PLWPF
 
         private void phoneNumberTextBox_LostFocus(object sender, RoutedEventArgs e)
         {
-            if (!App.isValidPhoneNumber(phoneNumberPrefixComboBox.Text + phoneNumberTextBox.Text))
+            if (!App.isValidPhoneNumber(phoneNumberPrefixComboBox.Text + phoneNumberTextBox.Text) && phoneNumberTextBox.Text != "")
             {
                 MessageBox.Show("Invalid phone number", "Don't mess with me!!!", MessageBoxButton.OK, MessageBoxImage.Error);
                 phoneNumberTextBox.Text = "";
@@ -59,7 +59,7 @@ namespace PLWPF
 
         private void IdComboBox_LostFocus(object sender, RoutedEventArgs e)
         {
-            if ((selectedButton == App.SelectedButton.Add && !App.isValidID(IdComboBox.Text)))
+            if (selectedButton == App.SelectedButton.Add && !App.isValidID(IdComboBox.Text))
             {
                 MessageBox.Show("Invalid ID", "Don't mess with me!!!", MessageBoxButton.OK, MessageBoxImage.Error);
                 IdComboBox.Text = "";
@@ -80,15 +80,16 @@ namespace PLWPF
 
         private void lastNameTextBox_LostFocus(object sender, RoutedEventArgs e)
         {
-            if (!App.containsOnlyLetters(lastNameTextBox.Text))
+            if (!App.containsOnlyLetters(lastNameTextBox.Text) && lastNameTextBox.Text != "")
             {
                 MessageBox.Show("Invalid last name", "Don't mess with me!!!", MessageBoxButton.OK, MessageBoxImage.Error);
+                lastNameTextBox.Text = "";
             }
         }
 
         private void firstNameTextBox_LostFocus(object sender, RoutedEventArgs e)
         {
-            if (!App.containsOnlyLetters(firstNameTextBox.Text))
+            if (!App.containsOnlyLetters(firstNameTextBox.Text) && firstNameTextBox.Text != "")
             {
                 MessageBox.Show("Invalid first name", "Don't mess with me!!!", MessageBoxButton.OK, MessageBoxImage.Error);
                 firstNameTextBox.Text = "";
@@ -97,16 +98,16 @@ namespace PLWPF
 
         private void companyNameTextBox_LostFocus(object sender, RoutedEventArgs e)
         {
-            if (!App.containsOnlyLetters(firstNameTextBox.Text))
+            if (!App.containsOnlyLetters(companyNameTextBox.Text) && companyNameTextBox.Text != "")
             {
                 MessageBox.Show("Invalid company name", "Don't mess with me!!!", MessageBoxButton.OK, MessageBoxImage.Error);
-                firstNameTextBox.Text = "";
+                companyNameTextBox.Text = "";
             }
         }
 
         private void addressCityTextBox_LostFocus(object sender, RoutedEventArgs e)
         {
-            if (!App.containsOnlyLetters(addressCityTextBox.Text))
+            if (!App.containsOnlyLetters(addressCityTextBox.Text) && addressCityTextBox.Text != "")
             {
                 MessageBox.Show("Invalid city", "Don't mess with me!!!", MessageBoxButton.OK, MessageBoxImage.Error);
                 addressCityTextBox.Text = "";
@@ -115,7 +116,7 @@ namespace PLWPF
 
         private void addressStreetNameTextBox_LostFocus(object sender, RoutedEventArgs e)
         {
-            if (!App.containsOnlyLetters(addressStreetNameTextBox.Text))
+            if (!App.containsOnlyLetters(addressStreetNameTextBox.Text) && addressStreetNameTextBox.Text != "")
             {
                 MessageBox.Show("Invalid street name", "Don't mess with me!!!", MessageBoxButton.OK, MessageBoxImage.Error);
                 addressStreetNameTextBox.Text = "";
@@ -124,7 +125,7 @@ namespace PLWPF
 
         private void addressHouseNumberTextBox_LostFocus(object sender, RoutedEventArgs e)
         {
-            if (!App.isValidNumber(addressHouseNumberTextBox.Text, 0))
+            if (!App.isValidNumber(addressHouseNumberTextBox.Text, 0) && addressHouseNumberTextBox.Text != "")
             {
                 MessageBox.Show("Invalid house number", "Don't mess with me!!!", MessageBoxButton.OK, MessageBoxImage.Error);
                 addressHouseNumberTextBox.Text = "";
@@ -133,7 +134,7 @@ namespace PLWPF
 
         private void addressApartmentNumberTextBox_LostFocus(object sender, RoutedEventArgs e)
         {
-            if (!App.isValidNumber(addressApartmentNumberTextBox.Text, 0))
+            if (!App.isValidNumber(addressApartmentNumberTextBox.Text, 0) && addressApartmentNumberTextBox.Text != "")
             {
                 MessageBox.Show("Invalid apartment number", "Don't mess with me!!!", MessageBoxButton.OK, MessageBoxImage.Error);
                 addressApartmentNumberTextBox.Text = "";

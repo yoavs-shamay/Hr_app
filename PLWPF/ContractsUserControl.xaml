@@ -52,37 +52,37 @@
                     <ColumnDefinition Width="175"></ColumnDefinition>
                 </Grid.ColumnDefinitions>
 
-                <Label Content="_Id" Grid.Row="0" Grid.Column="0" HorizontalAlignment="Center" VerticalAlignment="Center"/> <!--TODO Add IDs to ID combo boxes in all user controls-->
+                <Label Content="_Id" Grid.Row="0" Grid.Column="0" HorizontalAlignment="Center" VerticalAlignment="Center" Target="{Binding ElementName=IdComboBox}"/> <!--TODO Add IDs to ID combo boxes in all user controls-->
                 <ComboBox Name="IdComboBox" Grid.Row="0" Grid.Column="1" IsEditable="False" IsEnabled="False" VerticalAlignment="Center" LostFocus="IdComboBox_LostFocus" SelectionChanged="IdComboBox_SelectionChanged"/>
 
-                <Label Content="_Employee Id" Grid.Row="1" Grid.Column="0" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                <Label Content="_Employee Id" Grid.Row="1" Grid.Column="0" HorizontalAlignment="Center" VerticalAlignment="Center" Target="{Binding ElementName=employeeIdComboBox}"/>
                 <ComboBox Name="employeeIdComboBox" Grid.Row="1" Grid.Column="1" IsEnabled="False" SelectedItem="{Binding Path=EmployeeId}" VerticalAlignment="Center"/>
 
-                <Label Content="Employe_r Id" Grid.Row="2" Grid.Column="0" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                <Label Content="Employe_r Id" Grid.Row="2" Grid.Column="0" HorizontalAlignment="Center" VerticalAlignment="Center" Target="{Binding ElementName=employerIdComboBox}"/>
                 <ComboBox Name="employerIdComboBox" Grid.Row="2" Grid.Column="1" IsEnabled="False" SelectedItem="{Binding Path=EmployerId}" VerticalAlignment="Center"/>
 
-                <Label Content="I_nterviewed" Grid.Row="3" Grid.Column="0" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                <Label Content="I_nterviewed" Grid.Row="3" Grid.Column="0" HorizontalAlignment="Center" VerticalAlignment="Center" Target="{Binding ElementName=isInterviewedCheckBox}"/>
                 <CheckBox Grid.Row="3" Grid.Column="1" Name="isInterviewedCheckBox" IsEnabled="False" VerticalAlignment="Center" IsChecked="{Binding Path=IsInterview}"/>
 
-                <Label Content="_Finalized" Grid.Row="4" Grid.Column="0" HorizontalAlignment="Center" VerticalAlignment="Center" />
+                <Label Content="_Finalized" Grid.Row="4" Grid.Column="0" HorizontalAlignment="Center" VerticalAlignment="Center" Target="{Binding ElementName=isFinalizedCheckBox}"/>
                 <CheckBox Grid.Row="4" Grid.Column="1" Name="isFinalizedCheckBox" IsEnabled="False" VerticalAlignment="Center" IsChecked="{Binding Path=IsFinalized}"/>
 
-                <Label Content="_Gross Wage For Hour" Grid.Row="5" Grid.Column="0" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                <Label Content="_Gross Wage For Hour" Grid.Row="5" Grid.Column="0" HorizontalAlignment="Center" VerticalAlignment="Center" Target="{Binding ElementName=grossWageForHourTextBox}"/>
                 <TextBox Grid.Row="5" Grid.Column="1" Name="grossWageForHourTextBox" IsEnabled="False" Text="{Binding Path=GrossWageForHour}" VerticalAlignment="Center" LostFocus="grossWageForHourTextBox_LostFocus"/>
 
-                <Label Content="_Net Wage For Hour" Grid.Row="6" Grid.Column="0" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                <Label Content="_Net Wage For Hour" Grid.Row="6" Grid.Column="0" HorizontalAlignment="Center" VerticalAlignment="Center" Target="{Binding ElementName=netW_ageForHourTextBox}"/>
                 <TextBox Grid.Row="6" Grid.Column="1" Name="netW_ageForHourTextBox" IsEnabled="False" Text="{Binding Path=NetWageForHour}" VerticalAlignment="Center"/>
 
-                <Label Content="_Contract Established Date" Grid.Row="7" Grid.Column="0" HorizontalAlignment="Center" VerticalAlignment="Center" />
+                <Label Content="_Contract Established Date" Grid.Row="7" Grid.Column="0" HorizontalAlignment="Center" VerticalAlignment="Center" Target="{Binding ElementName=contractEstablishedDateDatePicker}"/>
                 <DatePicker Grid.Row="7" Grid.Column="1" Name="contractEstablishedDateDatePicker" IsEnabled="False" SelectedDate="{Binding Path=ContractEstablishedDate}" VerticalAlignment="Center"/>
 
-                <Label Content="_Terminate Date" Grid.Row="8" Grid.Column="0" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                <Label Content="_Terminate Date" Grid.Row="8" Grid.Column="0" HorizontalAlignment="Center" VerticalAlignment="Center" Target="{Binding ElementName=terminateDateDatePicker}"/>
                 <DatePicker Grid.Row="8" Grid.Column="1" Name="terminateDateDatePicker" IsEnabled="False" SelectedDate="{Binding Path=TerminateDate}" VerticalAlignment="Center"/>
 
-                <Label Content="_Max Work Hours For Month" Grid.Row="9" Grid.Column="0" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                <Label Content="_Max Work Hours For Month" Grid.Row="9" Grid.Column="0" HorizontalAlignment="Center" VerticalAlignment="Center" Target="{Binding ElementName=maxWorkHoursForMonthTextBox}"/>
                 <TextBox Grid.Row="9" Grid.Column="1" Name="maxWorkHoursForMonthTextBox" IsEnabled="False" Text="{Binding Path=MaxWorkHoursForMonth}" VerticalAlignment="Center" LostFocus="maxWorkHoursForMonthTextBox_LostFocus"/>
 
-                <Label Content="Min _Work Hours For Month" Grid.Row="10" Grid.Column="0" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                <Label Content="Min _Work Hours For Month" Grid.Row="10" Grid.Column="0" HorizontalAlignment="Center" VerticalAlignment="Center" Target="{Binding ElementName=minWorkHoursForMonthTextBox}"/>
                 <TextBox Grid.Row="10" Grid.Column="1" Name="minWorkHoursForMonthTextBox" IsEnabled="False" Text="{Binding Path=MinWorkHoursForMonth}" VerticalAlignment="Center" LostFocus="minWorkHoursForMonthTextBox_LostFocus"/>
             </Grid>
         </ScrollViewer>

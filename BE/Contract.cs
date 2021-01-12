@@ -48,5 +48,10 @@ namespace BE
         {
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propName));
         }
+        public override bool Equals(object obj)
+        {
+            Contract other = obj as Contract;
+            return other != null && other.id == id;
+        }
     }
 }

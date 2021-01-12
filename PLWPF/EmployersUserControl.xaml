@@ -7,14 +7,33 @@
         mc:Ignorable="d"
         Style="{StaticResource UserControlStyle}">
     <DockPanel LastChildFill="True">
-        <Grid Style="{StaticResource GenericThreeButtons}" DockPanel.Dock="Left">
-            <!--TODO Row and column and other things like in contract-->
-            <Button Style="{StaticResource ButtonStyle}" Content="Add" />
-            <Button Style="{StaticResource ButtonStyle}" Content="Edit" Margin="0,60,0,0"/>
-            <Button Style="{StaticResource ButtonStyle}" Content="Remove" Margin="0,50,0,0"/>
+        <Grid Style="{StaticResource GenericThreeButtons}" DockPanel.Dock="Left" Name="AddEditRemoveGrid">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="100" />
+                <RowDefinition Height="100" />
+                <RowDefinition Height="100" />
+            </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*" />
+            </Grid.ColumnDefinitions>
+
+            <Button Style="{StaticResource ButtonStyle}" Content="Add" VerticalAlignment="Center" Name="AddButton" Click="AddButton_Click" Grid.Row="0" Grid.Column="0"/>
+            <Button Style="{StaticResource ButtonStyle}" Content="Edit" VerticalAlignment="Center" Name="EditButton" Click="EditButton_Click" Grid.Row="1" Grid.Column="0"/>
+            <Button Style="{StaticResource ButtonStyle}" Content="Remove" VerticalAlignment="Center" Name="RemoveButton" Click="RemoveButton_Click" Grid.Row="2" Grid.Column="0"/>
         </Grid>
-        <ScrollViewer VerticalScrollBarVisibility="Visible" Name="EmployersPropertiesGrid">
-            <Grid Style="{StaticResource GridStyle}">
+        <Grid x:Name="SaveCancelGrid" Visibility="Collapsed">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="*" />
+                <RowDefinition Height="*" />
+            </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*" />
+            </Grid.ColumnDefinitions>
+            <Button Style="{StaticResource ButtonStyle}" Content="Save" Name="SaveButton" Grid.Row="0" Grid.Column="0" Click="SaveButton_Click" VerticalAlignment="Center"/>
+            <Button Style="{StaticResource ButtonStyle}" Content="Cancel" Name="CancelButton" Grid.Row="1" Grid.Column="0" Click="CancelButton_Click" VerticalAlignment="Center"/>
+        </Grid>
+        <ScrollViewer VerticalScrollBarVisibility="Visible">
+            <Grid Style="{StaticResource GridStyle}" Name="EmployersPropertiesGrid">
                 <Grid.RowDefinitions>
                     <RowDefinition Height="*"></RowDefinition>
                     <RowDefinition Height="*"></RowDefinition>
@@ -32,7 +51,7 @@
                 </Grid.ColumnDefinitions>
 
                 <Label Content="_Id" Grid.Row="0" Grid.Column="0" HorizontalAlignment="Center" VerticalAlignment="Center"/>
-                <ComboBox Name="IdComboBox" Grid.Row="0" Grid.Column="1" IsEditable="False" IsEnabled="False" Text="{Binding Path=Id}" LostFocus="IdComboBox_LostFocus" VerticalAlignment="Center"/>
+                <ComboBox Name="IdComboBox" Grid.Row="0" Grid.Column="1" IsEditable="False" IsEnabled="False" LostFocus="IdComboBox_LostFocus" VerticalAlignment="Center" SelectionChanged="IdComboBox_SelectionChanged"/>
 
                 <Label Content="_Private Person" Grid.Row="1" Grid.Column="0" HorizontalAlignment="Center" VerticalAlignment="Center"/>
                 <CheckBox Name="isPrivateCheckBox" Grid.Row="1" Grid.Column="1" IsEnabled="False" HorizontalAlignment="Center" IsChecked="{Binding Path=IsPrivate}" VerticalAlignment="Center"/>
@@ -48,16 +67,11 @@
                         <ColumnDefinition Width="4*" />
                     </Grid.ColumnDefinitions>
                     <ComboBox Name="phoneNumberPrefixComboBox" IsEnabled="False" Grid.Row="0" Grid.Column="0" LostFocus="phoneNumberPrefixComboBox_LostFocus">
-                        <ComboBoxItem Content="01" Name="prefix01" />
-                        <ComboBoxItem Content="02" Name="prefix02" />
-                        <ComboBoxItem Content="03" Name="prefix03" />
-                        <ComboBoxItem Content="04" Name="prefix04" />
-                        <ComboBoxItem Content="05" Name="prefix05" />
-                        <ComboBoxItem Content="06" Name="prefix06" />
-                        <ComboBoxItem Content="07" Name="prefix07" />
-                        <ComboBoxItem Content="08" Name="prefix08" />
-                        <ComboBoxItem Content="09" Name="prefix09" />
-                        <ComboBoxItem Content="00" Name="prefix00" />
+                        <ComboBoxItem Content="050" Name="prefix01" />
+                        <ComboBoxItem Content="052" Name="prefix02" />
+                        <ComboBoxItem Content="053" Name="prefix03" />
+                        <ComboBoxItem Content="054" Name="prefix04" />
+                        <ComboBoxItem Content="057" Name="prefix07" />
                     </ComboBox>
                     <Label Grid.Row="0" Grid.Column="1" Content="-" />
                     <TextBox Grid.Row="0" Grid.Column="2" IsEnabled="False" Name="phoneNumberTextBox" LostFocus="phoneNumberTextBox_LostFocus" />
@@ -97,7 +111,7 @@
                     <TextBox Grid.Row="2" Grid.Column="1" IsEnabled="False" Name="addressHouseNumberTextBox" Text="{Binding Path=Address.HouseNumber}" LostFocus="addressHouseNumberTextBox_LostFocus"/>
 
                     <Label Content="P_rivate House" Grid.Row="3" Grid.Column="0" HorizontalAlignment="Center"/>
-                    <CheckBox Grid.Row="3" Grid.Column="1" IsEnabled="False" Name="addressPrivateHouseCheckBox" HorizontalAlignment="Center" VerticalAlignment="Center" IsChecked="{Binding Path=Address.IsPrivateHouse}"/>
+                    <CheckBox Grid.Row="3" Grid.Column="1" IsEnabled="False" Name="addressPrivateHouseCheckBox" HorizontalAlignment="Center" VerticalAlignment="Center" IsChecked="{Binding Path=Address.IsPrivateHouse}" Checked="addressPrivateHouseCheckBox_Checked" Unchecked="addressPrivateHouseCheckBox_Unchecked"/>
 
                     <Label Content="Apart_ment Number" Grid.Row="4" Grid.Column="0" HorizontalAlignment="Center" />
                     <TextBox Grid.Row="4" Grid.Column="1" IsEnabled="False" Name="addressApartmentNumberTextBox" Text="{Binding Path=Address.ApartmentNumber}" LostFocus="addressApartmentNumberTextBox_LostFocus"/>

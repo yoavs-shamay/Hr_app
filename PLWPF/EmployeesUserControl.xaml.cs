@@ -220,7 +220,7 @@ namespace PLWPF
                     IdComboBox.Items.Clear();
                     foreach (Employee emp in FactoryBL.BL_instance.getAllEmployees())
                     {
-                        IdComboBox.Items.Add(emp.Id); //TODO also in other user controls
+                        IdComboBox.Items.Add(emp.Id);
                     }
                 }
                 catch (Exception err)
@@ -264,7 +264,7 @@ namespace PLWPF
                     IdComboBox.Items.Clear();
                     foreach (Employee emp in FactoryBL.BL_instance.getAllEmployees())
                     {
-                        IdComboBox.Items.Add(emp.Id); //TODO also in other user controls
+                        IdComboBox.Items.Add(emp.Id);
                     }
                 }
                 catch (Exception err)
@@ -283,12 +283,12 @@ namespace PLWPF
         private void CancelButton_Click(object sender, RoutedEventArgs e)
         {
             selectedButton = App.SelectedButton.None;
-            Globals.swapGridsVisibility(SaveCancelGrid, AddEditRemoveGrid); //TODO change also in contracts user control
+            Globals.swapGridsVisibility(SaveCancelGrid, AddEditRemoveGrid);
             Globals.enableFields(EmployeesPropertiesGrid, false, null, false);
             Globals.emptyAllFields(EmployeesPropertiesGrid);
             EmployeeData.BankAccount = new Bank();
             EmployeeData.Address = new CivicAddress();
-            IdComboBox.IsEditable = false; //TODO also in contracts and other user controls
+            IdComboBox.IsEditable = false;
         }
 
         private void bankNameComboBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
@@ -305,7 +305,7 @@ namespace PLWPF
                 }
             }
 
-        } //TODO also do this function in other user controls
+        }
 
         private void bankBranchNumberTextBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
@@ -319,7 +319,7 @@ namespace PLWPF
                     bankAddressTextBox.Text = matchingBank.BranchAddress.ToString();
                 }
             }
-        } //TODO also in other user controls
+        }
 
         private void addressPrivateHouseCheckBox_Checked(object sender, RoutedEventArgs e)
         {

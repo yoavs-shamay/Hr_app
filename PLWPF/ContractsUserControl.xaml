@@ -29,8 +29,8 @@
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="*" />
             </Grid.ColumnDefinitions>
-            <Button Style="{StaticResource ButtonStyle}" Content="Save" Name="SaveButton" Grid.Row="0" Grid.Column="0" Click="SaveButton_Click"/>
-            <Button Style="{StaticResource ButtonStyle}" Content="Cancel" Name="CancelButton" Grid.Row="1" Grid.Column="0" Click="CancelButton_Click"/>
+            <Button Style="{StaticResource ButtonStyle}" Content="Save" Name="SaveButton" Grid.Row="0" Grid.Column="0" Click="SaveButton_Click" VerticalAlignment="Center"/>
+            <Button Style="{StaticResource ButtonStyle}" Content="Cancel" Name="CancelButton" Grid.Row="1" Grid.Column="0" Click="CancelButton_Click" VerticalAlignment="Center"/>
         </Grid>
         <ScrollViewer VerticalScrollBarVisibility="Visible">
             <Grid Style="{StaticResource GridStyle}" Name="ContractsPropertiesGrids">

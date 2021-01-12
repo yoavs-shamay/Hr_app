@@ -77,7 +77,7 @@
                         <ColumnDefinition Width="4*" />
                     </Grid.ColumnDefinitions>
                     <ComboBox Name="phoneNumberPrefixComboBox" IsEnabled="False" Grid.Row="0" Grid.Column="0" LostFocus="phoneNumberPrefixComboBox_LostFocus"> <!--TODO Style in all user controls--> <!--add Style back-->
-                        <ComboBoxItem Content="050" Name="prefix01" /> <!--TODO change to 050, 051, 052, ... instead of 00,01,02,... in other user controls-->
+                        <ComboBoxItem Content="050" Name="prefix01" />
                         <ComboBoxItem Content="052" Name="prefix02" />
                         <ComboBoxItem Content="053" Name="prefix03" />
                         <ComboBoxItem Content="054" Name="prefix04" />

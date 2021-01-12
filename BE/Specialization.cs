@@ -43,5 +43,10 @@ namespace BE
         {
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propName));
         }
+        public override bool Equals(object obj)
+        {
+            Specialization other = obj as Specialization;
+            return other != null && other.id == id;
+        }
     }
 }

@@ -142,25 +142,29 @@ namespace PLWPF
         /// <param name="listView">the view window list view</param>
         public static EditTabs openEditOn(ListView listView)
         {
-            EditTabs editWindow = new EditTabs();
-            editWindow.Show();
-            string typeName = listView.ItemsSource.GetType().GetGenericArguments()[0].Name;
-            ItemCollection tabs = editWindow.editTabs.Items;
-            UserControl selectedTab = null;
-            foreach(var item in tabs)
+            if (listView.SelectedItem != null)
             {
-                TabItem tab = (TabItem)item;
-                if (tab.Header.ToString() == typeName + "s")
+                EditTabs editWindow = new EditTabs();
+                editWindow.Show();
+                string typeName = listView.ItemsSource.GetType().GetGenericArguments()[0].Name;
+                ItemCollection tabs = editWindow.editTabs.Items;
+                UserControl selectedTab = null;
+                foreach (var item in tabs)
                 {
-                    tab.IsSelected = true;
-                    selectedTab = (UserControl)tab.Content;
+                    TabItem tab = (TabItem)item;
+                    if (tab.Header.ToString() == typeName + "s")
+                    {
+                        tab.IsSelected = true;
+                        selectedTab = (UserControl)tab.Content;
+                    }
                 }
+                ComboBox idComboBox = (ComboBox)selectedTab.FindName("IdComboBox");
+                Employee currentItem = (Employee)listView.SelectedItem;
+                string id = currentItem.Id;
+                idComboBox.SelectedItem = id;
+                return editWindow;
             }
-            ComboBox idComboBox = (ComboBox)selectedTab.FindName("IdComboBox");
-            Employee currentItem = (Employee)listView.SelectedItem;
-            string id = currentItem.Id;
-            idComboBox.SelectedItem = id;
-            return editWindow;
+            return null;
         }
     }
 }

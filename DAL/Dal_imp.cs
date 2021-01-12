@@ -61,25 +61,25 @@ namespace DAL
         /// Adds a contract to the database
         /// </summary>
         /// <param name="contract">The contract to add</param>
-        public void addContract(Contract contract)=>addToList<Contract>(DataSource.contractList, contract);
+        public void addContract(Contract contract)=>addToList<Contract>(ListSource.contractList, contract);
 
         /// <summary>
         /// Adds an employee to the database
         /// </summary>
         /// <param name="employee">The employee to add</param>
-        public void addEmployee(Employee employee) => addToList<Employee>(DataSource.employeeList, employee);
+        public void addEmployee(Employee employee) => addToList<Employee>(ListSource.employeeList, employee);
         /// <summary>
         /// Adds an employer to the database
         /// </summary>
         /// <param name="employer">The employer to add</param>
-        public void addEmployer(Employer employer) => addToList<Employer>(DataSource.employerList, employer);
+        public void addEmployer(Employer employer) => addToList<Employer>(ListSource.employerList, employer);
 
         /// <summary>
         /// Adds a specialization to the database
         /// </summary>
         /// <param name="specialization">The specialization to add</param>
         public void addSpecialization(Specialization specialization) =>
-            addToList<Specialization>(DataSource.specList,specialization);
+            addToList<Specialization>(ListSource.specList,specialization);
 
         /// <summary>
         /// Get all the banks in the database
@@ -87,7 +87,7 @@ namespace DAL
         /// <returns>List of all the banks in the database</returns>
         public List<Bank> getAllBanks()
         {
-            return DataSource.bankList;
+            return ListSource.bankList;
         }
 
         /// <summary>
@@ -96,7 +96,7 @@ namespace DAL
         /// <returns>List of all the contracts in the database</returns>
         public List<Contract> getAllContracts()
         {
-            return DataSource.contractList;
+            return ListSource.contractList;
         }
 
         /// <summary>
@@ -105,7 +105,7 @@ namespace DAL
         /// <returns>List of all the employees in the database</returns>
         public List<Employee> getAllEmployees()
         {
-            return DataSource.employeeList;
+            return ListSource.employeeList;
         }
 
         /// <summary>
@@ -114,7 +114,7 @@ namespace DAL
         /// <returns>List of all the employers in the database</returns>
         public List<Employer> getAllEmployers()
         {
-            return DataSource.employerList;
+            return ListSource.employerList;
         }
 
         /// <summary>
@@ -123,33 +123,33 @@ namespace DAL
         /// <returns>List of all the specializations in the database</returns>
         public List<Specialization> getAllSpecializations()
         {
-            return DataSource.specList;
+            return ListSource.specList;
         }
 
         /// <summary>
         /// Removes a contract from the database
         /// </summary>
         /// <param name="contract">The contract to remove</param>
-        public void removeContract(Contract contract) => RemoveItem<Contract>(DataSource.contractList, contract);
+        public void removeContract(Contract contract) => RemoveItem<Contract>(ListSource.contractList, contract);
 
         /// <summary>
         /// Removes an employee from the database
         /// </summary>
         /// <param name="employee">The employee to remove</param>
-        public void removeEmployee(Employee employee) => RemoveItem<Employee>(DataSource.employeeList, employee);
+        public void removeEmployee(Employee employee) => RemoveItem<Employee>(ListSource.employeeList, employee);
 
         /// <summary>
         /// Removes an employer from the database
         /// </summary>
         /// <param name="employer">The employer to remove</param>
-        public void removeEmployer(Employer employer) => RemoveItem<Employer>(DataSource.employerList, employer);
+        public void removeEmployer(Employer employer) => RemoveItem<Employer>(ListSource.employerList, employer);
 
         /// <summary>
         /// Removes a specialization from the database
         /// </summary>
         /// <param name="specialization">The specialization to remove</param>
         public void removeSpecialization(Specialization specialization) =>
-            RemoveItem<Specialization>(DataSource.specList, specialization);
+            RemoveItem<Specialization>(ListSource.specList, specialization);
 
         /// <summary>
         /// Updates a contract in the database
@@ -157,7 +157,7 @@ namespace DAL
         /// <param name="newContract">the new updated contract</param>
         /// <param name="oldContract">the old contract to update</param>
         public void updateContract(Contract newContract, Contract oldContract) => 
-            UpdateItem<Contract>(DataSource.contractList, newContract, oldContract);
+            UpdateItem<Contract>(ListSource.contractList, newContract, oldContract);
 
         /// <summary>
         /// Updates an employee in the database
@@ -165,7 +165,7 @@ namespace DAL
         /// <param name="newEmployee">the new updated employee</param>
         /// <param name="oldEmployee">the old employee to update</param>
         public void updateEmployee(Employee newEmployee, Employee oldEmployee) => 
-            UpdateItem<Employee>(DataSource.employeeList, newEmployee, oldEmployee);
+            UpdateItem<Employee>(ListSource.employeeList, newEmployee, oldEmployee);
 
         /// <summary>
         /// Updates an employer in the database
@@ -173,7 +173,7 @@ namespace DAL
         /// <param name="newEmployer">the new updated employer</param>
         /// <param name="oldEmployer">the old employer to update</param>
         public void updateEmployer(Employer newEmployer, Employer oldEmployer) => 
-            UpdateItem<Employer>(DataSource.employerList, newEmployer, oldEmployer);
+            UpdateItem<Employer>(ListSource.employerList, newEmployer, oldEmployer);
 
         /// <summary>
         /// Updates a specizliation in the database
@@ -181,6 +181,6 @@ namespace DAL
         /// <param name="newSpecialization">the new updated specialization</param>
         /// <param name="oldSpecialization">the old specialization to update</param>
         public void updateSpecialization(Specialization newSpecialization, Specialization oldSpecialization) => 
-            UpdateItem<Specialization>(DataSource.specList, newSpecialization, oldSpecialization);
+            UpdateItem<Specialization>(ListSource.specList, newSpecialization, oldSpecialization);
     }
 }

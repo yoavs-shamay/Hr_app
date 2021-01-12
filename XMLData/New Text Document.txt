@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8"?>
+<employees>
+  <employee ID="217324383">
+    <firstName>jons</firstName>
+    <lastName>row</lastName>
+    <isMale>true</isMale>
+    <phoneNumber>0545676532</phoneNumber>
+    <email>ror@gog.com</email>
+    <birth>1970-01-01T00:00:00</birth>
+    <personalEducation>Student</education>
+    <armyGraduate>false</armyGraduate>
+    <yearsOfExperience>3</yearsOfExperience>
+    <specializationID>100001</specializationID>
+    <CivicAddress>
+      <city>עפולה</city>
+	  <streetName>רחוב</streetName>
+	  <houseNumber>12</houseNumber>
+	  <privateHouse>true</privateHouse>
+	  <apartmentNumber></apartmentNumber>
+    </CivicAddress>
+    <bank bankAccount="53567">
+      <bankNumber>1155</bankNumber>
+      <bankBranch>19</bankBranch>
+    </bank>
+  </employee>
+</employees>

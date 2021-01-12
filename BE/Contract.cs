@@ -43,7 +43,6 @@ namespace BE
         public string Id { get { return id; }
             set { id = value; propertyChanged("Id"); } }
 
-
         public event PropertyChangedEventHandler PropertyChanged;
         private void propertyChanged(string propName)
         {

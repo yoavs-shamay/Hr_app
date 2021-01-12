@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -19,9 +20,14 @@ namespace PLWPF
     /// </summary>
     public partial class ViewTabs : Window
     {
+        public static BackgroundWorker refreshViewsBackgroundWorker = new BackgroundWorker();
         public ViewTabs()
         {
             InitializeComponent();
+            if (!refreshViewsBackgroundWorker.IsBusy)
+            {
+                refreshViewsBackgroundWorker.RunWorkerAsync();
+            }
         }
     }
 }

@@ -15,6 +15,8 @@ using System.Windows.Navigation;
 using System.Windows.Shapes;
 using System.ComponentModel;
 using BE;
+using System.Threading;
+using System.Collections.ObjectModel;
 
 namespace PLWPF
 {
@@ -27,10 +29,30 @@ namespace PLWPF
         private GridViewColumnHeader sortByColumn;
         private ListSortDirection sortingDirection;
         private EditTabs currentEditWindow = null;
+        private ObservableCollection<Employee> employeeList;
         public EmployeeView()
         {
             InitializeComponent();
-            EmployeesListView.ItemsSource = BL_Object.getAllEmployees();
+            employeeList = new ObservableCollection<Employee>(BL_Object.getAllEmployees());
+            EmployeesListView.ItemsSource = employeeList;
+            ViewTabs.refreshViewsBackgroundWorker.DoWork += new DoWorkEventHandler(App_refreshViewsEvent);
+        }
+
+        private void App_refreshViewsEvent(object sender, DoWorkEventArgs args)
+        {
+            while (true)
+            {
+                
+                Action refreshAction = () => {
+                    employeeList.Clear();
+                    foreach (Employee emp in BL_Object.getAllEmployees())
+                    {
+                        employeeList.Add(emp);
+                    }
+                };
+                Dispatcher.BeginInvoke(refreshAction);
+                Thread.Sleep(5000);
+            }
         }
 
         private void GridViewColumnHeader_Click(object sender, RoutedEventArgs e)
@@ -57,7 +79,11 @@ namespace PLWPF
             {
                 currentEditWindow.Close();
             }
-            currentEditWindow = Globals.openEditOn(EmployeesListView);
+            EditTabs result = Globals.openEditOn(EmployeesListView);
+            if (result != null)
+            {
+                currentEditWindow = result;
+            }
         }
 
         private void SearchTextBox_TextChanged(object sender, RoutedEventArgs e)

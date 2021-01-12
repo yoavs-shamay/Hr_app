@@ -16,8 +16,7 @@
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="*" />
             </Grid.ColumnDefinitions>
-            <!--TODO triggers - red background to empty fields and special background to focused text box-->
-            
+
             <Button Style="{StaticResource ButtonStyle}" Content="Add" VerticalAlignment="Center" Name="AddButton" Click="AddButton_Click" Grid.Row="0" Grid.Column="0"/>
             <Button Style="{StaticResource ButtonStyle}" Content="Edit" VerticalAlignment="Center" Name="EditButton" Click="EditButton_Click" Grid.Row="1" Grid.Column="0"/>
             <Button Style="{StaticResource ButtonStyle}" Content="Remove" VerticalAlignment="Center" Name="RemoveButton" Click="RemoveButton_Click" Grid.Row="2" Grid.Column="0"/>
@@ -54,7 +53,7 @@
                 </Grid.ColumnDefinitions>
 
                 <Label Content="_Id" Grid.Row="0" Grid.Column="0" HorizontalAlignment="Center" VerticalAlignment="Center"/> <!--TODO Add IDs to ID combo boxes in all user controls-->
-                <ComboBox Name="IdComboBox" Grid.Row="0" Grid.Column="1" IsEditable="False" IsEnabled="False" Text="{Binding Path=Id}" VerticalAlignment="Center" LostFocus="IdComboBox_LostFocus"/>
+                <ComboBox Name="IdComboBox" Grid.Row="0" Grid.Column="1" IsEditable="False" IsEnabled="False" VerticalAlignment="Center" LostFocus="IdComboBox_LostFocus" SelectionChanged="IdComboBox_SelectionChanged"/>
 
                 <Label Content="_Employee Id" Grid.Row="1" Grid.Column="0" HorizontalAlignment="Center" VerticalAlignment="Center"/>
                 <ComboBox Name="employeeIdComboBox" Grid.Row="1" Grid.Column="1" IsEnabled="False" SelectedItem="{Binding Path=EmployeeId}" VerticalAlignment="Center"/>

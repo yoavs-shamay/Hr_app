@@ -33,11 +33,11 @@ namespace PLWPF
             DataContext = EmployeeData;
             foreach (Bank b in FactoryBL.BL_instance.getAllBanks())
             {
-                bankNameComboBox.Items.Add(b.BankName); //TODO also in other user controls
+                bankNameComboBox.Items.Add(b.BankName);
             }
             foreach (Employee e in FactoryBL.BL_instance.getAllEmployees())
             {
-                IdComboBox.Items.Add(e.Id); //TODO also in other user controls
+                IdComboBox.Items.Add(e.Id);
             }
             foreach (Specialization sp in FactoryBL.BL_instance.getAllSpecializations())
             {
@@ -53,7 +53,7 @@ namespace PLWPF
 
         private void IdComboBox_LostFocus(object sender, RoutedEventArgs e)
         {
-            if ((selectedButton == App.SelectedButton.Add && !App.isValidID(IdComboBox.Text))) //TODO the text != "" to all id combo boxes in all user controls and other changes
+            if ((selectedButton == App.SelectedButton.Add && !App.isValidID(IdComboBox.Text))) //TODO text != "" in all user controls
             {
                 MessageBox.Show("Invalid ID", "Don't mess with me!!!", MessageBoxButton.OK, MessageBoxImage.Error);
                 IdComboBox.Text = "";

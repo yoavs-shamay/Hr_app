@@ -47,7 +47,7 @@ namespace BL
             if (contract.GrossWageForHour > employee.EmployeeSpecialization.MaxWageForHour || 
                 contract.GrossWageForHour < employee.EmployeeSpecialization.MinWageForHour)
             {
-                throw new Exception("Contract's gross wage isn't in employee's specialization range");
+                throw new Exception($"Contract's gross wage isn't in employee's specialization range. it has to be minimum {employee.EmployeeSpecialization.MinWageForHour} and maximum {employee.EmployeeSpecialization.MaxWageForHour}");
             }
 
             // calculate how much employee and employer contracts already exists
@@ -291,6 +291,32 @@ namespace BL
             DalObject.removeSpecialization(specialization);
         }
 
+        private static void copyObject<T>(T source, T target)
+        {
+            var props = typeof(T).GetProperties();
+            foreach (var p in props)
+            {
+                if (p.PropertyType == typeof(CivicAddress))
+                {
+                    CivicAddress instance = new CivicAddress();
+                    CivicAddress propertySource = p.GetValue(source) as CivicAddress;
+                    copyObject<CivicAddress>(propertySource, instance);
+                    p.SetValue(target, instance);
+                }
+                else if (p.PropertyType == typeof(Bank))
+                {
+                    Bank instance = new Bank();
+                    Bank propertySource = p.GetValue(source) as Bank;
+                    copyObject<Bank>(propertySource, instance);
+                    p.SetValue(target, instance);
+                }
+                else
+                {
+                    p.SetValue(target, p.GetValue(source));
+                }
+            }
+        }
+
         /// <summary>
         /// Updates a contract in the database
         /// </summary>
@@ -298,8 +324,18 @@ namespace BL
         /// <param name="oldContract">The old contract to update</param>
         public void updateContract(Contract newContract, Contract oldContract)
         {
+            Contract oldContractCopy = new Contract();
+            copyObject<Contract>(oldContract, oldContractCopy);
             removeContract(oldContract);
-            addContract(newContract);
+            try
+            {
+                addContract(newContract);
+            }
+            catch (Exception err)
+            {
+                addContract(oldContractCopy);
+                throw err;
+            }
         }
 
         /// <summary>
@@ -309,8 +345,18 @@ namespace BL
         /// <param name="oldEmployee">The old employee to update</param>
         public void updateEmployee(Employee newEmployee, Employee oldEmployee)
         {
+            Employee oldEmployeeCopy = new Employee();
+            copyObject<Employee>(oldEmployee, oldEmployeeCopy);
             removeEmployee(oldEmployee);
-            addEmployee(newEmployee);
+            try
+            {
+                addEmployee(newEmployee);
+            }
+            catch (Exception err)
+            {
+                addEmployee(oldEmployeeCopy);
+                throw err;
+            }
         }
 
         /// <summary>
@@ -320,8 +366,18 @@ namespace BL
         /// <param name="oldEmployer">The old employer to update</param>s
         public void updateEmployer(Employer newEmployer, Employer oldEmployer)
         {
+            Employer oldEmployerCopy = new Employer();
+            copyObject<Employer>(oldEmployer, oldEmployerCopy);
             removeEmployer(oldEmployer);
-            addEmployer(newEmployer);
+            try
+            {
+                addEmployer(newEmployer);
+            }
+            catch (Exception err)
+            {
+                addEmployer(oldEmployerCopy);
+                throw err;
+            }
         }
 
         /// <summary>
@@ -331,8 +387,18 @@ namespace BL
         /// <param name="oldSpecialization">The old specialization to update</param>
         public void updateSpecialization(Specialization newSpecialization, Specialization oldSpecialization)
         {
+            Specialization oldSpecilaizationCopy = new Specialization();
+            copyObject<Specialization>(oldSpecialization, oldSpecilaizationCopy);
             removeSpecialization(oldSpecialization);
-            addSpecialization(newSpecialization);
+            try
+            {
+                addSpecialization(newSpecialization);
+            }
+            catch (Exception err)
+            {
+                addSpecialization(oldSpecilaizationCopy);
+                throw err;
+            }
         }
 
         /// <summary>

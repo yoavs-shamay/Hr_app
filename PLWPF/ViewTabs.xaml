@@ -11,6 +11,9 @@
             <TabItem Name="EmployeeTab" Header="Employees">
                 <local:EmployeeView />
             </TabItem>
+            <TabItem Name="EmployersTab" Header="Employers">
+                <local:EmployerView />
+            </TabItem>
         </TabControl>
     </Grid>
 </Window>

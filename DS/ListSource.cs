@@ -136,7 +136,7 @@ namespace DS
                         LastName = lastNames[i + 10],
                         Address = new CivicAddress { City = cities[randGen.Next(cities.Length)], StreetName = streets[randGen.Next(streets.Length)], HouseNumber = (uint)randGen.Next(200), IsPrivateHouse = privateHouse, ApartmentNumber = privateHouse ? (uint?)null : (uint)randGen.Next(20) },
                         PhoneNumber = phoneNums[i + 10],
-                        IsPrivate = false,
+                        IsPrivate = (i % 2 == 0? true : false),
                         CompanyName = compNames[i],
                         SetupDate = dates[i + 10],
                         EmployerProffesion = (Proffesion)randGen.Next(Enum.GetNames(typeof(Proffesion)).Length)

@@ -1,4 +1,4 @@
-﻿<UserControl x:Class="PLWPF.EmployeeView"
+﻿<UserControl x:Class="PLWPF.EmployerView"
              xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
@@ -22,16 +22,31 @@
             <ComboBox x:Name="SearchByComboBox" Grid.Column="2">
                 <ComboBoxItem Content="Name" Name="SearchByName" />
                 <ComboBoxItem Content="Id" Name="SearchById" />
+                <ComboBoxItem Content="Company Name" Name="SearchByCompanyName" />
                 <ComboBoxItem Content="Phone Number" Name="SearchByPhoneNumber" />
-                <ComboBoxItem Content="Email" Name="SearchByEmail" />
             </ComboBox>
         </Grid>
-        <ListView x:Name="EmployeesListView" ItemContainerStyle="{StaticResource ListViewItemContainerStyle}" MouseDoubleClick="EmployeesListView_MouseDoubleClick" Grid.Row="1">
+        <ListView x:Name="EmployersListView" ItemContainerStyle="{StaticResource ListViewItemContainerStyle}" MouseDoubleClick="EmployersListView_MouseDoubleClick" Grid.Row="1">
             <ListView.View>
-                <GridView x:Name="EmployeesGridView">
+                <GridView x:Name="EmployersGridReview">
                     <GridViewColumn x:Name="IdColumn" DisplayMemberBinding="{Binding Path=Id}">
                         <GridViewColumn.Header>
                             <GridViewColumnHeader Content="Id" Tag="Id" Click="GridViewColumnHeader_Click"></GridViewColumnHeader>
+                        </GridViewColumn.Header>
+                    </GridViewColumn>
+                    <GridViewColumn x:Name="IsPrivateColumn">
+                        <GridViewColumn.Header>
+                            <GridViewColumnHeader Content="Is Private" Tag="IsPrivate" Click="GridViewColumnHeader_Click"></GridViewColumnHeader>
+                        </GridViewColumn.Header>
+                        <GridViewColumn.CellTemplate>
+                            <DataTemplate>
+                                <CheckBox IsChecked="{Binding Path=IsPrivate}" IsEnabled="False"></CheckBox>
+                            </DataTemplate>
+                        </GridViewColumn.CellTemplate>
+                    </GridViewColumn>
+                    <GridViewColumn x:Name="PhoneNumberColumn" DisplayMemberBinding="{Binding Path=PhoneNumber,Converter={StaticResource PhoneNumberToPhoneNumberWithHyphenConverter}}">
+                        <GridViewColumn.Header>
+                            <GridViewColumnHeader Content="Phone Number" Tag="PhoneNumber" Click="GridViewColumnHeader_Click" />
                         </GridViewColumn.Header>
                     </GridViewColumn>
                     <GridViewColumn x:Name="FullNameColumn">
@@ -45,14 +60,9 @@
                             <GridViewColumnHeader Content="Full Name" Tag="FirstName,LastName" Click="GridViewColumnHeader_Click" />
                         </GridViewColumn.Header>
                     </GridViewColumn>
-                    <GridViewColumn x:Name="AgeColumn" DisplayMemberBinding="{Binding Path=Birth,Converter={StaticResource DateTimeToAgeConverter}}">
+                    <GridViewColumn x:Name="CompanyNameColumn" DisplayMemberBinding="{Binding Path=CompanyName}">
                         <GridViewColumn.Header>
-                            <GridViewColumnHeader Content="Age" Tag="Birth" Click="GridViewColumnHeader_Click" />
-                        </GridViewColumn.Header>
-                    </GridViewColumn>
-                    <GridViewColumn x:Name="PhoneNumberColumn" DisplayMemberBinding="{Binding Path=PhoneNumber,Converter={StaticResource PhoneNumberToPhoneNumberWithHyphenConverter}}">
-                        <GridViewColumn.Header>
-                            <GridViewColumnHeader Content="Phone Number" Tag="PhoneNumber" Click="GridViewColumnHeader_Click" />
+                            <GridViewColumnHeader Content="Company Name" Tag="CompanyName" Click="GridViewColumnHeader_Click" />
                         </GridViewColumn.Header>
                     </GridViewColumn>
                     <GridViewColumn x:Name="CityColumn" DisplayMemberBinding="{Binding Path=Address.City}">
@@ -60,34 +70,14 @@
                             <GridViewColumnHeader Content="City" Tag="Address.City" Click="GridViewColumnHeader_Click"></GridViewColumnHeader>
                         </GridViewColumn.Header>
                     </GridViewColumn>
-                    <GridViewColumn x:Name="PersonalEducationColumn" DisplayMemberBinding="{Binding Path=PersonalEducation}">
+                    <GridViewColumn x:Name="ProffesionColumn" DisplayMemberBinding="{Binding Path=EmployerProffesion}">
                         <GridViewColumn.Header>
-                            <GridViewColumnHeader Content="Education" Tag="PersonalEducation" Click="GridViewColumnHeader_Click" />
+                            <GridViewColumnHeader Content="Proffesion" Tag="EmployerProffesion" Click="GridViewColumnHeader_Click" />
                         </GridViewColumn.Header>
                     </GridViewColumn>
-                    <GridViewColumn x:Name="ArmyGraduateColumn">
+                    <GridViewColumn x:Name="CompanyAgeColumn" DisplayMemberBinding="{Binding Path=SetupDate,Converter={StaticResource DateTimeToAgeConverter}}">
                         <GridViewColumn.Header>
-                            <GridViewColumnHeader Content="Army Graduate" Tag="ArmyGraduate" Click="GridViewColumnHeader_Click"></GridViewColumnHeader>
-                        </GridViewColumn.Header>
-                        <GridViewColumn.CellTemplate>
-                            <DataTemplate>
-                                <CheckBox IsChecked="{Binding Path=ArmyGraduate}" IsEnabled="False"/>
-                            </DataTemplate>
-                        </GridViewColumn.CellTemplate>
-                    </GridViewColumn>
-                    <GridViewColumn x:Name="GenderColumn" DisplayMemberBinding="{Binding Path=IsMale, Converter={StaticResource IsMaleToGenderConverter}}">
-                        <GridViewColumn.Header>
-                            <GridViewColumnHeader Content="Gender" Tag="IsMale" Click="GridViewColumnHeader_Click"></GridViewColumnHeader>
-                        </GridViewColumn.Header>
-                    </GridViewColumn>
-                    <GridViewColumn x:Name="EmailColumn" DisplayMemberBinding="{Binding Path=Email}">
-                        <GridViewColumn.Header>
-                            <GridViewColumnHeader Content="Email" Tag="Email" Click="GridViewColumnHeader_Click"></GridViewColumnHeader>
-                        </GridViewColumn.Header>
-                    </GridViewColumn>
-                    <GridViewColumn x:Name="YearsOfExperienceColumn" DisplayMemberBinding="{Binding Path=YearsOfExperience}">
-                        <GridViewColumn.Header>
-                            <GridViewColumnHeader Content="Years Of Experience" Tag="YearsOfExperience" Click="GridViewColumnHeader_Click" />
+                            <GridViewColumnHeader Content="Company Age" Tag="SetupDate" Click="GridViewColumnHeader_Click" />
                         </GridViewColumn.Header>
                     </GridViewColumn>
                 </GridView>

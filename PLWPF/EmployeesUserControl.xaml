@@ -56,8 +56,8 @@
 
                 <Label Content="_Id" Grid.Row="0" Grid.Column="0" HorizontalAlignment="Center" Target="{Binding ElementName=IdComboBox}"/>
                 <ComboBox Name="IdComboBox" Grid.Row="0" Grid.Column="1" IsEditable="False" IsEnabled="False" LostFocus="IdComboBox_LostFocus" SelectionChanged="IdComboBox_SelectionChanged"/>
-                
-                <Label Content="_Last Name" Grid.Row="1" Grid.Column="0" HorizontalAlignment="Center" Target="{Binding ElementName=LastNameTextBox}"/> <!--TODO Target binding in other user controls-->
+
+                <Label Content="_Last Name" Grid.Row="1" Grid.Column="0" HorizontalAlignment="Center" Target="{Binding ElementName=LastNameTextBox}"/>
                 <TextBox Name="LastNameTextBox" Grid.Row="1" Grid.Column="1" IsEnabled="False" Text="{Binding Path=LastName}" LostFocus="LastNameTextBox_LostFocus"/>
                 
                 <Label Content="_First Name" Grid.Row="2" Grid.Column="0" HorizontalAlignment="Center" Target="{Binding ElementName=FirstNameTextBox}"/>
@@ -76,7 +76,7 @@
                         <ColumnDefinition Width="Auto" />
                         <ColumnDefinition Width="4*" />
                     </Grid.ColumnDefinitions>
-                    <ComboBox Name="phoneNumberPrefixComboBox" IsEnabled="False" Grid.Row="0" Grid.Column="0" LostFocus="phoneNumberPrefixComboBox_LostFocus"> <!--TODO Style in all user controls--> <!--add Style back-->
+                    <ComboBox Name="phoneNumberPrefixComboBox" IsEnabled="False" Grid.Row="0" Grid.Column="0" LostFocus="phoneNumberPrefixComboBox_LostFocus">
                         <ComboBoxItem Content="050" Name="prefix01" />
                         <ComboBoxItem Content="052" Name="prefix02" />
                         <ComboBoxItem Content="053" Name="prefix03" />
@@ -149,7 +149,7 @@
                     <ComboBox Grid.Row="3" Grid.Column="1" IsEnabled="False" Name="bankBranchNumberTextBox" SelectedItem="{Binding Path=BankAccount.BranchNumber}" LostFocus="bankBranchNumberTextBox_LostFocus" SelectionChanged="bankBranchNumberTextBox_SelectionChanged"/>
 
                     <Label Content="Acc_ount Number" Grid.Row="4" Grid.Column="0" HorizontalAlignment="Center" Target="{Binding ElementName=bankAccountNumberTextBox}" />
-                    <TextBox Grid.Row="4" Grid.Column="1" IsEnabled="False" Name="bankAccountNumberTextBox" Text="{Binding Path=BankAccount.AccountNumber}" LostFocus="bankAccountNumber_LostFocus"/> <!--TODO set to isEnabled false-->
+                    <TextBox Grid.Row="4" Grid.Column="1" IsEnabled="False" Name="bankAccountNumberTextBox" Text="{Binding Path=BankAccount.AccountNumber}" LostFocus="bankAccountNumber_LostFocus"/> 
                 </Grid>
 
                 <Label Content="Specia_lization" Grid.Row="9" Grid.Column="0" HorizontalAlignment="Center" Target="{Binding ElementName=employeeSpecializationComboBox}"/>

@@ -53,7 +53,7 @@ namespace PLWPF
 
         private void IdComboBox_LostFocus(object sender, RoutedEventArgs e)
         {
-            if ((selectedButton == App.SelectedButton.Add && !App.isValidID(IdComboBox.Text))) //TODO text != "" in all user controls
+            if ((selectedButton == App.SelectedButton.Add && !App.isValidID(IdComboBox.Text)))
             {
                 MessageBox.Show("Invalid ID", "Don't mess with me!!!", MessageBoxButton.OK, MessageBoxImage.Error);
                 IdComboBox.Text = "";

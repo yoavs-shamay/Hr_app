@@ -159,8 +159,8 @@ namespace PLWPF
                     }
                 }
                 ComboBox idComboBox = (ComboBox)selectedTab.FindName("IdComboBox");
-                Employee currentItem = (Employee)listView.SelectedItem;
-                string id = currentItem.Id;
+                object currentItem = listView.SelectedItem;
+                string id = currentItem.GetType().GetProperty("Id").GetValue(currentItem).ToString();
                 idComboBox.SelectedItem = id;
                 return editWindow;
             }

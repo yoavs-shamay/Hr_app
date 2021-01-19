@@ -40,7 +40,9 @@ namespace DS
                     Id = (i++).ToString(),
                     Name = spec,
                     MinWageForHour = randGen.Next(50, 250),
-                    MaxWageForHour = randGen.Next(250, 1000)
+                    MaxWageForHour = randGen.Next(250, 1000),
+                    Area= (Proffesion)Enum.Parse(typeof(Proffesion),Enum.GetNames(typeof(Proffesion))[randGen.Next(5)]),
+                    Degree=(Specialization.Education)Enum.Parse(typeof(Specialization.Education),Enum.GetNames(typeof(Specialization.Education))[randGen.Next(6)])
                 });
             }
         }

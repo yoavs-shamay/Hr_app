@@ -68,6 +68,9 @@
     <Compile Include="SpecializationsUserControl.xaml.cs">
       <DependentUpon>SpecializationsUserControl.xaml</DependentUpon>
     </Compile>
+    <Compile Include="SpecializationView.xaml.cs">
+      <DependentUpon>SpecializationView.xaml</DependentUpon>
+    </Compile>
     <Compile Include="ViewTabs.xaml.cs">
       <DependentUpon>ViewTabs.xaml</DependentUpon>
     </Compile>
@@ -110,6 +113,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="SpecializationsUserControl.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="SpecializationView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

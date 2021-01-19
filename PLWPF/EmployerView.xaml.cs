@@ -35,23 +35,19 @@ namespace PLWPF
             InitializeComponent();
             employerList = new ObservableCollection<Employer>(BL_Object.getAllEmployers());
             EmployersListView.ItemsSource = employerList;
-            ViewTabs.refreshViewsBackgroundWorker.DoWork += new DoWorkEventHandler(App_refreshViewsEvent);
+            ViewTabs.refreshViewsEvent += refreshViewsEvent;
         }
 
-        private void App_refreshViewsEvent(object sender, DoWorkEventArgs args)
+        private void refreshViewsEvent()
         {
-            while (true)
-            {
-                Action refreshAction = () => {
-                    employerList.Clear();
-                    foreach (Employer emp in BL_Object.getAllEmployers())
-                    {
-                        employerList.Add(emp);
-                    }
-                };
-                Dispatcher.BeginInvoke(refreshAction);
-                Thread.Sleep(5000);
-            }
+            Action refreshAction = () => {
+                employerList.Clear();
+                foreach (Employer emp in BL_Object.getAllEmployers())
+                {
+                    employerList.Add(emp);
+                }
+            };
+            Dispatcher.BeginInvoke(refreshAction);
         }
 
         private void EmployersListView_MouseDoubleClick(object sender, MouseButtonEventArgs e)

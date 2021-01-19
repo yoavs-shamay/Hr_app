@@ -35,24 +35,19 @@ namespace PLWPF
             InitializeComponent();
             employeeList = new ObservableCollection<Employee>(BL_Object.getAllEmployees());
             EmployeesListView.ItemsSource = employeeList;
-            ViewTabs.refreshViewsBackgroundWorker.DoWork += new DoWorkEventHandler(App_refreshViewsEvent);
+            ViewTabs.refreshViewsEvent += refreshViewsEvent;
         }
 
-        private void App_refreshViewsEvent(object sender, DoWorkEventArgs args)
+        private void refreshViewsEvent()
         {
-            while (true)
-            {
-                
-                Action refreshAction = () => {
-                    employeeList.Clear();
-                    foreach (Employee emp in BL_Object.getAllEmployees())
-                    {
-                        employeeList.Add(emp);
-                    }
-                };
-                Dispatcher.BeginInvoke(refreshAction);
-                Thread.Sleep(5000);
-            }
+            Action refreshAction = () => {
+                employeeList.Clear();
+                foreach (Employee emp in BL_Object.getAllEmployees())
+                {
+                    employeeList.Add(emp);
+                }
+            };
+            Dispatcher.BeginInvoke(refreshAction);
         }
 
         private void GridViewColumnHeader_Click(object sender, RoutedEventArgs e)

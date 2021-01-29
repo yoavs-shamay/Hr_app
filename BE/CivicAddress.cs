@@ -4,14 +4,17 @@ using System.ComponentModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Xml.Serialization;
 
 namespace BE
 {
+    [Serializable()]
+    [XmlRoot(ElementName ="CivicAddress")]
     public class CivicAddress : INotifyPropertyChanged
     {
         private uint? apartmentNumber;
         public uint? ApartmentNumber { get { return apartmentNumber; }
-            set { apartmentNumber = value; propertyChanged("ApartmentNumber"); } }
+            set { apartmentNumber = value; if (value == 0) { apartmentNumber = null; } propertyChanged("ApartmentNumber"); } }
         private bool isPrivateHouse;
         public bool IsPrivateHouse { get { return isPrivateHouse; }
             set { isPrivateHouse = value; propertyChanged("IsPrivateHouse"); } }

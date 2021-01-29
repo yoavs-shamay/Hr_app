@@ -1,0 +1,10 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<specializations>
+  <specialization ID="10001">
+    <name>programming</name>
+    <maxWageForHour>10000</maxWageForHour>
+    <minWageForHour>450</minWageForHour>
+    <degree>BA</degree>
+    <area>AI</area>
+  </specialization>
+</specializations>

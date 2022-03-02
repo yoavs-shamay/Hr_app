@@ -58,15 +58,38 @@
     <yearsOfExperience>12</yearsOfExperience>
     <specializationID>1001</specializationID>
     <CivicAddress xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
-  <ApartmentNumber>23</ApartmentNumber>
-  <IsPrivateHouse>false</IsPrivateHouse>
-  <HouseNumber>23</HouseNumber>
-  <StreetName>Test</StreetName>
-  <City>Test</City>
-</CivicAddress>
+      <ApartmentNumber>23</ApartmentNumber>
+      <IsPrivateHouse>false</IsPrivateHouse>
+      <HouseNumber>23</HouseNumber>
+      <StreetName>Test</StreetName>
+      <City>Test</City>
+    </CivicAddress>
     <bank bankAccount="122">
       <bankNumber>20</bankNumber>
       <branchNumber>728</branchNumber>
+    </bank>
+  </employee>
+  <employee ID="335327227">
+    <firstName>Ttest</firstName>
+    <lastName>Ttest</lastName>
+    <isMale>False</isMale>
+    <phoneNumber>0544444444</phoneNumber>
+    <email>asddd@asdddddd.asddddddddd</email>
+    <birth>10/8/1999 00:00:00</birth>
+    <personalEducation>PHD</personalEducation>
+    <armyGraduate>False</armyGraduate>
+    <yearsOfExperience>23</yearsOfExperience>
+    <specializationID>1001</specializationID>
+    <CivicAddress xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <ApartmentNumber>42</ApartmentNumber>
+  <IsPrivateHouse>false</IsPrivateHouse>
+  <HouseNumber>42</HouseNumber>
+  <StreetName>ASDASD</StreetName>
+  <City>ASDASD</City>
+</CivicAddress>
+    <bank bankAccount="123">
+      <bankNumber>31</bankNumber>
+      <branchNumber>70</branchNumber>
     </bank>
   </employee>
 </employees>

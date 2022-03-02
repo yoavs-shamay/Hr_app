@@ -292,12 +292,12 @@ namespace PLWPF
         {
             if (bankNameComboBox.SelectedItem != null)
             {
-                Bank matchingBank = FactoryBL.BL_instance.getAllBanks().Find(bank => bank.BankName == bankNameComboBox.SelectedItem.ToString());
-                if (matchingBank != null)
+                List<Bank> matchingBanks = FactoryBL.BL_instance.getAllBanks().FindAll(bank => bank.BankName == bankNameComboBox.SelectedItem.ToString());
+                bankBranchNumberTextBox.Items.Clear();
+                foreach (Bank matchingBank in matchingBanks)
                 {
                     bankNumberTextBox.Text = matchingBank.BankNumber.ToString();
                     EmployeeData.BankAccount.BankNumber = uint.Parse(bankNumberTextBox.Text);
-                    bankBranchNumberTextBox.Items.Clear();
                     bankBranchNumberTextBox.Items.Add(matchingBank.BranchNumber);
                     bankAddressTextBox.Text = "";
                 }

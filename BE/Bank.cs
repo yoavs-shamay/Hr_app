@@ -4,12 +4,16 @@ using System.ComponentModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Xml.Serialization;
 
 namespace BE
 {
+    [Serializable()]
+    [XmlRoot(ElementName = "Bank")]
     public class Bank : INotifyPropertyChanged
     {
         private uint accountNumber;
+        [XmlIgnore]
         public uint AccountNumber { get { return accountNumber; }
             set { accountNumber = value; propertyChanged("AccountNumber"); } }
         private uint branchNumber;

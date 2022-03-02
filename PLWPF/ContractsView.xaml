@@ -1,0 +1,125 @@
+﻿<UserControl x:Class="PLWPF.ContractsView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:PLWPF"
+             mc:Ignorable="d" 
+             d:DesignHeight="450" d:DesignWidth="800" Style="{StaticResource UserControlStyle}">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="*" />
+            <RowDefinition Height="Auto" />
+        </Grid.RowDefinitions>
+        <Grid x:Name="SearchGrid" Grid.Row="0">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="100" />
+                <ColumnDefinition Width="Auto" />
+                <ColumnDefinition Width="100" />
+            </Grid.ColumnDefinitions>
+            <TextBox x:Name="SearchTextBox" TextChanged="SearchTextBox_TextChanged" Grid.Column="0"/>
+            <Label Grid.Column="1" Content="Search By:" />
+            <ComboBox x:Name="SearchByComboBox" Grid.Column="2">
+                <ComboBoxItem Content="Id" Name="SearchById" />
+                <ComboBoxItem Content="Employer Company Name" Name="SearchByEmployerCompanyName" />
+                <ComboBoxItem Content="Employee Name" Name="SearchByEmployeeName" />
+            </ComboBox>
+        </Grid>
+        <ListView x:Name="ContractsListView" ItemContainerStyle="{StaticResource ListViewItemContainerStyle}" MouseDoubleClick="ContractsListView_MouseDoubleClick" Grid.Row="1">
+            <ListView.View>
+                <GridView x:Name="ContractsGridView">
+                    <GridViewColumn x:Name="IdColumn" DisplayMemberBinding="{Binding Path=Value.Id}">
+                        <GridViewColumn.Header>
+                            <GridViewColumnHeader Content="Id" Tag="Value.Id" Click="GridViewColumnHeader_Click" />
+                        </GridViewColumn.Header>
+                    </GridViewColumn>
+                    <GridViewColumn x:Name="EmployerCompanyNameColumn" DisplayMemberBinding="{Binding Path=Value.EmployerId,Converter={StaticResource EmployerIdToEmployerCompanyNameConverter}}">
+                        <GridViewColumn.Header>
+                            <GridViewColumnHeader Content="Employer Company Name" Tag="Value.EmployerId" Click="GridViewColumnHeader_Click" /> <!--TODO Fix tag to match Name and not Id-->
+                        </GridViewColumn.Header>
+                    </GridViewColumn>
+                    <GridViewColumn x:Name="EmployeeNameColumn" DisplayMemberBinding="{Binding Path=Value.EmployeeId,Converter={StaticResource EmployeeIdToEmployeeNameConverter}}">
+                        <GridViewColumn.Header>
+                            <GridViewColumnHeader Content="Employee Name" Tag="Value.EmployerId" Click="GridViewColumnHeader_Click" />
+                            <!--TODO Fix tag to match Name and not Id-->
+                        </GridViewColumn.Header>
+                    </GridViewColumn>
+                    <GridViewColumn x:Name="InterviewedColumn">
+                        <GridViewColumn.Header>
+                            <GridViewColumnHeader Content="Interviewed" Tag="Value.IsInterview" Click="GridViewColumnHeader_Click" />
+                        </GridViewColumn.Header>
+                        <GridViewColumn.CellTemplate>
+                            <DataTemplate>
+                                <CheckBox IsChecked="{Binding Path=Value.IsInterview}" IsEnabled="False" />
+                            </DataTemplate>
+                        </GridViewColumn.CellTemplate>
+                    </GridViewColumn>
+                    <GridViewColumn x:Name="FinalizedColumn">
+                        <GridViewColumn.Header>
+                            <GridViewColumnHeader Content="Finalized" Tag="Value.IsFinalized" Click="GridViewColumnHeader_Click" />
+                        </GridViewColumn.Header>
+                        <GridViewColumn.CellTemplate>
+                            <DataTemplate>
+                                <CheckBox IsChecked="{Binding Path=Value.IsFinalized}" IsEnabled="False" />
+                            </DataTemplate>
+                        </GridViewColumn.CellTemplate>
+                    </GridViewColumn>
+                    <GridViewColumn x:Name="NetWageForHourColumn" DisplayMemberBinding="{Binding Path=Value.NetWageForHour}">
+                        <GridViewColumn.Header>
+                            <GridViewColumnHeader Content="Net Wage For Hour" Tag="Value.NetWageForHour" Click="GridViewColumnHeader_Click"/>
+                        </GridViewColumn.Header>
+                    </GridViewColumn>
+                    <GridViewColumn x:Name="ContractAgeColumn" DisplayMemberBinding="{Binding Path=Value.ContractEstablishedDate,Converter={StaticResource DateTimeToAgeConverter}}">
+                        <GridViewColumn.Header>
+                            <GridViewColumnHeader Content="Contract Age" Tag="Value.ContractEstablishedDate" Click="GridViewColumnHeader_Click" />
+                        </GridViewColumn.Header>
+                    </GridViewColumn>
+                    <GridViewColumn x:Name="TerminatedColumn">
+                        <GridViewColumn.Header>
+                            <GridViewColumnHeader Content="Terminated" Tag="Value.TerminateDate" /> <!--TODO fix sorting-->
+                        </GridViewColumn.Header>
+                        <GridViewColumn.CellTemplate>
+                            <DataTemplate>
+                                <CheckBox IsChecked="{Binding Path=Value.TerminateDate, Converter={StaticResource DateToIsPassedConverter}}" IsEnabled="False" />
+                            </DataTemplate>
+                        </GridViewColumn.CellTemplate>
+                    </GridViewColumn>
+                    <GridViewColumn x:Name="WorkHoursForMonthColumn">
+                        <GridViewColumn.Header>
+                            <GridViewColumnHeader Content="Work Hours For Month Range" Tag="Value.MinWorkHoursForMonth,Value.MaxWorkHoursForMonth" Click="GridViewColumnHeader_Click"/>
+                        </GridViewColumn.Header>
+                        <GridViewColumn.DisplayMemberBinding>
+                            <MultiBinding StringFormat="{}{0} - {1}">
+                                <Binding Path="Value.MinWorkHoursForMonth" />
+                                <Binding Path="Value.MaxWorkHoursForMonth" />
+                            </MultiBinding>
+                        </GridViewColumn.DisplayMemberBinding>
+                    </GridViewColumn>
+                </GridView>
+            </ListView.View>
+        </ListView>
+        <Grid Grid.Row="2">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="Auto" />
+                <ColumnDefinition Width="*" />
+                <ColumnDefinition Width="Auto" />
+                <ColumnDefinition Width="*" />
+            </Grid.ColumnDefinitions>
+            <Label Content="Filter By:" Grid.Column="0" />
+            <ComboBox Name="FilterByComboBox" Grid.Column="1" SelectionChanged="FilterByComboBox_SelectionChanged">
+                <ComboBoxItem Content="None" Name="FilterByNone" />
+                <ComboBoxItem Content="Interviewed" Name="FilterByInterviewed" />
+                <ComboBoxItem Content="Finalized" Name="FilterByFinalized" />
+                <ComboBoxItem Content="Terminated" Name="FilterByTerminated" />
+            </ComboBox>
+            <Label Content="Group By:" Grid.Column="2" />
+            <ComboBox Name="GroupByComboBox" Grid.Column="3" SelectionChanged="GroupByComboBox_SelectionChanged">
+                <ComboBoxItem Content="None" Name="GroupByNone" />
+                <ComboBoxItem Content="Specialization" Name="GroupByEmployeeSpecialization"/>
+                <ComboBoxItem Content="Address" Name="GroupByAddress" />
+                <ComboBoxItem Content="Establishment Date" Name="GroupByEstablishmentDate" />
+            </ComboBox>
+        </Grid>
+    </Grid>
+</UserControl>

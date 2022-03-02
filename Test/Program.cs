@@ -1,6 +1,7 @@
 ﻿using BE;
 using DAL;
 using System;
+using System.Text;
 
 namespace Test
 {
@@ -34,13 +35,10 @@ namespace Test
         static void Main(string[] args)
         {
             Dal_XML_imp XML_imp_object = new Dal_XML_imp();
-            Specialization spec = XML_imp_object.getAllSpecializations()[0];
-            Specialization newSpec = new Specialization();
-            copyObject<Specialization>(spec, newSpec);
-            newSpec.Id = "10001";
-            newSpec.Name += "a";
-            XML_imp_object.addSpecialization(newSpec);
-            XML_imp_object.removeSpecialization(spec);
+            Dal_XML_imp.DownloadBanksXML();
+            Bank bank = XML_imp_object.getAllBanks()[0];
+            Console.WriteLine(bank.BankName + ";" + bank.BankNumber + ";" + bank.BranchAddress + ";" + bank.BranchNumber);
+            Console.ReadLine();
         }
     }
 }

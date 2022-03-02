@@ -9,7 +9,10 @@
         <local:NullableBooleanToBoolConverter x:Key="NullableBooleanToBoolConverter" />
         <local:DateTimeToAgeConverter x:Key="DateTimeToAgeConverter" />
         <local:PhoneNumberToPhoneNumberWithHyphenConverter x:Key="PhoneNumberToPhoneNumberWithHyphenConverter" />
+        <local:EmployerIdToEmployerCompanyNameConverter x:Key="EmployerIdToEmployerCompanyNameConverter" />
+        <local:EmployeeIdToEmployeeNameConverter x:Key="EmployeeIdToEmployeeNameConverter" />
         <local:IsMaleToGenderConverter x:Key="IsMaleToGenderConverter" />
+        <local:DateToIsPassedConverter x:Key="DateToIsPassedConverter" />
         <Style x:Key="ButtonStyle" TargetType="Button">
             <Setter Property="FontSize" Value="20" />
             <Setter Property="Padding" Value="5" />

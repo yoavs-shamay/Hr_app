@@ -1,17 +1,72 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<specializations>
-  <specialization ID="100000">
-    <name>programming</name>
-    <maxWageForHour>10000</maxWageForHour>
-    <minWageForHour>450</minWageForHour>
-    <degree>BA</degree>
-    <area>AI</area>
-  </specialization>
-  <specialization ID="10001">
-    <name>programminga</name>
-    <maxWageForHour>10000</maxWageForHour>
-    <minWageForHour>450</minWageForHour>
-    <degree>BA</degree>
-    <area>AI</area>
-  </specialization>
-</specializations>
+<employees>
+  <employee ID="217324383">
+    <firstName>dsa</firstName>
+    <lastName>asd</lastName>
+    <isMale>False</isMale>
+    <phoneNumber>0504573000</phoneNumber>
+    <email>asd@asd.asd</email>
+    <birth>9/18/1999 00:00:00</birth>
+    <personalEducation>Student</personalEducation>
+    <armyGraduate>False</armyGraduate>
+    <yearsOfExperience>1221</yearsOfExperience>
+    <specializationID>1001</specializationID>
+    <CivicAddress xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+      <ApartmentNumber xsi:nil="true" />
+      <IsPrivateHouse>true</IsPrivateHouse>
+      <HouseNumber>221</HouseNumber>
+      <StreetName>asd</StreetName>
+      <City>asd</City>
+    </CivicAddress>
+    <bank bankAccount="1221">
+      <bankNumber>20</bankNumber>
+      <branchNumber>688</branchNumber>
+    </bank>
+  </employee>
+  <employee ID="332017862">
+    <firstName>Test</firstName>
+    <lastName>Test</lastName>
+    <isMale>False</isMale>
+    <phoneNumber>0522222222</phoneNumber>
+    <email>asd@dsa.dsa</email>
+    <birth>8/12/1999 00:00:00</birth>
+    <personalEducation>MA</personalEducation>
+    <armyGraduate>True</armyGraduate>
+    <yearsOfExperience>33</yearsOfExperience>
+    <specializationID>1001</specializationID>
+    <CivicAddress xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+      <ApartmentNumber xsi:nil="true" />
+      <IsPrivateHouse>true</IsPrivateHouse>
+      <HouseNumber>14</HouseNumber>
+      <StreetName>Asd</StreetName>
+      <City>Asd</City>
+    </CivicAddress>
+    <bank bankAccount="123">
+      <bankNumber>11</bankNumber>
+      <branchNumber>516</branchNumber>
+    </bank>
+  </employee>
+  <employee ID="236920906">
+    <firstName>Testt</firstName>
+    <lastName>Testt</lastName>
+    <isMale>True</isMale>
+    <phoneNumber>0533333333</phoneNumber>
+    <email>asdd@asddddd.asddddddd</email>
+    <birth>6/1/1994 00:00:00</birth>
+    <personalEducation>PHD</personalEducation>
+    <armyGraduate>False</armyGraduate>
+    <yearsOfExperience>12</yearsOfExperience>
+    <specializationID>1001</specializationID>
+    <CivicAddress xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <ApartmentNumber>23</ApartmentNumber>
+  <IsPrivateHouse>false</IsPrivateHouse>
+  <HouseNumber>23</HouseNumber>
+  <StreetName>Test</StreetName>
+  <City>Test</City>
+</CivicAddress>
+    <bank bankAccount="122">
+      <bankNumber>20</bankNumber>
+      <branchNumber>728</branchNumber>
+    </bank>
+  </employee>
+</employees>

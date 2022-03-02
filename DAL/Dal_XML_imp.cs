@@ -17,19 +17,22 @@ namespace DAL
         public static XmlSerializer CivicAddressSerializer = new XmlSerializer(typeof(CivicAddress));
 
         private static string filePath(string name) => XMLSource.DirectoryPath + name;
-        private static object desearilizeValue(XElement element, string name, XmlSerializer serializer)
+        private static object desearilizeValue(XElement element, XmlSerializer serializer)
         {
-            XElement elementToDesearilize = element.Element(getXName(name));
-            var reader = elementToDesearilize.CreateReader();
+            var reader = element.CreateReader();
             return serializer.Deserialize(reader);
         }
 
         private static XElement searilizeValue<T>(T element, XmlSerializer serializer)
         {
-            XDocument document = new XDocument();
-            var writer = document.CreateWriter();
-            serializer.Serialize(writer, element);
-            return document.Root;
+            MemoryStream stream = new MemoryStream();
+            serializer.Serialize(stream, element);
+            stream.Position = 0;
+            XmlReader reader = XmlReader.Create(stream);
+            XElement result = XElement.Load(reader);
+            reader.Close();
+            stream.Close();
+            return result;
         }
         private static XName getXName(string name)
         {
@@ -60,7 +63,23 @@ namespace DAL
 
         public void addContract(Contract contract)
         {
-            throw new NotImplementedException();
+            XElement root = XMLSource.ContractsElement;
+            XElement contractElement = new XElement(getXName("contract"));
+            contractElement.SetAttributeValue(getXName("ID"), contract.Id);
+            contractElement.Add(getXElement("employerID", contract.EmployerId));
+            contractElement.Add(getXElement("employeeID", contract.EmployeeId));
+            contractElement.Add(getXElement("isInterview", contract.IsInterview.ToString()));
+            contractElement.Add(getXElement("isFinalized", contract.IsFinalized.ToString()));
+            contractElement.Add(getXElement("grossWageForHour", contract.GrossWageForHour.ToString()));
+            contractElement.Add(getXElement("netWageForHour", contract.NetWageForHour.ToString()));
+            contractElement.Add(getXElement("maxWorkHoursForMonth", contract.MaxWorkHoursForMonth.ToString()));
+            contractElement.Add(getXElement("minWorkHoursForMonth", contract.MinWorkHoursForMonth.ToString()));
+            contractElement.Add(getXElement("contractEstablishedDate", contract.ContractEstablishedDate.ToString()));
+            contractElement.Add(getXElement("terminateDate", contract.TerminateDate.ToString()));
+            root.Add(contractElement);
+            root.Save(filePath(XMLSource.ContractsFile));
+            XMLSource.ContractsElement = root;
+
         }
 
         public void addEmployee(Employee employee)
@@ -91,7 +110,20 @@ namespace DAL
 
         public void addEmployer(Employer employer)
         {
-            throw new NotImplementedException();
+            XElement root = XMLSource.EmployersElement;
+            XElement employerElement = new XElement(getXName("employer"));
+            employerElement.SetAttributeValue(getXName("ID"), employer.Id);
+            employerElement.Add(getXElement("lastName", employer.LastName));
+            employerElement.Add(getXElement("firstName", employer.FirstName));
+            employerElement.Add(getXElement("companyName", employer.CompanyName));
+            employerElement.Add(getXElement("phoneNumber", employer.PhoneNumber));
+            employerElement.Add(getXElement("isPrivate", employer.IsPrivate.ToString()));
+            employerElement.Add(searilizeValue<CivicAddress>(employer.Address, CivicAddressSerializer));
+            employerElement.Add(getXElement("employerProffesion", employer.EmployerProffesion.ToString()));
+            employerElement.Add(getXElement("setupDate", employer.SetupDate.ToString()));
+            root.Add(employerElement);
+            root.Save(filePath(XMLSource.EmployersFile));
+            XMLSource.EmployersElement = root;
         }
 
         public void addSpecialization(Specialization specialization)
@@ -105,18 +137,43 @@ namespace DAL
             specializationElement.Add(getXElement("degree", specialization.Degree.ToString()));
             specializationElement.Add(getXElement("area", specialization.Area.ToString()));
             root.Add(specializationElement);
-            root.Save(filePath(XMLSource.EmployeesFile));
+            root.Save(filePath(XMLSource.SpecializationsFile));
             XMLSource.SpecializationsElement = root;
         }
 
         public List<Bank> getAllBanks()
         {
-            throw new NotImplementedException();
+            List<Bank> result = new List<Bank>();
+            XElement root = XMLSource.BanksElement;
+            foreach (XElement bank in root.Elements())
+            {
+                Bank bankObject = (Bank)desearilizeValue(bank, new XmlSerializer(typeof(Bank)));
+                result.Add(bankObject);
+            }
+            return result;
         }
 
         public List<Contract> getAllContracts()
         {
-            throw new NotImplementedException();
+            List<Contract> contracts = new List<Contract>();
+            XElement root = XMLSource.ContractsElement;
+            foreach(XElement contractElement in root.Elements())
+            {
+                Contract contract = new Contract();
+                contract.Id = contractElement.Attribute(getXName("ID")).Value;
+                contract.EmployerId = getValue(contractElement, "employerID");
+                contract.EmployeeId = getValue(contractElement, "employeeID");
+                contract.IsInterview = bool.Parse(getValue(contractElement, "isInterview"));
+                contract.IsFinalized = bool.Parse(getValue(contractElement, "isFinalized"));
+                contract.GrossWageForHour = double.Parse(getValue(contractElement, "grossWageForHour"));
+                contract.NetWageForHour = double.Parse(getValue(contractElement, "netWageForHour"));
+                contract.MaxWorkHoursForMonth = double.Parse(getValue(contractElement, "maxWorkHoursForMonth"));
+                contract.MinWorkHoursForMonth = double.Parse(getValue(contractElement, "minWorkHoursForMonth"));
+                contract.ContractEstablishedDate = DateTime.Parse(getValue(contractElement, "contractEstablishedDate"));
+                contract.TerminateDate = DateTime.Parse(getValue(contractElement, "terminateDate"));
+                contracts.Add(contract);
+            }
+            return contracts;
         }
 
         public List<Employee> getAllEmployees()
@@ -137,7 +194,7 @@ namespace DAL
                 employee.ArmyGraduate = bool.Parse(getValue(employeeElement, "armyGraduate"));
                 employee.YearsOfExperience = uint.Parse(getValue(employeeElement, "yearsOfExperience"));
                 employee.EmployeeSpecialization = getAllSpecializations().Find(spec => spec.Id == getValue(employeeElement, "specializationID"));
-                employee.Address = (CivicAddress)desearilizeValue(employeeElement, "CivicAddress", CivicAddressSerializer);
+                employee.Address = (CivicAddress)desearilizeValue(employeeElement.Element("CivicAddress"), CivicAddressSerializer);
                 XElement bankElement = employeeElement.Element("bank");   
                 Bank employeeBank = getAllBanks().Find(b => 
                 b.BankNumber == uint.Parse(getValue(bankElement, "bankNumber")) && b.BranchNumber == uint.Parse(getValue(bankElement,"branchNumber")));
@@ -150,7 +207,23 @@ namespace DAL
 
         public List<Employer> getAllEmployers()
         {
-            throw new NotImplementedException();
+            List<Employer> employers = new List<Employer>();
+            XElement root = XMLSource.EmployersElement;
+            foreach(XElement employerElement in root.Elements())
+            {
+                Employer employer = new Employer();
+                employer.Id = employerElement.Attribute(getXName("ID")).Value;
+                employer.LastName = getValue(employerElement, "lastName");
+                employer.FirstName = getValue(employerElement, "firstName");
+                employer.CompanyName = getValue(employerElement, "companyName");
+                employer.PhoneNumber = getValue(employerElement, "phoneNumber");
+                employer.IsPrivate = bool.Parse(getValue(employerElement, "isPrivate"));
+                employer.Address = (CivicAddress)desearilizeValue(employerElement.Element(getXName("CivicAddress")), CivicAddressSerializer);
+                employer.EmployerProffesion = (Proffesion)Enum.Parse(typeof(Proffesion), getValue(employerElement, "employerProffesion"));
+                employer.SetupDate = DateTime.Parse(getValue(employerElement, "setupDate"));
+                employers.Add(employer);
+            }
+            return employers;
         }
 
         public List<Specialization> getAllSpecializations()
@@ -173,7 +246,10 @@ namespace DAL
 
         public void removeContract(Contract contract)
         {
-            throw new NotImplementedException();
+            XElement root = XMLSource.ContractsElement;
+            remove(contract.Id, root);
+            root.Save(filePath(XMLSource.ContractsFile));
+            XMLSource.ContractsElement = root;
         }
 
         public void removeEmployee(Employee employee)
@@ -186,7 +262,10 @@ namespace DAL
 
         public void removeEmployer(Employer employer)
         {
-            throw new NotImplementedException();
+            XElement root = XMLSource.EmployersElement;
+            remove(employer.Id, root);
+            root.Save(filePath(XMLSource.EmployersFile));
+            XMLSource.EmployersElement = root;
         }
 
         public void removeSpecialization(Specialization specialization)
@@ -210,7 +289,8 @@ namespace DAL
 
         public void updateEmployer(Employer newEmployer, Employer oldEmployer)
         {
-            throw new NotImplementedException();
+            removeEmployer(oldEmployer);
+            addEmployer(newEmployer);
         }
 
         public void updateSpecialization(Specialization newSpecialization, Specialization oldSpecialization)
@@ -218,5 +298,11 @@ namespace DAL
             removeSpecialization(oldSpecialization);
             addSpecialization(newSpecialization);
         }
+
+        public static void DownloadBanksXML()
+        {
+            XMLSource.downloadBanksXML();
+        }
+
     }
 }

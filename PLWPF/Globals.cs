@@ -8,6 +8,7 @@ using System.Windows.Controls;
 using BE;
 using System.ComponentModel;
 using System.Collections;
+using BL;
 
 namespace PLWPF
 {
@@ -152,7 +153,7 @@ namespace PLWPF
                 foreach (var item in tabs)
                 {
                     TabItem tab = (TabItem)item;
-                    if (tab.Header.ToString() == typeName + "s")
+                    if (tab.Header.ToString() == typeName + "s" || ((tab.Header.ToString() == "Contracts") && (typeName == "ContractGroupContainer")))
                     {
                         tab.IsSelected = true;
                         selectedTab = (UserControl)tab.Content;
@@ -160,7 +161,15 @@ namespace PLWPF
                 }
                 ComboBox idComboBox = (ComboBox)selectedTab.FindName("IdComboBox");
                 object currentItem = listView.SelectedItem;
-                string id = currentItem.GetType().GetProperty("Id").GetValue(currentItem).ToString();
+                string id;
+                if (typeName != "ContractGroupContainer")
+                {
+                    id = currentItem.GetType().GetProperty("Id").GetValue(currentItem).ToString();
+                }
+                else
+                {
+                    id = (currentItem as ContractGroupContainer).Value.Id;
+                }
                 idComboBox.SelectedItem = id;
                 return editWindow;
             }

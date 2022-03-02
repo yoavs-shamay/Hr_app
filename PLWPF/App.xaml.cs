@@ -1,4 +1,5 @@
 ﻿using BE;
+using BL;
 using System;
 using System.Collections.Generic;
 using System.Configuration;
@@ -25,7 +26,7 @@ namespace PLWPF
             Remove,
             None
         }
-        
+
         public static bool isNumber(string str)
         {
             try
@@ -206,6 +207,50 @@ namespace PLWPF
             {
                 return "Female";
             }
+        }
+
+        public object ConvertBack(object value, Type targetType, object parameter, CultureInfo culture)
+        {
+            throw new NotImplementedException();
+        }
+    }
+
+    public class EmployerIdToEmployerCompanyNameConverter : IValueConverter
+    {
+        public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
+        {
+            string valueString = value.ToString();
+            Employer emp = FactoryBL.BL_instance.getAllEmployers().Find(employer => employer.Id == valueString);
+            return emp.CompanyName;
+        }
+
+        public object ConvertBack(object value, Type targetType, object parameter, CultureInfo culture)
+        {
+            throw new NotImplementedException();
+        }
+    }
+
+    public class EmployeeIdToEmployeeNameConverter : IValueConverter
+    {
+        public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
+        {
+            string valueString = value.ToString();
+            Employee emp = FactoryBL.BL_instance.getAllEmployees().Find(employee => employee.Id == valueString);
+            return emp.FirstName + " " + emp.LastName;
+        }
+
+        public object ConvertBack(object value, Type targetType, object parameter, CultureInfo culture)
+        {
+            throw new NotImplementedException();
+        }
+    }
+
+    public class DateToIsPassedConverter : IValueConverter
+    {
+        public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
+        {
+            DateTime valueTime = (DateTime)value;
+            return DateTime.Today > valueTime;
         }
 
         public object ConvertBack(object value, Type targetType, object parameter, CultureInfo culture)

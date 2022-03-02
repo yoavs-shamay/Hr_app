@@ -12,7 +12,7 @@ namespace DAL
         private FactoryDAL() { }
         static FactoryDAL()
         {
-            dal_instance = new Dal_imp();
+            dal_instance = new Dal_XML_imp();
         }
         public static Idal Dal_instance { get { return dal_instance; } }
     }

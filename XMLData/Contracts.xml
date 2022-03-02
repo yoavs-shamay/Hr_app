@@ -1,0 +1,39 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<contracts>
+  <contract ID="1221">
+    <employerID>111111118</employerID>
+    <employeeID>217324383</employeeID>
+    <isInterview>True</isInterview>
+    <isFinalized>False</isFinalized>
+    <grossWageForHour>220</grossWageForHour>
+    <netWageForHour>178.2</netWageForHour>
+    <maxWorkHoursForMonth>12</maxWorkHoursForMonth>
+    <minWorkHoursForMonth>211</minWorkHoursForMonth>
+    <contractEstablishedDate>2/20/2019 00:00:00</contractEstablishedDate>
+    <terminateDate>6/14/2030 00:00:00</terminateDate>
+  </contract>
+  <contract ID="122112">
+    <employerID>111111118</employerID>
+    <employeeID>217324383</employeeID>
+    <isInterview>True</isInterview>
+    <isFinalized>True</isFinalized>
+    <grossWageForHour>233</grossWageForHour>
+    <netWageForHour>189.196</netWageForHour>
+    <maxWorkHoursForMonth>12</maxWorkHoursForMonth>
+    <minWorkHoursForMonth>111</minWorkHoursForMonth>
+    <contractEstablishedDate>5/17/2019 00:00:00</contractEstablishedDate>
+    <terminateDate>10/18/2030 00:00:00</terminateDate>
+  </contract>
+  <contract ID="213">
+    <employerID>111111118</employerID>
+    <employeeID>332017862</employeeID>
+    <isInterview>True</isInterview>
+    <isFinalized>False</isFinalized>
+    <grossWageForHour>200</grossWageForHour>
+    <netWageForHour>160.8</netWageForHour>
+    <maxWorkHoursForMonth>111</maxWorkHoursForMonth>
+    <minWorkHoursForMonth>1</minWorkHoursForMonth>
+    <contractEstablishedDate>3/1/2022 00:00:00</contractEstablishedDate>
+    <terminateDate>3/2/2026 00:00:00</terminateDate>
+  </contract>
+</contracts>

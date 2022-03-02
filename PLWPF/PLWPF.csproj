@@ -55,6 +55,9 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="ContractsView.xaml.cs">
+      <DependentUpon>ContractsView.xaml</DependentUpon>
+    </Compile>
     <Compile Include="EditTabs.xaml.cs">
       <DependentUpon>EditTabs.xaml</DependentUpon>
     </Compile>
@@ -75,6 +78,10 @@
       <DependentUpon>ViewTabs.xaml</DependentUpon>
     </Compile>
     <Page Include="ContractsUserControl.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="ContractsView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

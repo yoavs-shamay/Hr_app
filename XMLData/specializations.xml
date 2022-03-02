@@ -1,10 +1,24 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <specializations>
   <specialization ID="10001">
-    <name>programming</name>
+    <name>programminga</name>
     <maxWageForHour>10000</maxWageForHour>
     <minWageForHour>450</minWageForHour>
     <degree>BA</degree>
+    <area>AI</area>
+  </specialization>
+  <specialization ID="1221">
+    <name>spec</name>
+    <maxWageForHour>21</maxWageForHour>
+    <minWageForHour>12</minWageForHour>
+    <degree>Student</degree>
+    <area>AI</area>
+  </specialization>
+  <specialization ID="1001">
+    <name>NEW SPEC</name>
+    <maxWageForHour>233</maxWageForHour>
+    <minWageForHour>1</minWageForHour>
+    <degree>MA</degree>
     <area>AI</area>
   </specialization>
 </specializations>

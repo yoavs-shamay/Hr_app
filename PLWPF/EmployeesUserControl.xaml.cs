@@ -31,10 +31,7 @@ namespace PLWPF
             EmployeeData.Address = new CivicAddress();
             EmployeeData.BankAccount = new Bank();
             DataContext = EmployeeData;
-            foreach (Bank b in FactoryBL.BL_instance.getAllBanks())
-            {
-                bankNameComboBox.Items.Add(b.BankName);
-            }
+            bankNameComboBox.ItemsSource = (from b in FactoryBL.BL_instance.getAllBanks() select b.BankName).Distinct();
             foreach (Employee e in FactoryBL.BL_instance.getAllEmployees())
             {
                 IdComboBox.Items.Add(e.Id);
@@ -299,6 +296,7 @@ namespace PLWPF
                 if (matchingBank != null)
                 {
                     bankNumberTextBox.Text = matchingBank.BankNumber.ToString();
+                    EmployeeData.BankAccount.BankNumber = uint.Parse(bankNumberTextBox.Text);
                     bankBranchNumberTextBox.Items.Clear();
                     bankBranchNumberTextBox.Items.Add(matchingBank.BranchNumber);
                     bankAddressTextBox.Text = "";

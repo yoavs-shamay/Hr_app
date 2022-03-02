@@ -442,12 +442,12 @@ namespace BL
         }
 
         /// <summary>
-        /// Returns contracts grouped by the employee address
+        /// Returns contracts grouped by the employee city
         /// Returns IEnumerable of ContractGroupContainers so there will be no use of template and
         /// select with let's will be able to use in querys, ContractGroupContainer contains Key - object and Value - Contract
         /// </summary>
         /// <param name="sorted">If sort the output</param>
-        /// <returns>An IEnumerable of ContractGroupContainer of CivicAddress and Contract</returns>
+        /// <returns>An IEnumerable of ContractGroupContainer of string and Contract</returns>
         public IEnumerable<ContractGroupContainer> getAllCountractsGroupedByAddress(bool sorted = false)
         {
             var value = from c in DalObject.getAllContracts()
@@ -455,24 +455,29 @@ namespace BL
                         orderby (sorted) ? contractAddress.City : null,
                         (sorted)? contractAddress.StreetName : null,
                         (sorted)? contractAddress.HouseNumber : 0
-                        select new ContractGroupContainer { Key = contractAddress, Value = c };
+                        select new ContractGroupContainer { Key = contractAddress.City, Value = c };
             return value;
         }
 
         /// <summary>
-        /// Returns all contracts grouped by the contract established date
+        /// Returns all contracts grouped by the contract established year
         /// Returns IEnumerable of ContractGroupContainers so there will be no use of template and
         /// select with let's will be able to use in querys, ContractGroupContainer contains Key - object and Value - Contract
         /// </summary>
         /// <param name="sorted">If sort the output</param>
-        /// <returns>An IEnumerable of ContractGroupContainer of DateTime and Contract</returns>
+        /// <returns>An IEnumerable of ContractGroupContainer of int and Contract</returns>
         public IEnumerable<ContractGroupContainer> getAllCountractsGroupedByTime(bool sorted = false)
         {
             var value = from c in DalObject.getAllContracts()
                         let time = c.ContractEstablishedDate
                         orderby (sorted)? time : DateTime.Now
-                        select new ContractGroupContainer { Key = time, Value = c };
+                        select new ContractGroupContainer { Key = time.Year, Value = c };
             return value;
+        }
+
+        public static void DownloadBanksXML()
+        {
+            Dal_XML_imp.DownloadBanksXML();
         }
     }
 }

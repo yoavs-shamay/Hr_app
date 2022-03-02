@@ -1,0 +1,35 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<employers>
+  <employer ID="111111118">
+    <lastName>asd</lastName>
+    <firstName>asd</firstName>
+    <companyName>programming LTD</companyName>
+    <phoneNumber>0504573000</phoneNumber>
+    <isPrivate>False</isPrivate>
+    <CivicAddress xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+      <ApartmentNumber xsi:nil="true" />
+      <IsPrivateHouse>true</IsPrivateHouse>
+      <HouseNumber>1221</HouseNumber>
+      <StreetName>asd</StreetName>
+      <City>ads</City>
+    </CivicAddress>
+    <employerProffesion>AI</employerProffesion>
+    <setupDate>5/22/2009 00:00:00</setupDate>
+  </employer>
+  <employer ID="217324383">
+    <lastName>Shamay</lastName>
+    <firstName>Yoav</firstName>
+    <companyName>programming inc</companyName>
+    <phoneNumber>0583434321</phoneNumber>
+    <isPrivate>False</isPrivate>
+    <CivicAddress xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <ApartmentNumber>25</ApartmentNumber>
+  <IsPrivateHouse>false</IsPrivateHouse>
+  <HouseNumber>42</HouseNumber>
+  <StreetName>hashalom</StreetName>
+  <City>asddsa</City>
+</CivicAddress>
+    <employerProffesion>AI</employerProffesion>
+    <setupDate>2/7/2021 00:00:00</setupDate>
+  </employer>
+</employers>

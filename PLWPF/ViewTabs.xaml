@@ -17,6 +17,9 @@
             <TabItem Name="SpecializationsTab" Header="Specializations">
                 <local:SpecializationView />
             </TabItem>
+            <TabItem Name="ContractsTab" Header="Contracts">
+                <local:ContractsView />
+            </TabItem>
         </TabControl>
     </Grid>
 </Window>
